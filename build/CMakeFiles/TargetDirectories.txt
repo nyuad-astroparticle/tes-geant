@@ -1,0 +1,4 @@
+/home/spaghettifiedcat/Documents/astroparticle/haloscope/geant4/first_actual_attempt/build/CMakeFiles/sim.dir
+/home/spaghettifiedcat/Documents/astroparticle/haloscope/geant4/first_actual_attempt/build/CMakeFiles/Simulation.dir
+/home/spaghettifiedcat/Documents/astroparticle/haloscope/geant4/first_actual_attempt/build/CMakeFiles/edit_cache.dir
+/home/spaghettifiedcat/Documents/astroparticle/haloscope/geant4/first_actual_attempt/build/CMakeFiles/rebuild_cache.dir
