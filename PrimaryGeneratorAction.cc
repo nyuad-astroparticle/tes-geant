@@ -11,7 +11,7 @@ PrimaryGeneratorAction::PrimaryGeneratorAction()
 
 	
 	// Set Up the particle Gun
-	G4int numberOfParticles = 10;
+	G4int numberOfParticles = 1;
 	particleGun             = new G4ParticleGun(numberOfParticles);
 	
 	// Set particle gun default parameters (they should change according to user input during the run)
@@ -56,12 +56,12 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event *anEvent)
 
 G4ThreeVector PrimaryGeneratorAction::SampleStartPosition()
 {
-	return G4ThreeVector(0. * m, 0. * m, 5. *m);
+	return G4ThreeVector(0. * m, 50. * cm, 0. *m);
 }
 
 G4ThreeVector PrimaryGeneratorAction::SampleMomentumDirection()
 {
-	return G4ThreeVector(0., 0., -1.);
+	return G4ThreeVector(0., -1., 0.);
 }
 
 G4double PrimaryGeneratorAction::SampleEnergy()

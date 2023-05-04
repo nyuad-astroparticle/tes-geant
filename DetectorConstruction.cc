@@ -12,19 +12,19 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 //------------------Creating the world volume-----------------------------------
 	G4Material *worldMat = nist->FindOrBuildMaterial("G4_AIR");
 
-	G4Box *solidWorld = new G4Box("solidWorld", 10*m, 10*m, 10*m);
+	G4Box *solidWorld = new G4Box("solidWorld", 1*m, 1*m, 1*m);
 
 	G4LogicalVolume *logicWorld = new G4LogicalVolume(solidWorld, worldMat, "logicWorld");
 
 	G4VPhysicalVolume * physWorld = new G4PVPlacement(0, G4ThreeVector(0., 0., 0.), logicWorld, "physWorld", 0, false, 0, true);
 
 //------------------Creating the aluminium box---------------------------------
-	G4double aluminiumThickness = 20*mm;
+	G4double aluminiumThickness = 3.0*mm;
 
-	G4Material *boxMat = nist->FindOrBuildMaterial("G4_Al");
+	G4Material *boxMat = nist->FindOrBuildMaterial("G4_Cu");
 
-	G4Box *solidOuterAluminiumBox = new G4Box("solidOuterAluminiumBox", 1./2*m, 1./2*m, 1./2*m);
-	G4Box *solidInnerAluminiumBox = new G4Box("solidInnerAluminiumBox", (1.*m - 2*aluminiumThickness)/2, (1.*m - 2*aluminiumThickness)/2, (1.*m -2*aluminiumThickness)/2);
+	G4Box *solidOuterAluminiumBox = new G4Box("solidOuterAluminiumBox", 2.5/2*cm, 2.5/2*cm, 5.0/2*cm);
+	G4Box *solidInnerAluminiumBox = new G4Box("solidInnerAluminiumBox", (2.5*cm - 2*aluminiumThickness)/2, (2.5*cm - 2*aluminiumThickness)/2, (5.0*cm - 2*aluminiumThickness)/2);
 	G4SubtractionSolid *solidAluminiumBox = new G4SubtractionSolid("solidAluminiumBox", solidOuterAluminiumBox, solidInnerAluminiumBox, 0, G4ThreeVector(0.*mm, 0.*mm, 0.*mm));
 
 
@@ -39,7 +39,7 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 			logicWorld,			// logic volume of the mother
 			false, 				// no boolean operator
 			0, 				// copy number
-			true); 				// checking for overlaps
+			false); 				// checking for overlaps
 
 //----------------Creating Silicon thingy------------------------------------
 
@@ -47,19 +47,19 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 
 	G4Material *siliconMat =  nist->FindOrBuildMaterial("G4_Si");
 
-	G4Box *solidSilicon = new G4Box("solidSilicon", 1./2 * cm, 1./2 * cm, 0.5/2 * mm);
+	G4Box *solidSilicon = new G4Box("solidSilicon", 1./2 * cm, siliconThickness/2,1./2 * cm);
 
 	G4LogicalVolume * logicSilicon = new G4LogicalVolume(solidSilicon, siliconMat, "logicalSilicon");
 
 	G4VPhysicalVolume * physSilicon = new G4PVPlacement(
 			0,
-			G4ThreeVector(0, 0, 0.5*m - aluminiumThickness - siliconThickness/2),
+			G4ThreeVector(0, -2.5/2*cm + aluminiumThickness + siliconThickness/2, 0),
 			logicSilicon,
 			"Silicon",
 			logicWorld,
 			false,
 			0,
-			true);
+			false);
 
 //----------------Setting atributes before returning the mother volume--------
 	G4VisAttributes* blue       = new G4VisAttributes(G4Colour(0.0, 0.0, 1.0, 0.3));
