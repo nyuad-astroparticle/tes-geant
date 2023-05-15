@@ -8,8 +8,7 @@
 
 class PrimaryGeneratorAction;
 class G4UIdirectory;
-class G4UIcmdWithADoubleAndUnit;
-class G4UIcmdWith3VectorAndUnit;
+class G4UIcmdWithoutParameter;
 class G4UIcmdWithAString;
 
 class ParticleMessenger : public G4UImessenger
@@ -18,16 +17,13 @@ class ParticleMessenger : public G4UImessenger
 		ParticleMessenger(PrimaryGeneratorAction*);
 		~ParticleMessenger();
 		
-		void SetNewValue(G4UIcommand* command, G4String input) override;
+		void SetNewValue(G4UIcommand* command, G4String input);
 	private:
-
-		PrimaryGeneratorAction* primaryGenerator;	// The object to control
-		G4UIdirectory* prefix; 				// prefixe of the commands 
-		
-		// The available Commands
-		G4UIcmdWith3VectorAndUnit* setSpectrum;         // Set Set the spectrum by which to sample energies from
-		G4UIcmdWithADoubleAndUnit* setEnergy;           // Set the energy of the particle for fixed energies
-		G4UIcmdWithADoubleAndUnit* setZPosition;           // Set the energy of the particle for fixed energies
-		G4UIcmdWithAString* selectParticle;             // Select between proton, electron, and gamma		
+		PrimaryGeneratorAction*      	primaryGenerator;
+		G4UIdirectory*               	CRYDir;
+		G4UIcmdWithAString*          	FileCmd; 
+		G4UIcmdWithAString*          	InputCmd;
+		G4UIcmdWithoutParameter*     	UpdateCmd;
+		std::string* 					MessInput;	
 };
 #endif

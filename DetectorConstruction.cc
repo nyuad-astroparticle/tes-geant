@@ -72,7 +72,7 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
     	white->SetVisibility(true);
     	G4VisAttributes* yellow     = new G4VisAttributes(G4Colour(1.0, 1.0, 0.0, 0.1));
     	yellow->SetVisibility(true);
-	G4VisAttributes* invisible  = new G4VisAttributes(G4Colour(1.0, 1.0, 1.0));
+		G4VisAttributes* invisible  = new G4VisAttributes(G4Colour(1.0, 1.0, 1.0));
     	invisible->SetVisibility(false);
 
 	logicWorld->SetVisAttributes(invisible);
