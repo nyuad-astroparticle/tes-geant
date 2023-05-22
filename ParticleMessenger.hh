@@ -20,7 +20,7 @@ class ParticleMessenger : public G4UImessenger
 		void SetNewValue(G4UIcommand* command, G4String input);
 	private:
 		PrimaryGeneratorAction*      	primaryGenerator;
-		G4UIdirectory*               	CRYDir;
+		G4UIdirectory*               	prefix;
 		G4UIcmdWithAString*          	FileCmd; 
 		G4UIcmdWithAString*          	InputCmd;
 		G4UIcmdWithoutParameter*     	UpdateCmd;

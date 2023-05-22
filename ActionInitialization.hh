@@ -3,8 +3,6 @@
 
 #include "G4VUserActionInitialization.hh"
 
-#include "PrimaryGeneratorAction.hh" 
-
 class MyActionInitialization : public G4VUserActionInitialization
 {
 public:
