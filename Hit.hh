@@ -6,15 +6,15 @@
 #include "G4Allocator.hh"
 #include "G4ThreeVector.hh"
 
-class Hit : public G4VHit
+class TESHit : public G4VHit
 {
 public:
-    Hit() = default;
-    Hit(const Hit&) = default;
-    ~Hit() override;
+    TESHit() = default;
+    TESHit(const TESHit&) = default;
+    ~TESHit() override;
 
-    Hit& operator=(const Hit&) = default;
-    G4bool operator==(const Hit&) const;
+    TESHit& operator=(const TESHit&) = default;
+    G4bool operator==(const TESHit&) const;
 
     inline void* operator new(size_t);
     inline void  operator delete(void*);
@@ -42,18 +42,19 @@ private:
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-typedef G4THitsCollection<Hit> HitsCollection;
-extern G4ThreadLocal G4Allocator<Hit>* HitAllocator;
+// typedef G4THitsCollection<Hit> HitsCollection;
+using HitsCollection = G4THitsCollection<TESHit>;
+extern G4ThreadLocal G4Allocator<TESHit>* HitAllocator;
 
-inline void* Hit::operator new(size_t)
+inline void* TESHit::operator new(size_t)
 {
-    if(!HitAllocator) HitAllocator = new G4Allocator<Hit>;
+    if(!HitAllocator) HitAllocator = new G4Allocator<TESHit>;
     return (void*) HitAllocator->MallocSingle();
 }
 
-inline void Hit::operator delete(void* hit)
+inline void TESHit::operator delete(void* hit)
 {
-    HitAllocator->FreeSingle((Hit*) hit);
+    HitAllocator->FreeSingle((TESHit*) hit);
 }
 
 #endif

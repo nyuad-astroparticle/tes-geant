@@ -4,16 +4,16 @@
 #include "G4VisAttributes.hh"
 #include "G4UnitsTable.hh"
 
-G4ThreadLocal G4Allocator<Hit>* HitAllocator = nullptr;
+G4ThreadLocal G4Allocator<TESHit>* HitAllocator = nullptr;
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-G4bool Hit::operator==(const Hit& right) const
+G4bool TESHit::operator==(const TESHit& right) const
 {
     return (this==&right) ? true : false;
 }
 
-void Hit::Draw()
+void TESHit::Draw()
 {
     G4VVisManager* particleVisManager = G4VVisManager::GetConcreteInstance();
     if (particleVisManager) {
@@ -27,7 +27,7 @@ void Hit::Draw()
     }
 }
 
-void Hit::Print()
+void TESHit::Print()
 {
     G4cout
         << " trackID: " << trackID
