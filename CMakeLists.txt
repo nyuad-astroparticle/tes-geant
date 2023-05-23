@@ -2,7 +2,8 @@ cmake_minimum_required(VERSION 3.0 FATAL_ERROR)
 
 project(Simulation)
 
-file(COPY ${PROJECT_SOURCE_DIR}/macros DESTINATION .)
+file(COPY ${PROJECT_SOURCE_DIR}/macros DESTINATION ${PROJECT_BINARY_DIR})
+file(MAKE_DIRECTORY ${PROJECT_BINARY_DIR}/output )
 
 find_package(Geant4 REQUIRED ui_all vis_all)
 
