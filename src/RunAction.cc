@@ -24,7 +24,7 @@ RunAction::RunAction()
     analysisManager->CreateNtupleDColumn("XPosition");
     analysisManager->CreateNtupleDColumn("YPosition");
     analysisManager->CreateNtupleDColumn("ZPosition");
-    analysisManager->CreateNtupleDColumn("GlobalTime");
+    analysisManager->CreateNtupleDColumn("LocalTime");
     analysisManager->FinishNtuple();
 }
 
