@@ -3,15 +3,14 @@
 
 #include "G4VUserActionInitialization.hh"
 
-#include "PrimaryGeneratorAction.hh" 
-
 class MyActionInitialization : public G4VUserActionInitialization
 {
 public:
 	MyActionInitialization();
 	~MyActionInitialization();
 
-	virtual void Build() const;
+	void Build() const override;
+	void BuildForMaster() const override;
 };
 
 #endif

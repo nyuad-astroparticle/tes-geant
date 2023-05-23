@@ -1,0 +1,5 @@
+/CRY/file ../setup.file
+/run/initialize
+/tracking/verbose 0
+/vis/scene/endOfEventAction accumulate
+/run/beamOn 50
