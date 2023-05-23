@@ -49,12 +49,12 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 
 	G4Box *solidSilicon = new G4Box("solidSilicon", 1./2 * cm, siliconThickness/2,1./2 * cm);
 
-	G4LogicalVolume * logicSilicon = new G4LogicalVolume(solidSilicon, siliconMat, "logicalSilicon");
+	substrateLogical = new G4LogicalVolume(solidSilicon, siliconMat, "logicalSilicon");
 
 	G4VPhysicalVolume * physSilicon = new G4PVPlacement(
 			0,
 			G4ThreeVector(0, -2.5/2*cm + aluminiumThickness + siliconThickness/2, 0),
-			logicSilicon,
+			substrateLogical,
 			"Silicon",
 			logicWorld,
 			false,
@@ -77,9 +77,15 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 
 	logicWorld->SetVisAttributes(invisible);
 	logicAluminiumBox->SetVisAttributes(red);
-	logicSilicon->SetVisAttributes(yellow);
+	substrateLogical->SetVisAttributes(yellow);
 
 //---------------Returning the mother volume---------------------------------
 	return physWorld;
 }
 
+void MyDetectorConstruction::ConstructSDandField()
+{
+	auto detector = new SensitiveDetector("/SiliconSubstrate","SilliconHitsCollection");
+	G4SDManager::GetSDMpointer()->AddNewDetector(detector);
+	SetSensitiveDetector(substrateLogical,detector);
+}

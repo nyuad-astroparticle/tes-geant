@@ -9,7 +9,8 @@ public:
 	MyActionInitialization();
 	~MyActionInitialization();
 
-	virtual void Build() const;
+	void Build() const override;
+	void BuildForMaster() const override;
 };
 
 #endif

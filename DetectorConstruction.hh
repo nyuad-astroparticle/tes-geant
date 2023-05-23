@@ -11,6 +11,8 @@
 #include "G4SubtractionSolid.hh"
 #include "G4VisAttributes.hh"
 #include "G4Colour.hh"					 
+#include "SensitiveDetector.hh"
+#include "G4SDManager.hh" 
 
 class MyDetectorConstruction : public G4VUserDetectorConstruction
 {
@@ -18,7 +20,11 @@ class MyDetectorConstruction : public G4VUserDetectorConstruction
 		MyDetectorConstruction();
 		~MyDetectorConstruction();
 
-		virtual G4VPhysicalVolume *Construct();
+		G4VPhysicalVolume *Construct() override;
+		void ConstructSDandField() override;
+
+	private:
+		G4LogicalVolume* substrateLogical = nullptr;
 };
 #endif
 

@@ -1,28 +1,32 @@
 #include "EventAction.hh"
 #include "G4TrajectoryContainer.hh"
 #include "G4Event.hh"
+#include "TESHit.hh"
+#include "G4AnalysisManager.hh"
+#include "G4SystemOfUnits.hh"
 
 void EventAction::BeginOfEventAction(const G4Event* event) {}
 
 void EventAction::EndOfEventAction(const G4Event* event)
 {
+    auto eventHitsCollections = event->GetHCofThisEvent();
+    auto analysisManager = G4AnalysisManager::Instance();
 
-    // get number of stored trajectories
-    G4TrajectoryContainer* trajectoryContainer = event->GetTrajectoryContainer();
+    for (int i=0;i<eventHitsCollections->GetNumberOfCollections();i++){
+        auto eventHitsCollection = static_cast<HitsCollection*> (eventHitsCollections->GetHC(i));
 
-    G4int n_trajectories = 0;
-    if (trajectoryContainer) n_trajectories = trajectoryContainer->entries();
-
-    // periodic printing
-    G4int eventID = event->GetEventID();
-    if ( eventID < 100 || eventID % 100 == 0) {
-        G4cout << ">>> Event: " << eventID  << G4endl;
-        if ( trajectoryContainer ) {
-        G4cout << "    " << n_trajectories
-                << " trajectories stored in this event." << G4endl;
+        for (int j=0;j<eventHitsCollection->GetSize();j++){
+            TESHit* hit = (*eventHitsCollection)[j];
+            
+            analysisManager->FillNtupleIColumn(0,event->GetEventID());
+            analysisManager->FillNtupleIColumn(1,hit->getTrackID());
+            analysisManager->FillNtupleSColumn(2,hit->getParticle());
+            analysisManager->FillNtupleDColumn(3,hit->getEnergyDeposited()/MeV);
+            analysisManager->FillNtupleDColumn(4,hit->getPosition()[0]);
+            analysisManager->FillNtupleDColumn(5,hit->getPosition()[1]);
+            analysisManager->FillNtupleDColumn(6,hit->getPosition()[2]);
+            analysisManager->FillNtupleDColumn(7,hit->getTime());
+            analysisManager->AddNtupleRow();
         }
-        G4VHitsCollection* hc = event->GetHCofThisEvent()->GetHC(0);
-        G4cout << "    "
-            << hc->GetSize() << " hits stored in this event" << G4endl;
     }
 }

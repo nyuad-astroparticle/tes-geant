@@ -11,7 +11,7 @@ class TESHit : public G4VHit
 public:
     TESHit() = default;
     TESHit(const TESHit&) = default;
-    ~TESHit() override;
+    ~TESHit() override = default;
 
     TESHit& operator=(const TESHit&) = default;
     G4bool operator==(const TESHit&) const;

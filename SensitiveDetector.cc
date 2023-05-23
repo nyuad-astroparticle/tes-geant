@@ -23,9 +23,10 @@ G4bool SensitiveDetector::ProcessHits(G4Step* step, G4TouchableHistory* history)
 
     auto hit = new TESHit();
     hit->setTrackID(step->GetTrack()->GetTrackID());
+    hit->setParticle(step->GetTrack()->GetParticleDefinition()->GetParticleName());
     hit->setEnergyDeposited(edep);
     hit->setPosition(step->GetPostStepPoint()->GetPosition());
-    hit->setTime(step->GetPostStepPoint()->GetGlobalTime());
+    hit->setTime(step->GetPostStepPoint()->GetLocalTime());
 
     hitsCollection->insert(hit);
 

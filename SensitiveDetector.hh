@@ -2,7 +2,7 @@
 #define SensitiveDetector_HH
 
 #include "G4VSensitiveDetector.hh"
-#include "Hit.hh"
+#include "TESHit.hh"
 
 class SensitiveDetector : public G4VSensitiveDetector
 {
@@ -10,10 +10,10 @@ public:
     SensitiveDetector(const G4String& name, const G4String& hitsCollectionName);
     ~SensitiveDetector() override = default;
 
-    G4bool ProcessHits(G4Step* step, G4TouchableHistory* history);
+    G4bool ProcessHits(G4Step* step, G4TouchableHistory* history) override;
 
-    void Initialize(G4HCofThisEvent* hitsCollection);
-    void EndOfEvent(G4HCofThisEvent* hitsCollection);
+    void Initialize(G4HCofThisEvent* hitsCollection) override;
+    void EndOfEvent(G4HCofThisEvent* hitsCollection) override;
 
 private:
     HitsCollection* hitsCollection = nullptr;
