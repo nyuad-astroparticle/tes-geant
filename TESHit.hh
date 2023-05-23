@@ -1,5 +1,5 @@
-#ifndef Hit_HH
-#define Hit_HH
+#ifndef TESHit_HH
+#define TESHit_HH
 
 #include "G4VHit.hh"
 #include "G4THitsCollection.hh"
@@ -23,17 +23,20 @@ public:
     void Print() override;
 
     void setTrackID(G4int trackID)                      {this->trackID = trackID;};
+    void setParticle(G4String particle)                 {this->particle = particle;};
     void setEnergyDeposited(G4double energyDeposited)   {this->energyDeposited = energyDeposited;};
     void setPosition(G4ThreeVector position)            {this->position = position;};
     void setTime(G4double time)                         {this->time = time;};
 
     G4int getTrackID()              {return trackID;};
+    G4String getParticle()          {return particle;};
     G4double getEnergyDeposited()   {return energyDeposited;};
     G4ThreeVector getPosition()     {return position;};
     G4double getTime()              {return time;};
 
 private:
     G4int           trackID = -1;
+    G4String        particle = "";
     G4double        energyDeposited = 0;
     G4ThreeVector   position;
     G4double        time = -1;

@@ -1,4 +1,4 @@
-#include "Hit.hh"
+#include "TESHit.hh"
 #include "G4VVisManager.hh"
 #include "G4Circle.hh"
 #include "G4VisAttributes.hh"
@@ -31,6 +31,7 @@ void TESHit::Print()
 {
     G4cout
         << " trackID: " << trackID
+        << " Particle: " << particle
         << " Edep: "
         << std::setw(7) << G4BestUnit(energyDeposited,"Energy")
         << " Position: "
