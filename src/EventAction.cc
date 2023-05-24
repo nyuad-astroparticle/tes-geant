@@ -25,7 +25,8 @@ void EventAction::EndOfEventAction(const G4Event* event)
             analysisManager->FillNtupleDColumn(4,hit->getPosition()[0]);
             analysisManager->FillNtupleDColumn(5,hit->getPosition()[1]);
             analysisManager->FillNtupleDColumn(6,hit->getPosition()[2]);
-            analysisManager->FillNtupleDColumn(7,hit->getTime());
+            analysisManager->FillNtupleDColumn(7,hit->getTime()/ns);
+            analysisManager->FillNtupleSColumn(8,hit->getVolume());
             analysisManager->AddNtupleRow();
         }
     }

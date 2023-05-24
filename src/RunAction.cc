@@ -25,6 +25,7 @@ RunAction::RunAction()
     analysisManager->CreateNtupleDColumn("YPosition");
     analysisManager->CreateNtupleDColumn("ZPosition");
     analysisManager->CreateNtupleDColumn("LocalTime");
+    analysisManager->CreateNtupleSColumn("Volume");
     analysisManager->FinishNtuple();
 }
 

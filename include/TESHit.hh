@@ -27,12 +27,14 @@ public:
     void setEnergyDeposited(G4double energyDeposited)   {this->energyDeposited = energyDeposited;};
     void setPosition(G4ThreeVector position)            {this->position = position;};
     void setTime(G4double time)                         {this->time = time;};
+    void setVolume(G4String volume)                     {this->volume = volume;};
 
     G4int getTrackID()              {return trackID;};
     G4String getParticle()          {return particle;};
     G4double getEnergyDeposited()   {return energyDeposited;};
     G4ThreeVector getPosition()     {return position;};
     G4double getTime()              {return time;};
+    G4String getVolume()            {return volume;};
 
 private:
     G4int           trackID = -1;
@@ -40,12 +42,12 @@ private:
     G4double        energyDeposited = 0;
     G4ThreeVector   position;
     G4double        time = -1;
+    G4String        volume = "";
 };
 
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-// typedef G4THitsCollection<Hit> HitsCollection;
 using HitsCollection = G4THitsCollection<TESHit>;
 extern G4ThreadLocal G4Allocator<TESHit>* HitAllocator;
 
