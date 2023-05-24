@@ -29,7 +29,7 @@ void TESHit::Draw()
 
 void TESHit::Print()
 {
-    G4cout
+    if( verboseLevel > 0) G4cout
         << " trackID: " << trackID
         << " Particle: " << particle
         << " Edep: "

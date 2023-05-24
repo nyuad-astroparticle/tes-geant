@@ -43,6 +43,7 @@ private:
     G4ThreeVector   position;
     G4double        time = -1;
     G4String        volume = "";
+    G4int           verboseLevel = 0;
 };
 
 
