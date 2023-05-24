@@ -20,7 +20,7 @@ void TESHit::Draw()
         G4Circle circle(position);
         circle.SetScreenSize(4.0);
         circle.SetFillStyle(G4Circle::filled);
-        G4Colour colour(1.,0.,0.);
+        G4Colour colour(.64,.92,.21);
         G4VisAttributes attributes(colour);
         circle.SetVisAttributes(attributes);
         particleVisManager->Draw(circle);
@@ -38,5 +38,6 @@ void TESHit::Print()
         << std::setw(7) << G4BestUnit(position,"Length")
         << " Time: "
         << std::setw(7) << G4BestUnit(time,"Time")
+        << " Volume: " << volume
         << G4endl;
 }
