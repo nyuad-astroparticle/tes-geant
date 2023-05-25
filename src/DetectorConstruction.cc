@@ -122,14 +122,14 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 			20./2.*cm,
 			1./2.*cm,
 			60./2.*cm);
-	G4LogicalVolume * logicalPaddle = new G4LogicalVolume(
+	paddleLogical = new G4LogicalVolume(
 			solidPaddle,
 			polystyrene,
-			"logicalPaddle");
+			"paddleLogical");
 	G4VPhysicalVolume * physPaddleBottom = new G4PVPlacement(
 			0, 
 			G4ThreeVector(0, -(35.2 + 1. + 2.)*cm, 0),
-			logicalPaddle,
+			paddleLogical,
 			"physPaddleBottom",
 			logicWorld,
 			false,
@@ -138,7 +138,7 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 	G4VPhysicalVolume * physPaddleTop = new G4PVPlacement(
 			0, 
 			G4ThreeVector(0, (35.2 + 1./2. + 2.)*cm, 0),
-			logicalPaddle,
+			paddleLogical,
 			"physPaddleTop",
 			logicWorld,
 			false,
@@ -173,4 +173,5 @@ void MyDetectorConstruction::ConstructSDandField()
 	auto detector = new SensitiveDetector("/SiliconSubstrate","SilliconHitsCollection");
 	G4SDManager::GetSDMpointer()->AddNewDetector(detector);
 	SetSensitiveDetector(substrateLogical,detector);
+	SetSensitiveDetector(paddleLogical,detector);
 }
