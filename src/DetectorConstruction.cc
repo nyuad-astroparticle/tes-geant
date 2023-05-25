@@ -103,6 +103,48 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 			  false,
 			  0,
 			  false);
+//----------------Creating Scintillator Paddles------------------------------
+	G4double a;
+	G4double z;
+
+	G4double density;                         // Density of material
+	G4int ncomponents,number_of_atoms;        // Number of different elements, atoms
+	G4Material* polystyrene = new G4Material("polystyrene",density= 1.05*g/cm3, ncomponents=2);
+
+	G4Element* C  = new G4Element("Carbon",     "C",    z=6.,   a=12.01*g/mole);
+  	G4Element* H  = new G4Element("Hydrogen",   "H",    z=1.,   a=1.008*g/mole);
+
+    	polystyrene->AddElement(C, number_of_atoms=8);
+    	polystyrene->AddElement(H, number_of_atoms=8);
+
+	G4Box * solidPaddle = new G4Box(
+			"solidPaddle",
+			20./2.*cm,
+			1./2.*cm,
+			60./2.*cm);
+	G4LogicalVolume * logicalPaddle = new G4LogicalVolume(
+			solidPaddle,
+			polystyrene,
+			"logicalPaddle");
+	G4VPhysicalVolume * physPaddleBottom = new G4PVPlacement(
+			0, 
+			G4ThreeVector(0, -(35.2 + 1. + 2.)*cm, 0),
+			logicalPaddle,
+			"physPaddleBottom",
+			logicWorld,
+			false,
+			0,
+			false);
+	G4VPhysicalVolume * physPaddleTop = new G4PVPlacement(
+			0, 
+			G4ThreeVector(0, (35.2 + 1./2. + 2.)*cm, 0),
+			logicalPaddle,
+			"physPaddleTop",
+			logicWorld,
+			false,
+			0,
+			false);
+
 //----------------Setting atributes before returning the mother volume--------
 	G4VisAttributes* blue       = new G4VisAttributes(G4Colour(0.0, 0.0, 1.0, 0.3));
     	blue->SetVisibility(true);
