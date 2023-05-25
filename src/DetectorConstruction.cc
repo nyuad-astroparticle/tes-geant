@@ -12,7 +12,7 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 //------------------Creating the world volume-----------------------------------
 	G4Material *worldMat = nist->FindOrBuildMaterial("G4_AIR");
 
-	G4Box *solidWorld = new G4Box("solidWorld", 1.0*m, 1.0*m, 1.0*m);
+	G4Box *solidWorld = new G4Box("solidWorld", 10.0*m, 10.0*m, 10.0*m);
 
 	G4LogicalVolume *logicWorld = new G4LogicalVolume(solidWorld, worldMat, "logicWorld");
 
@@ -33,7 +33,7 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 
 	G4VPhysicalVolume *physAluminiumBox = new G4PVPlacement(
 			0,				// no rotation
-			G4ThreeVector(0.,0.,0.),	// Placed at the center of the world volume
+			G4ThreeVector(0.,-20. * cm,0.),	// Placed at the center of the world volume
 			logicAluminiumBox, 		// it's locical volume
 			"AluminiumBox", 		// It's name
 			logicWorld,			// logic volume of the mother
@@ -53,7 +53,7 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 
 	G4VPhysicalVolume * physSilicon = new G4PVPlacement(
 			0,
-			G4ThreeVector(0, -2.5/2*cm + aluminiumThickness + siliconThickness/2, 0),
+			G4ThreeVector(0, -2.5/2*cm + aluminiumThickness + siliconThickness/2 - 20. * cm, 0),
 			substrateLogical,
 			"Silicon",
 			logicWorld,
@@ -61,6 +61,48 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 			0,
 			false);
 
+//----------------Creating Aluminum Cylinder------------------------------------
+	
+	G4double cylinderThickness = 3.0*mm;
+
+	G4Tubs *solidOuterCylinder = new G4Tubs(
+			"solidOuterCylinder",
+			0.*cm,
+			(35.2/2) * cm,
+			(70.0/2.)*cm,
+			0.0 * deg, 360.0*deg
+			);
+
+	G4Tubs *solidInnerCylinder = new G4Tubs(
+			"solidInnerCylinder",
+			0.*cm,
+			(35.2/2) * cm - cylinderThickness,
+			(70.0/2.)*cm - 2*cylinderThickness,
+			0.0 * deg, 360.0*deg
+			);
+	G4SubtractionSolid * solidCylinder = new G4SubtractionSolid(
+			"solidCylinder",
+			solidOuterCylinder,
+			solidInnerCylinder,
+			0,
+			G4ThreeVector(0.*mm, 0.*mm, 0.*mm)
+			);
+	G4LogicalVolume * logicalCylinder = new G4LogicalVolume(
+			solidCylinder,
+			boxMat,
+			"logicalCylinder");
+	G4RotationMatrix* rotationMatrix = new G4RotationMatrix();
+	rotationMatrix->rotateX(90. * deg);
+
+	G4VPhysicalVolume * physCylinder = new G4PVPlacement(
+			rotationMatrix,
+			G4ThreeVector(0, 0, 0),
+			  logicalCylinder,
+			  "physCylinder",
+			  logicWorld,
+			  false,
+			  0,
+			  false);
 //----------------Setting atributes before returning the mother volume--------
 	G4VisAttributes* blue       = new G4VisAttributes(G4Colour(0.0, 0.0, 1.0, 0.3));
     	blue->SetVisibility(true);
@@ -77,6 +119,7 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 
 	logicWorld->SetVisAttributes(invisible);
 	logicAluminiumBox->SetVisAttributes(red);
+	logicalCylinder->SetVisAttributes(green);
 	substrateLogical->SetVisAttributes(yellow);
 
 //---------------Returning the mother volume---------------------------------
