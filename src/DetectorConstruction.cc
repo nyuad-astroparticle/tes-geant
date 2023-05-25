@@ -185,6 +185,50 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 			0,
 			false);
 
+//----------------Creating Crosses---------------------------­---------------
+
+	G4double crossX = 2.*cm;
+	G4double crossY = 1.*cm;
+	G4double crossZ = 2.*cm;
+
+	G4double crossOffset = 1.*cm;
+
+	G4double crossTopX = 0.*cm;
+	G4double crossTopY = cylinderHeight/2 + paddleOffset + paddleY + crossOffset +crossY/2;
+	G4double crossTopZ = 0.*cm;
+
+	G4double crossBottomX = 0.*cm;
+	G4double crossBottomY = -(cylinderHeight/2 + paddleOffset + paddleY + crossOffset +crossY/2);
+	G4double crossBottomZ = 0.*cm;
+	
+	G4Box * solidCross = new G4Box(
+			"solidCross",
+			crossX/2.,
+			crossY/2.,
+			crossZ/2.);
+	crossLogical = new G4LogicalVolume(
+			solidCross,
+			polystyrene,
+			"crossLogical");
+	G4VPhysicalVolume * physCrossTop = new G4PVPlacement(
+			0,
+			G4ThreeVector(crossTopX, crossTopY, crossTopZ),
+			crossLogical,
+			"physCrossTop",
+			logicWorld,
+			false,
+			0,
+			false);
+
+	G4VPhysicalVolume * physCrossBottom = new G4PVPlacement(
+			0,
+			G4ThreeVector(crossBottomX, crossBottomY, crossBottomZ),
+			crossLogical,
+			"physCrossBottom",
+			logicWorld,
+			false,
+			0,
+			false);
 //----------------Setting atributes before returning the mother volume--------
 	G4VisAttributes* blue       = new G4VisAttributes(G4Colour(0.0, 0.0, 1.0, 0.3));
     	blue->SetVisibility(true);
@@ -203,6 +247,8 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 	logicAluminiumBox->SetVisAttributes(red);
 	logicalCylinder->SetVisAttributes(green);
 	substrateLogical->SetVisAttributes(yellow);
+	paddleLogical->SetVisAttributes(blue);
+	crossLogical->SetVisAttributes(white);
 
 //---------------Returning the mother volume---------------------------------
 	return physWorld;
@@ -214,4 +260,5 @@ void MyDetectorConstruction::ConstructSDandField()
 	G4SDManager::GetSDMpointer()->AddNewDetector(detector);
 	SetSensitiveDetector(substrateLogical,detector);
 	SetSensitiveDetector(paddleLogical,detector);
+	SetSensitiveDetector(crossLogical,detector);
 }
