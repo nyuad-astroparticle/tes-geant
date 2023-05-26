@@ -28,6 +28,7 @@ class MyDetectorConstruction : public G4VUserDetectorConstruction
 	private:
 		G4LogicalVolume* substrateLogical = nullptr;
 		G4LogicalVolume* paddleLogical= nullptr;
+		G4LogicalVolume* crossLogical= nullptr;
 };
 #endif
 
