@@ -15,6 +15,7 @@
 #include "G4Colour.hh"					 
 #include "SensitiveDetector.hh"
 #include "G4SDManager.hh" 
+#include "G4GenericMessenger.hh" 
 
 class MyDetectorConstruction : public G4VUserDetectorConstruction
 {
@@ -26,9 +27,23 @@ class MyDetectorConstruction : public G4VUserDetectorConstruction
 		void ConstructSDandField() override;
 
 	private:
+		G4Element *C, *H;
+		G4Material *worldMat, *boxMat, *siliconMat, *polystyrene;
+		void DefineMaterial();
+		G4Box *solidWorld, *solidOuterAluminiumBox, *solidInnerAluminiumBox, *solidCross, *solidSilicon, *solidPaddle;
+		G4Tubs *solidOuterCylinder, *solidInnerCylinder;
+		G4LogicalVolume *logicWorld, *logicalCylinder, *logicAluminiumBox;
 		G4LogicalVolume* substrateLogical = nullptr;
 		G4LogicalVolume* paddleLogical= nullptr;
 		G4LogicalVolume* crossLogical= nullptr;
+
+		G4double crossTopX;
+		G4VPhysicalVolume *physWorld, *physCylinder,  *physCrossTop, *physAluminiumBox, *physSilicon,*physPaddleBottom, *physPaddleTop, *physCrossBottom;
+
+
+
+
+		G4GenericMessenger* fMessenger;
 };
 #endif
 

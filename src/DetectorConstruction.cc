@@ -1,22 +1,49 @@
 #include "DetectorConstruction.hh"
 
 MyDetectorConstruction::MyDetectorConstruction()
-{}
+{
+	fMessenger = new G4GenericMessenger(this, "/detector/", "Detector Construction");
+
+
+	fMessenger->DeclareProperty("crossTopX", crossTopX, "The X position of the top cross");
+
+	crossTopX = 100.;
+
+	DefineMaterial();
+}
 
 MyDetectorConstruction::~MyDetectorConstruction()
 {}
 
+void MyDetectorConstruction::DefineMaterial(){
+	
+	G4double a;
+	G4double z;
+
+	G4double density;                         // Density of material
+	G4int ncomponents,number_of_atoms;        // Number of different elements, atoms
+
+	G4NistManager *nist = G4NistManager::Instance();
+	worldMat = nist->FindOrBuildMaterial("G4_AIR");
+	boxMat = nist->FindOrBuildMaterial("G4_Cu");
+	siliconMat =  nist->FindOrBuildMaterial("G4_Si");
+	polystyrene = new G4Material("polystyrene",density= 1.05*g/cm3, ncomponents=2);
+
+	C  = new G4Element("Carbon",     "C",    z=6.,   a=12.01*g/mole);
+  	H  = new G4Element("Hydrogen",   "H",    z=1.,   a=1.008*g/mole);
+    	polystyrene->AddElement(C, number_of_atoms=8);
+    	polystyrene->AddElement(H, number_of_atoms=8);
+}
+
 G4VPhysicalVolume *MyDetectorConstruction::Construct()
 {
-	G4NistManager *nist = G4NistManager::Instance();
 //------------------Creating the world volume-----------------------------------
-	G4Material *worldMat = nist->FindOrBuildMaterial("G4_AIR");
 
-	G4Box *solidWorld = new G4Box("solidWorld", 10.0*m, 10.0*m, 10.0*m);
+	solidWorld = new G4Box("solidWorld", 10.0*m, 10.0*m, 10.0*m);
 
-	G4LogicalVolume *logicWorld = new G4LogicalVolume(solidWorld, worldMat, "logicWorld");
+	logicWorld = new G4LogicalVolume(solidWorld, worldMat, "logicWorld");
 
-	G4VPhysicalVolume * physWorld = new G4PVPlacement(0, G4ThreeVector(0., 0., 0.), logicWorld, "physWorld", 0, false, 0, true);
+	physWorld = new G4PVPlacement(0, G4ThreeVector(0., 0., 0.), logicWorld, "physWorld", 0, false, 0, true);
 
 //----------------Creating Aluminum Cylinder------------------------------------
 	
@@ -28,9 +55,8 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 	G4double cylinderPosY = 0.*cm;
 	G4double cylinderPosZ = 0.*cm;
 
-	G4Material *boxMat = nist->FindOrBuildMaterial("G4_Cu");
 
-	G4Tubs *solidOuterCylinder = new G4Tubs(
+	solidOuterCylinder = new G4Tubs(
 			"solidOuterCylinder",
 			0.*cm,
 			cylinderDiameter/2,
@@ -38,7 +64,7 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 			0.0 * deg, 360.0*deg
 			);
 
-	G4Tubs *solidInnerCylinder = new G4Tubs(
+	solidInnerCylinder = new G4Tubs(
 			"solidInnerCylinder",
 			0.*cm,
 			cylinderDiameter/2 - cylinderThickness,
@@ -52,14 +78,14 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 			0,
 			G4ThreeVector(0.*mm, 0.*mm, 0.*mm)
 			);
-	G4LogicalVolume * logicalCylinder = new G4LogicalVolume(
+	logicalCylinder = new G4LogicalVolume(
 			solidCylinder,
 			boxMat,
 			"logicalCylinder");
 	G4RotationMatrix* rotationMatrix = new G4RotationMatrix();
 	rotationMatrix->rotateX(90. * deg);
 
-	G4VPhysicalVolume * physCylinder = new G4PVPlacement(
+	physCylinder = new G4PVPlacement(
 			rotationMatrix,
 			G4ThreeVector(cylinderPosX, cylinderPosY, cylinderPosZ),
 			  logicalCylinder,
@@ -79,15 +105,15 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 	G4double aluminiumBoxPosZ = 0.*cm;
 
 
-	G4Box *solidOuterAluminiumBox = new G4Box("solidOuterAluminiumBox", aluminiumBoxX/2., aluminiumBoxY/2., aluminiumBoxZ/2.);
-	G4Box *solidInnerAluminiumBox = new G4Box("solidInnerAluminiumBox", (aluminiumBoxX - 2*aluminiumThickness)/2, (aluminiumBoxY - 2*aluminiumThickness)/2, (aluminiumBoxZ - 2*aluminiumThickness)/2);
+	solidOuterAluminiumBox = new G4Box("solidOuterAluminiumBox", aluminiumBoxX/2., aluminiumBoxY/2., aluminiumBoxZ/2.);
+	solidInnerAluminiumBox = new G4Box("solidInnerAluminiumBox", (aluminiumBoxX - 2*aluminiumThickness)/2, (aluminiumBoxY - 2*aluminiumThickness)/2, (aluminiumBoxZ - 2*aluminiumThickness)/2);
 	G4SubtractionSolid *solidAluminiumBox = new G4SubtractionSolid("solidAluminiumBox", solidOuterAluminiumBox, solidInnerAluminiumBox, 0, G4ThreeVector(0.*mm, 0.*mm, 0.*mm));
 
 
 
-	G4LogicalVolume *logicAluminiumBox = new G4LogicalVolume(solidAluminiumBox, boxMat, "logicAluminiumBox");
+	logicAluminiumBox = new G4LogicalVolume(solidAluminiumBox, boxMat, "logicAluminiumBox");
 
-	G4VPhysicalVolume *physAluminiumBox = new G4PVPlacement(
+	physAluminiumBox = new G4PVPlacement(
 			0,									// no rotation
 			G4ThreeVector(aluminiumBoxPosX, aluminiumBoxPosY, aluminiumBoxPosZ),	// Placed at the center of the world volume
 			logicAluminiumBox, 							// it's locical volume
@@ -109,9 +135,8 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 	G4double siliconPosZ = 0.*cm;
 
 
-	G4Material *siliconMat =  nist->FindOrBuildMaterial("G4_Si");
 
-	G4Box *solidSilicon = new G4Box(
+	solidSilicon = new G4Box(
 			"solidSilicon",
 			siliconX/2.,
 			siliconY/2.,
@@ -119,7 +144,7 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 
 	substrateLogical = new G4LogicalVolume(solidSilicon, siliconMat, "logicalSilicon");
 
-	G4VPhysicalVolume * physSilicon = new G4PVPlacement(
+	physSilicon = new G4PVPlacement(
 			0,
 			G4ThreeVector(siliconPosX, siliconPosY, siliconPosZ),
 			substrateLogical,
@@ -130,18 +155,6 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 			false);
 
 //----------------Creating Scintillator Paddles------------------------------
-	G4double a;
-	G4double z;
-
-	G4double density;                         // Density of material
-	G4int ncomponents,number_of_atoms;        // Number of different elements, atoms
-	G4Material* polystyrene = new G4Material("polystyrene",density= 1.05*g/cm3, ncomponents=2);
-
-	G4Element* C  = new G4Element("Carbon",     "C",    z=6.,   a=12.01*g/mole);
-  	G4Element* H  = new G4Element("Hydrogen",   "H",    z=1.,   a=1.008*g/mole);
-
-    	polystyrene->AddElement(C, number_of_atoms=8);
-    	polystyrene->AddElement(H, number_of_atoms=8);
 
 	G4double paddleX = 20. * cm;
 	G4double paddleY = 1. * cm;
@@ -157,7 +170,7 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 	G4double paddleTopY = (cylinderHeight/2 + cylinderPosY + paddleY/2 + paddleOffset);
 	G4double paddleTopZ = 0.*cm;
 
-	G4Box * solidPaddle = new G4Box(
+	solidPaddle = new G4Box(
 			"solidPaddle",
 			paddleX/2.,
 			paddleY/2.,
@@ -166,7 +179,7 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 			solidPaddle,
 			polystyrene,
 			"paddleLogical");
-	G4VPhysicalVolume * physPaddleBottom = new G4PVPlacement(
+	physPaddleBottom = new G4PVPlacement(
 			0, 
 			G4ThreeVector(paddleBottomX, paddleBottomY, paddleBottomZ),
 			paddleLogical,
@@ -175,7 +188,7 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 			false,
 			0,
 			false);
-	G4VPhysicalVolume * physPaddleTop = new G4PVPlacement(
+	physPaddleTop = new G4PVPlacement(
 			0, 
 			G4ThreeVector(paddleTopX, paddleTopY, paddleTopZ),
 			paddleLogical,
@@ -193,7 +206,7 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 
 	G4double crossOffset = 1.*cm;
 
-	G4double crossTopX = 0.*cm;
+	
 	G4double crossTopY = cylinderHeight/2 + paddleOffset + paddleY + crossOffset +crossY/2;
 	G4double crossTopZ = 0.*cm;
 
@@ -201,7 +214,7 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 	G4double crossBottomY = -(cylinderHeight/2 + paddleOffset + paddleY + crossOffset +crossY/2);
 	G4double crossBottomZ = 0.*cm;
 	
-	G4Box * solidCross = new G4Box(
+	solidCross = new G4Box(
 			"solidCross",
 			crossX/2.,
 			crossY/2.,
@@ -210,9 +223,9 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 			solidCross,
 			polystyrene,
 			"crossLogical");
-	G4VPhysicalVolume * physCrossTop = new G4PVPlacement(
+	physCrossTop = new G4PVPlacement(
 			0,
-			G4ThreeVector(crossTopX, crossTopY, crossTopZ),
+			G4ThreeVector(crossTopX*cm, crossTopY, crossTopZ),
 			crossLogical,
 			"physCrossTop",
 			logicWorld,
@@ -220,7 +233,7 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 			0,
 			false);
 
-	G4VPhysicalVolume * physCrossBottom = new G4PVPlacement(
+	physCrossBottom = new G4PVPlacement(
 			0,
 			G4ThreeVector(crossBottomX, crossBottomY, crossBottomZ),
 			crossLogical,
