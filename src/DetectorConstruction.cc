@@ -206,7 +206,7 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 
 	G4double crossOffset = 1.*cm;
 
-	
+	G4cout<<crossTopX<<G4endl;	
 	G4double crossTopY = cylinderHeight/2 + paddleOffset + paddleY + crossOffset +crossY/2;
 	G4double crossTopZ = 0.*cm;
 
