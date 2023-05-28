@@ -7,7 +7,7 @@ MyDetectorConstruction::MyDetectorConstruction()
 
 	fMessenger->DeclareProperty("crossTopX", crossTopX, "The X position of the top cross");
 
-	crossTopX = 100.;
+	crossTopX = 0.;
 
 	DefineMaterial();
 }
