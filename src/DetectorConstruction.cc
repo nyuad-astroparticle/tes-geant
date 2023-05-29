@@ -1,6 +1,6 @@
 #include "DetectorConstruction.hh"
 
-MyDetectorConstruction::MyDetectorConstruction()
+MyDetectorConstruction::MyDetectorConstruction() : G4VUserDetectorConstruction()
 {}
 
 MyDetectorConstruction::~MyDetectorConstruction()
