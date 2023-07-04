@@ -7,6 +7,7 @@
 #ifndef MPIRUNACTIONMASTER_HH
 #define MPIRUNACTIONMASTER_HH
 
+#ifdef MPI_ENABLE
 #include "G4UserRunAction.hh"
 
 class G4MPIntupleMerger;
@@ -26,4 +27,5 @@ class RunActionMaster : public G4UserRunAction
         G4MPIntupleMerger* ntupleMerger;
 };
 
+#endif
 #endif

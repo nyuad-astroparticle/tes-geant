@@ -1,3 +1,5 @@
+#ifdef MPI_ENABLE
+
 #include "G4MPImanager.hh"
 #include "G4MPIntupleMerger.hh"
 #include "G4AnalysisManager.hh"
@@ -68,3 +70,5 @@ void RunActionMaster::EndOfRunAction(const G4Run* run)
 
 
 }
+
+#endif

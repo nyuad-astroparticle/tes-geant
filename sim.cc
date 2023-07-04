@@ -31,7 +31,7 @@ int main(int argc,char**  argv){
     mpiManager->SetVerbose(1);
 
     G4MPIsession* session       = mpiManager->GetMPIsession();
-    G4String prompt             = "[40;01;33mG4MPI[40;31m(%s)[40;36m[%/][00;30m:";
+    G4String prompt             = "[40;01;33mG4MPI[40;31m(%s)[40;36m[%/][0;0m:";
     session-> SetPrompt(prompt);
 
     G4RunManager* runManager    = new G4RunManager();
