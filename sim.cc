@@ -10,7 +10,6 @@
 #include "G4VisExecutive.hh"
 #include "G4UIExecutive.hh"
 
-#include "./mpi_active.h"
 
 #ifdef MPI
 #include "G4MPImanager.hh"
