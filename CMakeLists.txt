@@ -4,7 +4,21 @@ project(Simulation)
 
 option(ENABLE_MPI "Compile for Multiprocessing using MPI" OFF)
 if (ENABLE_MPI) 
+# Set the compiler flag to MPI in the code
 add_compile_definitions(MPI)
+
+# Try and steal it form an environment variable first
+set(G4mpi_DIR $ENV{G4MPI__DIR})
+
+# Find the G4mpi package
+find_package(G4mpi REQUIRED)
+
+# Flag for using native mpi
+add_definitions(-DTOOLS_USE_NATIVE_MPI) 
+
+# Include mpi directories
+include_directories(${G4mpi_INCLUDE_DIR})
+
 endif()
 
 file(COPY ${PROJECT_SOURCE_DIR}/macros DESTINATION ${PROJECT_BINARY_DIR})
