@@ -8,7 +8,7 @@ if (ENABLE_MPI)
 add_compile_definitions(MPI)
 
 # Try and steal it form an environment variable first
-set(G4mpi_DIR $ENV{G4MPI__DIR})
+set(G4mpi_DIR $ENV{G4MPI_DIR})
 
 # Find the G4mpi package
 find_package(G4mpi REQUIRED)
