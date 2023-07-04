@@ -11,7 +11,7 @@
 #include "G4UIExecutive.hh"
 
 
-#ifdef MPI
+#ifdef MPI_ENABLE
 #include "G4MPImanager.hh"
 #include "G4MPIsession.hh"
 #include "G4RunManager.hh"
@@ -26,7 +26,7 @@ int main(int argc,char**  argv){
 	// Evaluate the arguments
     G4UIExecutive* ui = nullptr;
 
-#ifdef MPI 
+#ifdef MPI_ENABLE
 	G4MPImanager* mpiManager    = new G4MPImanager(argc,argv);
     mpiManager->SetVerbose(1);
 
@@ -48,7 +48,7 @@ int main(int argc,char**  argv){
     G4VisManager *visManager = new G4VisExecutive();
 	visManager->Initialize();
 
-#ifdef MPI
+#ifdef MPI_ENABLE
     session->SessionStart();
 #else
 	G4UImanager* uiManager = G4UImanager::GetUIpointer(); // get the pointer of the ui manager duh
@@ -82,7 +82,7 @@ int main(int argc,char**  argv){
 
 	// deleting the run manager
 	delete visManager;
-#ifdef MPI
+#ifdef MPI_ENABLE
     delete mpiManager;
 #endif
 	delete runManager;

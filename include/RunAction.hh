@@ -2,6 +2,7 @@
 #define RunAction_HH
 
 #include "G4UserRunAction.hh"
+#include "G4String.hh"
 
 class RunAction : public G4UserRunAction
 {

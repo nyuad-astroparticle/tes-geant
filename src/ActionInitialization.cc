@@ -3,7 +3,7 @@
 #include "RunAction.hh"
 #include "PrimaryGeneratorAction.hh" 
 
-#ifdef MPI
+#ifdef MPI_ENABLE
 #include "MPIRunActionMaster.hh"
 #endif
 
@@ -14,7 +14,7 @@ MyActionInitialization::~MyActionInitialization(){}
 
 void MyActionInitialization::BuildForMaster() const
 {
-	#ifndef MPI
+	#ifndef MPI_ENABLE
 	SetUserAction(new RunAction());	
 	#else
 	SetUserAction(new RunActionMaster(true));
@@ -25,7 +25,7 @@ void MyActionInitialization::Build() const
 {
 	PrimaryGeneratorAction* generator = new PrimaryGeneratorAction("");
 	
-	#ifndef MPI
+	#ifndef MPI_ENABLE
 	SetUserAction(new RunAction());	
 	#else
 	SetUserAction(new RunActionMaster(true));
