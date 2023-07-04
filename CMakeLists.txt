@@ -2,6 +2,11 @@ cmake_minimum_required(VERSION 3.0 FATAL_ERROR)
 
 project(Simulation)
 
+option(ENABLE_MPI "Compile for Multiprocessing using MPI" OFF)
+if (ENABLE_MPI) 
+add_compile_definitions(MPI)
+endif()
+
 file(COPY ${PROJECT_SOURCE_DIR}/macros DESTINATION ${PROJECT_BINARY_DIR})
 file(MAKE_DIRECTORY ${PROJECT_BINARY_DIR}/output )
 
