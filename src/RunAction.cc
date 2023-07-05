@@ -35,7 +35,7 @@ void RunAction::BookAnalysis(G4String filename, G4bool ntupleMerging){
     auto analysisManager = G4AnalysisManager::Instance();
     analysisManager->SetVerboseLevel(0);
 
-    analysisManager->SetDefaultFileType("csv");
+    analysisManager->SetDefaultFileType("root");
     analysisManager->SetNtupleDirectoryName("output");
     analysisManager->SetFileName(filename);
     analysisManager->SetNtupleMerging(ntupleMerging);
