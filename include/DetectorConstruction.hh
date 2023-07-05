@@ -15,6 +15,8 @@
 #include "G4Colour.hh"					 
 #include "SensitiveDetector.hh"
 #include "G4SDManager.hh" 
+#include "G4ThreeVector.hh"
+#include "G4Transform3D.hh"
 
 class MyDetectorConstruction : public G4VUserDetectorConstruction
 {
@@ -26,9 +28,12 @@ class MyDetectorConstruction : public G4VUserDetectorConstruction
 		void ConstructSDandField() override;
 
 	private:
-		G4LogicalVolume* substrateLogical = nullptr;
-		G4LogicalVolume* paddleLogical= nullptr;
-		G4LogicalVolume* crossLogical= nullptr;
+		G4LogicalVolume* substrateLogical 		= nullptr;
+		G4LogicalVolume* paddleLogical			= nullptr;
+		G4LogicalVolume* crossLogical			= nullptr;
+		G4LogicalVolume* logicSiliconSubstrate 	= nullptr;
+		G4LogicalVolume* logicSiliconOxide 		= nullptr;
+		G4LogicalVolume* logicSiliconNitride 	= nullptr;
 };
 #endif
 

@@ -109,25 +109,122 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 	G4double siliconPosZ = 0.*cm;
 
 
-	G4Material *siliconMat =  nist->FindOrBuildMaterial("G4_Si");
+	// G4Material *siliconMat =  nist->FindOrBuildMaterial("G4_Si");
 
-	G4Box *solidSilicon = new G4Box(
-			"solidSilicon",
-			siliconX/2.,
-			siliconY/2.,
-			siliconZ/2.);
+	// G4Box *solidSilicon = new G4Box(
+	// 		"solidSilicon",
+	// 		siliconX/2.,
+	// 		siliconY/2.,
+	// 		siliconZ/2.);
 
-	substrateLogical = new G4LogicalVolume(solidSilicon, siliconMat, "logicalSilicon");
+	// substrateLogical = new G4LogicalVolume(solidSilicon, siliconMat, "logicalSilicon");
 
-	G4VPhysicalVolume * physSilicon = new G4PVPlacement(
-			0,
-			G4ThreeVector(siliconPosX, siliconPosY, siliconPosZ),
-			substrateLogical,
-			"Silicon",
-			logicWorld,
-			false,
-			0,
-			false);
+	// G4VPhysicalVolume * physSilicon = new G4PVPlacement(
+	// 		0,
+	// 		G4ThreeVector(siliconPosX, siliconPosY, siliconPosZ),
+	// 		substrateLogical,
+	// 		"Silicon",
+	// 		logicWorld,
+	// 		false,
+	// 		0,
+	// 		false);
+
+// Tengiz's code bit start {
+
+//------------Replacing the Silicon Thingy with a stack---------------------- 
+
+	// General stack properties
+
+		G4double stackLengthX = siliconX;
+		G4double stackLengthZ = siliconZ;
+
+		G4double stackHeight = stackLengthX;
+		G4double stackPosX = 0. * cm;
+		G4double stackPosY = aluminiumBoxPosY - aluminiumBoxY/2 + aluminiumThickness + stackHeight; // used this line from previous code
+		G4double stackPosZ = 0. * cm;
+
+
+	// Adding Materials
+
+		// Si3N4
+		G4double siliconNitrideDensity = 3.17 * g/cm3; // source: Wikipedia, correct if wrong
+		G4Material * siliconNitride = new G4Material("siliconNitride", siliconNitrideDensity, 2);
+		G4Element  * Si = nist->FindOrBuildElement("Si");
+		G4Element  * N = nist->FindOrBuildElement("N");
+		siliconNitride -> AddElement(Si, 3);
+		siliconNitride -> AddElement(N , 4);
+
+
+		// SiO2
+		G4double siliconOxideDensity = 2.65 * g/cm3; // source : Wikipedia, correct if wrong 
+		G4Material * siliconOxide = new G4Material("siliconOxide", siliconOxideDensity, 2);
+		G4Element  * O = nist->FindOrBuildElement("O");
+		siliconOxide -> AddElement(Si, 1);
+		siliconOxide -> AddElement(O , 2);
+
+		// Si
+		G4Material * Silicon = nist -> FindOrBuildMaterial("G4_Si");
+	
+	// Silicon inner layer
+		G4double siliconSubstrateHeight = 5. * nm;
+
+		G4ThreeVector siliconSubstrateCenter(stackPosX, stackPosY , stackPosZ);
+
+		G4Box * solidSiliconSubstrate = new G4Box("solidSiliconSubstrate", stackLengthX/2, siliconSubstrateHeight/2 , stackLengthZ/2);
+
+		logicSiliconSubstrate = new G4LogicalVolume(solidSiliconSubstrate, Silicon, "logicSiliconSubstrate");
+
+		G4VPhysicalVolume *physSiliconSubstrate = new G4PVPlacement(0, siliconSubstrateCenter, logicSiliconSubstrate, \
+							"physSiliconSubstrate", logicWorld, false, 0, true);
+	
+	// Silicon Oxide inner two layers
+
+		G4double siliconOxideHeight = 150. * nm;
+
+		G4ThreeVector siliconOxideCenter1(stackPosX, stackPosY + siliconSubstrateHeight/2 + siliconOxideHeight/2, stackPosZ);
+		G4ThreeVector siliconOxideCenter2(stackPosX, stackPosY - siliconSubstrateHeight/2 - siliconOxideHeight/2, stackPosZ);
+
+		G4Box * solidSiliconOxide = new G4Box("solidSiliconOxide", stackLengthX/2, siliconOxideHeight/2, stackLengthZ/2);
+		logicSiliconOxide = new G4LogicalVolume(solidSiliconOxide, siliconOxide, "logicSiliconOxide");
+
+		G4VPhysicalVolume * physSiliconOxide1 = new G4PVPlacement(0, siliconOxideCenter1, logicSiliconOxide, \
+							"physSiliconOxide1", logicWorld, false, 0 , true);
+		G4VPhysicalVolume * physSiliconOxide2 = new G4PVPlacement(0, siliconOxideCenter2, logicSiliconOxide, \
+							"physSiliconOxide2", logicWorld, false, 0 , true);
+
+	// Silicon Nitride outer two layers
+
+		G4double siliconNitrideHeight = 500. * nm;
+		
+		G4ThreeVector siliconNitrideCenter1(stackPosX, stackPosY + siliconSubstrateHeight/2 + siliconOxideHeight + siliconNitrideHeight/2, stackPosZ);
+		G4ThreeVector siliconNitrideCenter2(stackPosX, stackPosY - siliconSubstrateHeight/2 - siliconOxideHeight - siliconNitrideHeight/2, stackPosZ);
+
+		G4Box * solidSiliconNitride = new G4Box("solidSiliconNitride", stackLengthX/2, siliconNitrideHeight/2, stackLengthZ/2);
+		logicSiliconNitride = new G4LogicalVolume(solidSiliconNitride, siliconNitride, "logicSiliconNitride");
+		
+		G4VPhysicalVolume * physSiliconNitride1 = new G4PVPlacement(0, siliconNitrideCenter1, logicSiliconNitride, \
+							"physSiliconNitride1", logicWorld, false, 0 , true);
+		G4VPhysicalVolume * physSiliconNitride2 = new G4PVPlacement(0, siliconNitrideCenter2, logicSiliconNitride, \
+							"physSiliconNitride2", logicWorld, false, 0 , true);
+
+	
+	// Setting up the rotation of the stack around X axis
+
+		G4double stackRotationAngle = 90.0 * deg;
+		G4RotationMatrix *stackRotationMatrix = new G4RotationMatrix;
+		stackRotationMatrix -> rotateX(stackRotationAngle);
+		G4ThreeVector translation(0.0, 0.0, 0.0); // translation vector (x, y, z)
+		G4Transform3D transform(*stackRotationMatrix, translation);
+
+
+		physSiliconSubstrate 	-> SetRotation(stackRotationMatrix);
+		physSiliconOxide1 		-> SetRotation(stackRotationMatrix);
+		physSiliconOxide2 		-> SetRotation(stackRotationMatrix);
+		physSiliconNitride1 	-> SetRotation(stackRotationMatrix);
+		physSiliconNitride2 	-> SetRotation(stackRotationMatrix);
+		
+	
+// } Tengiz's code bit end
 
 //----------------Creating Scintillator Paddles------------------------------
 	G4double a;
@@ -246,9 +343,12 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 	logicWorld->SetVisAttributes(invisible);
 	logicAluminiumBox->SetVisAttributes(red);
 	logicalCylinder->SetVisAttributes(green);
-	substrateLogical->SetVisAttributes(yellow);
+	// substrateLogical->SetVisAttributes(yellow);
 	paddleLogical->SetVisAttributes(blue);
 	crossLogical->SetVisAttributes(white);
+	logicSiliconNitride 	-> SetVisAttributes(red);
+	logicSiliconOxide 		-> SetVisAttributes(blue);
+	logicSiliconSubstrate 	-> SetVisAttributes(green);
 
 //---------------Returning the mother volume---------------------------------
 	return physWorld;
@@ -258,7 +358,10 @@ void MyDetectorConstruction::ConstructSDandField()
 {
 	auto detector = new SensitiveDetector("/SiliconSubstrate","SilliconHitsCollection");
 	G4SDManager::GetSDMpointer()->AddNewDetector(detector);
-	SetSensitiveDetector(substrateLogical,detector);
+	// SetSensitiveDetector(substrateLogical,detector);
 	SetSensitiveDetector(paddleLogical,detector);
 	SetSensitiveDetector(crossLogical,detector);
+	SetSensitiveDetector(logicSiliconOxide, detector);
+	SetSensitiveDetector(logicSiliconSubstrate, detector);
+	SetSensitiveDetector(logicSiliconNitride, detector);
 }
