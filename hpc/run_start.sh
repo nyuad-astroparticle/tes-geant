@@ -1,14 +1,8 @@
 #!/bin/bash
-
-# Number of tasks per core
-#SBATCH -c 1
-
 # Number of tasks 
-#SBATCH -n 10
-
+#SBATCH --ntasks 128
 # Set WALLTIME
-#SBATCH --time 02:00:00
-
+#SBATCH --time 00:30:00
 # Set output and error files
 #SBATCH -o start-job.%J.out
 #SBATCH -e start-job.%J.err
@@ -23,4 +17,4 @@ module purge
 source load_modules.sh
 
 # Run the application
-srun hostname ../build/sim 
+srun -n 10 ../build/sim ../build/macros/start.mac 

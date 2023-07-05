@@ -2,7 +2,10 @@
 # A little script to load the required modules for compiling this beautiful simulation
 
 # HPC Modules -----------------------------------------------
-module load gcc cmake mpich expat
+module load cmake
+module load gcc
+module load mpich
+module load expat
 
 # Geant4 ----------------------------------------------------
 source /scratch/po524/geant4/geant4-v11.1.1-mpi-install/bin/geant4.sh
