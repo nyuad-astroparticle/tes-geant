@@ -17,4 +17,8 @@ module purge
 source load_modules.sh
 
 # Run the application
-srun -n 10 ../build/sim ../build/macros/start.mac 
+cd /scratch/po524/tes-geant/build/
+mpiexec -n 128 ./sim ./macros/start.mac
+echo "SIM IS DONE!"
+echo "MERGING!"
+../hpc/merge.sh ./output > ./output/merge.csv
