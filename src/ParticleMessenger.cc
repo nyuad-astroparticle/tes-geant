@@ -1,4 +1,4 @@
-#include  "ParticleMessenger.hh"
+/*#include  "ParticleMessenger.hh"
 
 #include "G4UIdirectory.hh"
 #include "G4UIcmdWithAString.hh"
@@ -59,4 +59,4 @@ void ParticleMessenger::SetNewValue(G4UIcommand* command, G4String newValue)
   if( command == FileCmd )
    { primaryGenerator->CRYFromFile(newValue); }
 
-}
+}*/

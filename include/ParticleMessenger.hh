@@ -1,4 +1,4 @@
-#ifndef ParticleMessenger_HH
+/*#ifndef ParticleMessenger_HH
 #define ParticleMessenger_HH
 
 #include "PrimaryGeneratorAction.hh"
@@ -26,4 +26,4 @@ class ParticleMessenger : public G4UImessenger
 		G4UIcmdWithoutParameter*     	UpdateCmd;
 		std::string* 					MessInput;	
 };
-#endif
+#endif*/

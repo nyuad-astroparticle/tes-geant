@@ -1,15 +1,15 @@
 #include "PrimaryGeneratorAction.hh"
-#include "Randomize.hh"
+//#include "Randomize.hh"
 #include <iomanip>
 
 
 PrimaryGeneratorAction::PrimaryGeneratorAction(const char* filename)
 {
-	// Define the particle gun
-	particleGun = new G4ParticleGun();
+	// Define the particle source
+	particleGun = new G4GeneralParticleSource();
 
-	// Start CRYing
-	std::ifstream file;
+	// We ain't CRYing for this one
+	/*std::ifstream file;
 	file.open(filename,std::ios::in);
 	char buffer[1000];
 
@@ -34,23 +34,23 @@ PrimaryGeneratorAction::PrimaryGeneratorAction(const char* filename)
 	}
 
 	// Store the cry particle properties
-	vect = new std::vector<CRYParticle*>;
+	vect = new std::vector<CRYParticle*>;*/
 
 	// All particles in the simulation
-	particleTable = G4ParticleTable::GetParticleTable();
+	//particleTable = G4ParticleTable::GetParticleTable();
 
 	// Create the messenger
-	particleMessenger = new ParticleMessenger(this);
+	//particleMessenger = new ParticleMessenger(this);
 
 }
 
 PrimaryGeneratorAction::~PrimaryGeneratorAction()
 {
 	delete particleGun;
-	delete particleMessenger;
+	//delete particleMessenger;
 }
 
-void PrimaryGeneratorAction::InputCRY()
+/*void PrimaryGeneratorAction::InputCRY()
 {
 	inputState = 1;
 }
@@ -95,11 +95,12 @@ void PrimaryGeneratorAction::CRYFromFile(G4String newFilename)
 	setup->setRandomFunction(RNGWrapper<CLHEP::HepRandomEngine>::rng);
 	inputState=0;
 	}
-}
+}*/
 
 void PrimaryGeneratorAction::GeneratePrimaries(G4Event *anEvent)
 {
-	if (inputState != 0) {
+	//If you don't stop CRYing I'll give you something to CRY about
+	/*if (inputState != 0) {
 		G4String* str = new G4String("CRY was not successfully initialized");
 		G4Exception("PrimaryGeneratorAction","1",RunMustBeAborted,*str);
 	}
@@ -130,8 +131,9 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event *anEvent)
     particleGun->SetParticleEnergy((*vect)[j]->ke()*MeV);
     particleGun->SetParticlePosition(G4ThreeVector((*vect)[j]->x()*m, (*vect)[j]->z()*m + 40.0*cm, -(*vect)[j]->y()*m));
     particleGun->SetParticleMomentumDirection(G4ThreeVector((*vect)[j]->u(), (*vect)[j]->w(), -(*vect)[j]->v()));
-    particleGun->SetParticleTime((*vect)[j]->t());
+    particleGun->SetParticleTime((*vect)[j]->t());*/
+	//(We keep this line though)
     particleGun->GeneratePrimaryVertex(anEvent);
-    delete (*vect)[j];
-  }
+    //delete (*vect)[j];
+	//}
 }
