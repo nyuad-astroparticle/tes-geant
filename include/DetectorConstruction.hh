@@ -17,6 +17,8 @@
 #include "G4SDManager.hh" 
 #include "G4ThreeVector.hh"
 #include "G4Transform3D.hh"
+#include "G4GDMLParser.hh"
+
 
 class MyDetectorConstruction : public G4VUserDetectorConstruction
 {
@@ -34,6 +36,7 @@ class MyDetectorConstruction : public G4VUserDetectorConstruction
 		G4LogicalVolume* logicSiliconSubstrate 	= nullptr;
 		G4LogicalVolume* logicSiliconOxide 		= nullptr;
 		G4LogicalVolume* logicSiliconNitride 	= nullptr;
+		G4GDMLParser*    GDMLParser				= nullptr;
 };
 #endif
 
