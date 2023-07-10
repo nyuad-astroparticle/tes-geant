@@ -1,4 +1,5 @@
 #include "DetectorConstruction.hh"
+#include <cmath>
 
 MyDetectorConstruction::MyDetectorConstruction() : G4VUserDetectorConstruction()
 {}
@@ -166,7 +167,7 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 		G4Material * Silicon = nist -> FindOrBuildMaterial("G4_Si");
 	
 	// Silicon inner layer
-		G4double siliconSubstrateHeight = 5. * nm;
+		G4double siliconSubstrateHeight = 5. * mm;
 
 		G4ThreeVector siliconSubstrateCenter(stackPosX, stackPosY , stackPosZ);
 
@@ -181,8 +182,10 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 
 		G4double siliconOxideHeight = 150. * nm;
 
-		G4ThreeVector siliconOxideCenter1(stackPosX, stackPosY + siliconSubstrateHeight/2 + siliconOxideHeight/2, stackPosZ);
-		G4ThreeVector siliconOxideCenter2(stackPosX, stackPosY - siliconSubstrateHeight/2 - siliconOxideHeight/2, stackPosZ);
+		G4double silicondOxideRelativeY = siliconSubstrateHeight/2 + siliconOxideHeight/2;
+
+		G4ThreeVector siliconOxideCenter1(stackPosX, stackPosY + silicondOxideRelativeY, stackPosZ);
+		G4ThreeVector siliconOxideCenter2(stackPosX, stackPosY - silicondOxideRelativeY, stackPosZ);
 
 		G4Box * solidSiliconOxide = new G4Box("solidSiliconOxide", stackLengthX/2, siliconOxideHeight/2, stackLengthZ/2);
 		logicSiliconOxide = new G4LogicalVolume(solidSiliconOxide, siliconOxide, "logicSiliconOxide");
@@ -195,9 +198,11 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 	// Silicon Nitride outer two layers
 
 		G4double siliconNitrideHeight = 500. * nm;
+
+		G4double siliconNitrideRelativeY = siliconSubstrateHeight/2 + siliconOxideHeight + siliconNitrideHeight/2;
 		
-		G4ThreeVector siliconNitrideCenter1(stackPosX, stackPosY + siliconSubstrateHeight/2 + siliconOxideHeight + siliconNitrideHeight/2, stackPosZ);
-		G4ThreeVector siliconNitrideCenter2(stackPosX, stackPosY - siliconSubstrateHeight/2 - siliconOxideHeight - siliconNitrideHeight/2, stackPosZ);
+		G4ThreeVector siliconNitrideCenter1(stackPosX, stackPosY + siliconNitrideRelativeY, stackPosZ);
+		G4ThreeVector siliconNitrideCenter2(stackPosX, stackPosY - siliconNitrideRelativeY, stackPosZ);
 
 		G4Box * solidSiliconNitride = new G4Box("solidSiliconNitride", stackLengthX/2, siliconNitrideHeight/2, stackLengthZ/2);
 		logicSiliconNitride = new G4LogicalVolume(solidSiliconNitride, siliconNitride, "logicSiliconNitride");
@@ -210,18 +215,29 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 	
 	// Setting up the rotation of the stack around X axis
 
-		G4double stackRotationAngle = 90.0 * deg;
+		G4double stackRotationAngle = M_PI/2;
 		G4RotationMatrix *stackRotationMatrix = new G4RotationMatrix;
 		stackRotationMatrix -> rotateX(stackRotationAngle);
-		G4ThreeVector translation(0.0, 0.0, 0.0); // translation vector (x, y, z)
-		G4Transform3D transform(*stackRotationMatrix, translation);
 
 
 		physSiliconSubstrate 	-> SetRotation(stackRotationMatrix);
+
+
 		physSiliconOxide1 		-> SetRotation(stackRotationMatrix);
+		physSiliconOxide1		-> SetTranslation(G4ThreeVector(0., stackPosY + silicondOxideRelativeY * std::cos(stackRotationAngle), \
+																	stackPosZ - silicondOxideRelativeY * std::sin(stackRotationAngle)));
 		physSiliconOxide2 		-> SetRotation(stackRotationMatrix);
+		physSiliconOxide2		-> SetTranslation(G4ThreeVector(0., stackPosY - silicondOxideRelativeY * std::cos(stackRotationAngle), \
+																	stackPosZ + silicondOxideRelativeY * std::sin(stackRotationAngle)));
 		physSiliconNitride1 	-> SetRotation(stackRotationMatrix);
+		physSiliconNitride1		-> SetTranslation(G4ThreeVector(0., stackPosY + siliconNitrideRelativeY * std::cos(stackRotationAngle), \
+																	stackPosZ - siliconNitrideRelativeY * std::sin(stackRotationAngle)));
 		physSiliconNitride2 	-> SetRotation(stackRotationMatrix);
+		physSiliconNitride2		-> SetTranslation(G4ThreeVector(0., stackPosY - siliconNitrideRelativeY * std::cos(stackRotationAngle), \
+																	stackPosZ + siliconNitrideRelativeY * std::sin(stackRotationAngle)));
+		
+		
+
 		
 	
 // } Tengiz's code bit end
