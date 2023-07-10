@@ -1,0 +1,39 @@
+# Remove any previously defined sources
+/gps/source/clear
+#
+# Set up first General Particle Source (GPS) for Thorium-232, have it be a parallelepiped that envelops the copper box. 
+# Then, confine emission to within the copper box.
+/gps/source/add 0.9998
+/gps/pos/type Volume
+/gps/pos/shape Para
+/gps/pos/centre 0 -13.3 0 cm
+/gps/pos/halfx 20 cm
+/gps/pos/halfy 20 cm
+/gps/pos/halfz 20 cm
+/gps/pos/confine AluminiumBox
+#
+# Set emitted particle to be Thorium-232
+/gps/particle ion
+/gps/ion 90 232 0
+/gps/energy 0. keV
+#
+# Set up second source the same way, have it emit Thorium-230
+/gps/source/add 0.0002
+/gps/pos/type Volume
+/gps/pos/shape Para
+/gps/pos/centre 0 -13.3 0 cm
+/gps/pos/halfx 20 cm
+/gps/pos/halfy 20 cm
+/gps/pos/halfz 20 cm
+/gps/pos/confine AluminiumBox
+#
+/gps/particle ion
+/gps/ion 90 230 0
+/gps/energy 0. keV
+#
+# Show the sources (just to check things are working lol)
+/gps/source/list
+#
+# Run the boye
+/run/initialize
+/run/beamOn 10
