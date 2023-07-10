@@ -2,10 +2,14 @@
 #include <cmath>
 
 MyDetectorConstruction::MyDetectorConstruction() : G4VUserDetectorConstruction()
-{}
+{
+	GDMLParser = new G4GDMLParser();
+}
 
 MyDetectorConstruction::~MyDetectorConstruction()
-{}
+{
+	delete GDMLParser;
+}
 
 G4VPhysicalVolume *MyDetectorConstruction::Construct()
 {
@@ -17,13 +21,13 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 
 	G4LogicalVolume *logicWorld = new G4LogicalVolume(solidWorld, worldMat, "logicWorld");
 
-	G4VPhysicalVolume * physWorld = new G4PVPlacement(0, G4ThreeVector(0., 0., 0.), logicWorld, "physWorld", 0, false, 0, true);
+	G4VPhysicalVolume *physWorld = new G4PVPlacement(0, G4ThreeVector(0., 0., 0.), logicWorld, "physWorld", 0, false, 0, true);
 
 //----------------Creating Aluminum Cylinder------------------------------------
 	
 	G4double cylinderThickness = 3.0*mm;
 	G4double cylinderDiameter = 35.2 * cm;
-	G4double cylinderHeight = 70*cm;
+	G4double cylinderHeight = 106*cm;
 
 	G4double cylinderPosX = 0.*cm;
 	G4double cylinderPosY = 0.*cm;
@@ -31,6 +35,7 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 
 	G4Material *boxMat = nist->FindOrBuildMaterial("G4_Cu");
 
+/*
 	G4Tubs *solidOuterCylinder = new G4Tubs(
 			"solidOuterCylinder",
 			0.*cm,
@@ -69,15 +74,32 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 			  false,
 			  0,
 			  false);
+*/
+
+	// Loading the cryostat using GDML
+	GDMLParser->Read("./geometry/cryostat.gdml",true);
+
+	G4LogicalVolume* 	logicalCryostat = GDMLParser->GetVolume("Cryostat_Aluminum");
+	G4VPhysicalVolume*	physCryostat 	= new G4PVPlacement(
+			0,															// No rotation
+			G4ThreeVector(cylinderPosX, cylinderPosY + 17.*cm, cylinderPosZ),	// Center Position
+			logicalCryostat,
+			"physCryostat",
+			logicWorld,
+			false,
+			0,
+			false);
+
+
 //------------------Creating the aluminium box---------------------------------
 	G4double aluminiumThickness = 3.0*mm;
 	G4double aluminiumBoxX = 2.5*cm;
 	G4double aluminiumBoxY = 2.5*cm;
 	G4double aluminiumBoxZ = 5.0*cm;
 
-	G4double aluminiumBoxPosX = 0.*cm;
-	G4double aluminiumBoxPosY = - cylinderHeight/2 + cylinderThickness + 20*cm + aluminiumThickness;
-	G4double aluminiumBoxPosZ = 0.*cm;
+	G4double aluminiumBoxPosX = - 4.5*cm;
+	G4double aluminiumBoxPosY = - cylinderHeight/2 + cylinderThickness + 16.*cm + aluminiumThickness;
+	G4double aluminiumBoxPosZ = - 1.*cm;
 
 
 	G4Box *solidOuterAluminiumBox = new G4Box("solidOuterAluminiumBox", aluminiumBoxX/2., aluminiumBoxY/2., aluminiumBoxZ/2.);
@@ -140,9 +162,9 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 		G4double stackLengthZ = siliconZ;
 
 		G4double stackHeight = stackLengthX;
-		G4double stackPosX = 0. * cm;
+		G4double stackPosX = aluminiumBoxPosX;
 		G4double stackPosY = aluminiumBoxPosY - aluminiumBoxY/2 + aluminiumThickness + stackHeight; // used this line from previous code
-		G4double stackPosZ = 0. * cm;
+		G4double stackPosZ = aluminiumBoxPosZ;
 
 
 	// Adding Materials
@@ -224,17 +246,13 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 
 
 		physSiliconOxide1 		-> SetRotation(stackRotationMatrix);
-		physSiliconOxide1		-> SetTranslation(G4ThreeVector(0., stackPosY + silicondOxideRelativeY * std::cos(stackRotationAngle), \
-																	stackPosZ - silicondOxideRelativeY * std::sin(stackRotationAngle)));
+		physSiliconOxide1		-> SetTranslation(G4ThreeVector(stackPosX, stackPosY + silicondOxideRelativeY * std::cos(stackRotationAngle),stackPosZ - silicondOxideRelativeY * std::sin(stackRotationAngle)));
 		physSiliconOxide2 		-> SetRotation(stackRotationMatrix);
-		physSiliconOxide2		-> SetTranslation(G4ThreeVector(0., stackPosY - silicondOxideRelativeY * std::cos(stackRotationAngle), \
-																	stackPosZ + silicondOxideRelativeY * std::sin(stackRotationAngle)));
+		physSiliconOxide2		-> SetTranslation(G4ThreeVector(stackPosX, stackPosY - silicondOxideRelativeY * std::cos(stackRotationAngle), stackPosZ + silicondOxideRelativeY * std::sin(stackRotationAngle)));
 		physSiliconNitride1 	-> SetRotation(stackRotationMatrix);
-		physSiliconNitride1		-> SetTranslation(G4ThreeVector(0., stackPosY + siliconNitrideRelativeY * std::cos(stackRotationAngle), \
-																	stackPosZ - siliconNitrideRelativeY * std::sin(stackRotationAngle)));
+		physSiliconNitride1		-> SetTranslation(G4ThreeVector(stackPosX, stackPosY + siliconNitrideRelativeY * std::cos(stackRotationAngle), stackPosZ - siliconNitrideRelativeY * std::sin(stackRotationAngle)));
 		physSiliconNitride2 	-> SetRotation(stackRotationMatrix);
-		physSiliconNitride2		-> SetTranslation(G4ThreeVector(0., stackPosY - siliconNitrideRelativeY * std::cos(stackRotationAngle), \
-																	stackPosZ + siliconNitrideRelativeY * std::sin(stackRotationAngle)));
+		physSiliconNitride2		-> SetTranslation(G4ThreeVector(stackPosX, stackPosY - siliconNitrideRelativeY * std::cos(stackRotationAngle), stackPosZ + siliconNitrideRelativeY * std::sin(stackRotationAngle)));
 		
 		
 
@@ -358,8 +376,9 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 
 	logicWorld->SetVisAttributes(invisible);
 	logicAluminiumBox->SetVisAttributes(red);
-	logicalCylinder->SetVisAttributes(green);
+	// logicalCylinder->SetVisAttributes(green);
 	// substrateLogical->SetVisAttributes(yellow);
+	logicalCryostat->SetVisAttributes(green);
 	paddleLogical->SetVisAttributes(blue);
 	crossLogical->SetVisAttributes(white);
 	logicSiliconNitride 	-> SetVisAttributes(red);
