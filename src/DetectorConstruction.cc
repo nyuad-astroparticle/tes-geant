@@ -2,7 +2,9 @@
 #include <cmath>
 
 MyDetectorConstruction::MyDetectorConstruction() : G4VUserDetectorConstruction()
-{}
+{
+	GDMLParser = new G4GDMLParser();
+}
 
 MyDetectorConstruction::~MyDetectorConstruction()
 {}
@@ -17,7 +19,7 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 
 	G4LogicalVolume *logicWorld = new G4LogicalVolume(solidWorld, worldMat, "logicWorld");
 
-	G4VPhysicalVolume * physWorld = new G4PVPlacement(0, G4ThreeVector(0., 0., 0.), logicWorld, "physWorld", 0, false, 0, true);
+	G4VPhysicalVolume *physWorld = new G4PVPlacement(0, G4ThreeVector(0., 0., 0.), logicWorld, "physWorld", 0, false, 0, true);
 
 //----------------Creating Aluminum Cylinder------------------------------------
 	
@@ -31,6 +33,7 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 
 	G4Material *boxMat = nist->FindOrBuildMaterial("G4_Cu");
 
+/*
 	G4Tubs *solidOuterCylinder = new G4Tubs(
 			"solidOuterCylinder",
 			0.*cm,
@@ -69,6 +72,23 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 			  false,
 			  0,
 			  false);
+*/
+
+	// Loading the cryostat using GDML
+	GDMLParser->Read("./geometry/Cryostat_Aluminum.gdml",true);
+
+	G4LogicalVolume* 	logicalCryostat = GDMLParser->GetVolume("Cryostat_Aluminum");
+	G4VPhysicalVolume*	physCryostat 	= new G4PVPlacement(
+			0,															// No rotation
+			G4ThreeVector(cylinderPosX, cylinderPosY, cylinderPosZ),	// Center Position
+			  logicalCryostat,
+			  "physCryostat",
+			  logicWorld,
+			  false,
+			  0,
+			  false);
+
+
 //------------------Creating the aluminium box---------------------------------
 	G4double aluminiumThickness = 3.0*mm;
 	G4double aluminiumBoxX = 2.5*cm;
@@ -358,8 +378,9 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 
 	logicWorld->SetVisAttributes(invisible);
 	logicAluminiumBox->SetVisAttributes(red);
-	logicalCylinder->SetVisAttributes(green);
+	// logicalCylinder->SetVisAttributes(green);
 	// substrateLogical->SetVisAttributes(yellow);
+	logicalCryostat->SetVisAttributes(green);
 	paddleLogical->SetVisAttributes(blue);
 	crossLogical->SetVisAttributes(white);
 	logicSiliconNitride 	-> SetVisAttributes(red);
