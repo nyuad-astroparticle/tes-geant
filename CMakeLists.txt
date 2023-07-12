@@ -14,9 +14,10 @@ include_directories(${PROJECT_SOURCE_DIR}/include)
 
 add_executable(sim sim.cc ${sources} ${headers})
 
-add_library(libCRY STATIC IMPORTED)
-set_target_properties(libCRY PROPERTIES IMPORTED_LOCATION "${PROJECT_SOURCE_DIR}/cry_v1.7/lib/libCRY.a")
-set_target_properties(libCRY PROPERTIES INTERFACE_INCLUDE_DIRECTORIES "${PROJECT_SOURCE_DIR}/cry_v1.7/src")
+# Commented out CRY commands
+# add_library(libCRY STATIC IMPORTED)
+# set_target_properties(libCRY PROPERTIES IMPORTED_LOCATION "${PROJECT_SOURCE_DIR}/cry_v1.7/lib/libCRY.a")
+# set_target_properties(libCRY PROPERTIES INTERFACE_INCLUDE_DIRECTORIES "${PROJECT_SOURCE_DIR}/cry_v1.7/src")
 
 option(ENABLE_MPI "Compile for Multiprocessing using MPI" OFF)
 if (ENABLE_MPI) 
@@ -36,11 +37,13 @@ add_definitions(-DTOOLS_USE_NATIVE_MPI)
 # Include mpi directories
 include_directories(${G4mpi_INCLUDE_DIR})
 
-target_link_libraries(sim ${Geant4_LIBRARIES} ${G4mpi_LIBRARIES} libCRY)
+# target_link_libraries(sim ${Geant4_LIBRARIES} ${G4mpi_LIBRARIES} libCRY)
+target_link_libraries(sim ${Geant4_LIBRARIES} ${G4mpi_LIBRARIES})
 
 else()
 
-target_link_libraries(sim ${Geant4_LIBRARIES} libCRY)
+# target_link_libraries(sim ${Geant4_LIBRARIES} libCRY)
+target_link_libraries(sim ${Geant4_LIBRARIES})
 
 endif()
 

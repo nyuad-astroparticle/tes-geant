@@ -10,7 +10,6 @@
 #include "G4VisExecutive.hh"
 #include "G4UIExecutive.hh"
 
-
 #ifdef MPI_ENABLE
 #include "G4MPImanager.hh"
 #include "G4MPIsession.hh"
@@ -76,7 +75,10 @@ int main(int argc,char**  argv){
 		uiManager->ApplyCommand("/vis/viewer/set/autoRefresh true");
 		uiManager->ApplyCommand("/vis/scene/add/trajectories smooth");
         uiManager->ApplyCommand("/vis/scene/endOfEventAction accumulate 100");
-        uiManager->ApplyCommand("/control/macroPath /Users/zaksaeed");
+        uiManager->ApplyCommand("/control/macroPath ./macros");
+        uiManager->ApplyCommand("/control/execute thorium.mac");
+        G4cout << "Thorium sources configured:" << G4endl;
+        uiManager->ApplyCommand("/gps/source/list");
         ui->SessionStart();
         delete ui;
     }

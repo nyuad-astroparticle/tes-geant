@@ -31,9 +31,5 @@
 /gps/ion 90 230 0
 /gps/energy 0. keV
 #
-# Show the sources (just to check things are working lol)
-/gps/source/list
-#
 # Run the boye
 /run/initialize
-/run/beamOn 10
