@@ -1,5 +1,6 @@
 #include "DetectorConstruction.hh"
 #include <cmath>
+#include "CADMesh.hh"
 
 MyDetectorConstruction::MyDetectorConstruction() : G4VUserDetectorConstruction()
 {
@@ -17,7 +18,7 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 //------------------Creating the world volume-----------------------------------
 	G4Material *worldMat = nist->FindOrBuildMaterial("G4_AIR");
 
-	G4Box *solidWorld = new G4Box("solidWorld", 10.0*m, 10.0*m, 10.0*m);
+	G4Box *solidWorld = new G4Box("solidWorld", 5.0*m, 5.0*m, 5.0*m);
 
 	G4LogicalVolume *logicWorld = new G4LogicalVolume(solidWorld, worldMat, "logicWorld");
 
@@ -76,10 +77,15 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 			  false);
 */
 
+// G4double maxStep = 1e-08 * mm;
+// G4UserLimits * mySteplimit = new G4UserLimits(maxStep);
+
+#ifdef GDML_ACTIVE
 	// Loading the cryostat using GDML
 	GDMLParser->Read("./geometry/cryostat.gdml",true);
 
 	G4LogicalVolume* 	logicalCryostat = GDMLParser->GetVolume("Cryostat_Aluminum");
+	// logicalCryostat -> SetUserLimits(mySteplimit);
 	G4VPhysicalVolume*	physCryostat 	= new G4PVPlacement(
 			0,															// No rotation
 			G4ThreeVector(cylinderPosX, cylinderPosY + 17.*cm, cylinderPosZ),	// Center Position
@@ -89,6 +95,23 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 			false,
 			0,
 			false);
+#endif
+
+#ifndef GDML_ACTIVE
+	// Trying to load the cryostat using CADMesh
+
+	G4ThreeVector cryostatCenter(cylinderPosX, cylinderPosY + 17.*cm, cylinderPosZ);
+
+
+	G4Material * aluminum = nist -> FindOrBuildMaterial("G4_Al");
+	auto mesh = CADMesh::TessellatedMesh::FromPLY("../geometry/cryostat.stl");
+	auto meshSolid = mesh -> GetSolid();
+	G4LogicalVolume * meshLogical = new G4LogicalVolume(meshSolid, aluminum, "meshLogical");
+	// meshLogical -> SetUserLimits(mySteplimit);
+
+	G4VPhysicalVolume * meshPhysical = new G4PVPlacement(0, cryostatCenter, meshLogical, "meshPhysical", logicWorld, false, 0, true);
+#endif
+
 
 
 //------------------Creating the aluminium box---------------------------------
@@ -374,16 +397,24 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 		G4VisAttributes* invisible  = new G4VisAttributes(G4Colour(1.0, 1.0, 1.0));
     	invisible->SetVisibility(false);
 
-	logicWorld->SetVisAttributes(invisible);
-	logicAluminiumBox->SetVisAttributes(red);
+	logicWorld				-> SetVisAttributes(invisible);
+	logicAluminiumBox		-> SetVisAttributes(red);
 	// logicalCylinder->SetVisAttributes(green);
 	// substrateLogical->SetVisAttributes(yellow);
-	logicalCryostat->SetVisAttributes(green);
-	paddleLogical->SetVisAttributes(blue);
-	crossLogical->SetVisAttributes(white);
+	paddleLogical			-> SetVisAttributes(blue);
+	crossLogical			-> SetVisAttributes(white);
 	logicSiliconNitride 	-> SetVisAttributes(red);
 	logicSiliconOxide 		-> SetVisAttributes(blue);
 	logicSiliconSubstrate 	-> SetVisAttributes(green);
+	logicWorld				-> SetVisAttributes(yellow);
+
+#ifdef GDML_ACTIVE
+	logicalCryostat			-> SetVisAttributes(green);
+#endif
+
+#ifndef GDML_ACTIVE
+	meshLogical 			-> SetVisAttributes(white);
+#endif
 
 //---------------Returning the mother volume---------------------------------
 	return physWorld;

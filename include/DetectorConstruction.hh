@@ -18,7 +18,7 @@
 #include "G4ThreeVector.hh"
 #include "G4Transform3D.hh"
 #include "G4GDMLParser.hh"
-
+#include "G4UserLimits.hh"
 
 class MyDetectorConstruction : public G4VUserDetectorConstruction
 {
