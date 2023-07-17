@@ -19,6 +19,11 @@ add_library(libCRY STATIC IMPORTED)
 set_target_properties(libCRY PROPERTIES IMPORTED_LOCATION "${PROJECT_SOURCE_DIR}/cry_v1.7/lib/libCRY.a")
 set_target_properties(libCRY PROPERTIES INTERFACE_INCLUDE_DIRECTORIES "${PROJECT_SOURCE_DIR}/cry_v1.7/src")
 
+option(ENABLE_GDML "Compile with GDML option" ON)
+if (ENABLE_GDML)
+add_compile_definitions(GDML_ACTIVE)
+endif()
+
 option(ENABLE_MPI "Compile for Multiprocessing using MPI" OFF)
 if (ENABLE_MPI) 
 
