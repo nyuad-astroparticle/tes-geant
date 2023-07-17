@@ -42,6 +42,8 @@ void RunActionMaster::BeginOfRunAction(const G4Run* run)
     auto analysisManager = G4AnalysisManager::Instance();
     analysisManager->Reset();
     G4String filename = analysisManager->GetFileName();
+    filename += "-run";
+    filename += std::to_string(run->GetRunID());
     filename += "-rank";
     filename += std::to_string(G4MPImanager::GetManager()->GetRank());
     analysisManager->OpenFile(filename);
