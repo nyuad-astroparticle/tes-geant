@@ -40,7 +40,7 @@ void RunActionMaster::BeginOfRunAction(const G4Run* run)
     G4cout << ">>> Run " << run->GetRunID() << " starting..." << G4endl;
 
     auto analysisManager = G4AnalysisManager::Instance();
-    analysisManager->Reset();
+    // analysisManager->Reset();
     G4String filename = analysisManager->GetFileName();
     filename += "-run";
     filename += std::to_string(run->GetRunID());
