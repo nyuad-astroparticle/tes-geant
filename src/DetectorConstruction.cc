@@ -146,9 +146,9 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 //----------------Creating Silicon thingy------------------------------------
 
 	G4double siliconThickness = 0.5*mm;
-	G4double siliconX = 1.*cm;
+	G4double siliconX = 0.5*cm;
 	G4double siliconY = siliconThickness;
-	G4double siliconZ = 1.*cm;
+	G4double siliconZ = 0.5*cm;
 
 	G4double siliconPosX = 0.*cm;
 	G4double siliconPosY = aluminiumBoxPosY - aluminiumBoxY/2 + aluminiumThickness + siliconThickness;
