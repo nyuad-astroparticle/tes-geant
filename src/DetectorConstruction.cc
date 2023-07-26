@@ -36,49 +36,7 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 
 	G4Material *boxMat = nist->FindOrBuildMaterial("G4_Cu");
 
-/*
-	G4Tubs *solidOuterCylinder = new G4Tubs(
-			"solidOuterCylinder",
-			0.*cm,
-			cylinderDiameter/2,
-			cylinderHeight/2,
-			0.0 * deg, 360.0*deg
-			);
-
-	G4Tubs *solidInnerCylinder = new G4Tubs(
-			"solidInnerCylinder",
-			0.*cm,
-			cylinderDiameter/2 - cylinderThickness,
-			cylinderHeight/2- cylinderThickness,
-			0.0 * deg, 360.0*deg
-			);
-	G4SubtractionSolid * solidCylinder = new G4SubtractionSolid(
-			"solidCylinder",
-			solidOuterCylinder,
-			solidInnerCylinder,
-			0,
-			G4ThreeVector(0.*mm, 0.*mm, 0.*mm)
-			);
-	G4LogicalVolume * logicalCylinder = new G4LogicalVolume(
-			solidCylinder,
-			boxMat,
-			"logicalCylinder");
-	G4RotationMatrix* rotationMatrix = new G4RotationMatrix();
-	rotationMatrix->rotateX(90. * deg);
-
-	G4VPhysicalVolume * physCylinder = new G4PVPlacement(
-			rotationMatrix,
-			G4ThreeVector(cylinderPosX, cylinderPosY, cylinderPosZ),
-			  logicalCylinder,
-			  "physCylinder",
-			  logicWorld,
-			  false,
-			  0,
-			  false);
-*/
-
-// G4double maxStep = 1e-08 * mm;
-// G4UserLimits * mySteplimit = new G4UserLimits(maxStep);
+G4double yShift = 17.0 * cm
 
 #ifdef GDML_ACTIVE
 	// Loading the cryostat using GDML
@@ -88,7 +46,7 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 	// logicalCryostat -> SetUserLimits(mySteplimit);
 	G4VPhysicalVolume*	physCryostat 	= new G4PVPlacement(
 			0,															// No rotation
-			G4ThreeVector(cylinderPosX, cylinderPosY + 17.*cm, cylinderPosZ),	// Center Position
+			G4ThreeVector(cylinderPosX, cylinderPosY + yShift, cylinderPosZ),	// Center Position
 			logicalCryostat,
 			"physCryostat",
 			logicWorld,
@@ -100,7 +58,7 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 #ifndef GDML_ACTIVE
 	// Trying to load the cryostat using CADMesh
 
-	G4ThreeVector cryostatCenter(cylinderPosX, cylinderPosY + 17.*cm, cylinderPosZ);
+	G4ThreeVector cryostatCenter(cylinderPosX, cylinderPosY + yShift, cylinderPosZ);
 
 
 	G4Material * aluminum = nist -> FindOrBuildMaterial("G4_Al");
@@ -121,7 +79,7 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 	G4double aluminiumBoxZ = 5.0*cm;
 
 	G4double aluminiumBoxPosX = - 4.5*cm;
-	G4double aluminiumBoxPosY = - cylinderHeight/2 + cylinderThickness + 16.*cm + aluminiumThickness;
+	G4double aluminiumBoxPosY = - cylinderHeight/2 + cylinderThickness + yShift - 1.*cm + aluminiumThickness;
 	G4double aluminiumBoxPosZ = - 1.*cm;
 
 
@@ -153,27 +111,6 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 	G4double siliconPosX = 0.*cm;
 	G4double siliconPosY = aluminiumBoxPosY - aluminiumBoxY/2 + aluminiumThickness + siliconThickness;
 	G4double siliconPosZ = 0.*cm;
-
-
-	// G4Material *siliconMat =  nist->FindOrBuildMaterial("G4_Si");
-
-	// G4Box *solidSilicon = new G4Box(
-	// 		"solidSilicon",
-	// 		siliconX/2.,
-	// 		siliconY/2.,
-	// 		siliconZ/2.);
-
-	// substrateLogical = new G4LogicalVolume(solidSilicon, siliconMat, "logicalSilicon");
-
-	// G4VPhysicalVolume * physSilicon = new G4PVPlacement(
-	// 		0,
-	// 		G4ThreeVector(siliconPosX, siliconPosY, siliconPosZ),
-	// 		substrateLogical,
-	// 		"Silicon",
-	// 		logicWorld,
-	// 		false,
-	// 		0,
-	// 		false);
 
 
 //------------Replacing the Silicon Thingy with a stack---------------------- 
