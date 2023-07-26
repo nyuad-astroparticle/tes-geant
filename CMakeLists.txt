@@ -29,13 +29,13 @@ if (ADD_PADDLES)
 	add_compile_definitions(ADD_PADDLES)
 endif()
 
-option(ENABLE_MPI "Compile for Multiprocessing using MPI" OFF)
-if (ENABLE_MPI)
-
 option(ADD_THORIUM "Add the Thorium box in the simulation option" ON)
 if (ADD_THORIUM)
 	add_compile_definitions(ADD_THORIUM)
 endif()
+
+option(ENABLE_MPI "Compile for Multiprocessing using MPI" OFF)
+if (ENABLE_MPI)
 
 # Set the compiler flag to MPI in the code
 add_compile_definitions(MPI_ENABLE)

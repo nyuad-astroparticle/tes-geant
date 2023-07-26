@@ -36,7 +36,7 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 
 	G4Material *boxMat = nist->FindOrBuildMaterial("G4_Cu");
 
-G4double yShift = 17.0 * cm
+G4double yShift = 17.0 * cm;
 
 #ifdef GDML_ACTIVE
 	// Loading the cryostat using GDML
@@ -213,8 +213,25 @@ G4double yShift = 17.0 * cm
 		physSiliconNitride2 	-> SetRotation(stackRotationMatrix);
 		physSiliconNitride2		-> SetTranslation(G4ThreeVector(stackPosX, stackPosY - siliconNitrideRelativeY * std::cos(stackRotationAngle), stackPosZ + siliconNitrideRelativeY * std::sin(stackRotationAngle)));
 		
-		
-#ifndef ADD_PADDLES
+#ifndef ADD_THORIUM
+
+//------------ ---Creating Thorium source------------------------------------
+
+	G4double thoriumWidth = 3.*cm;
+	G4double thoriumLength = 3.*cm;
+	G4double thoriumThickness = 0.5*cm;
+
+	G4double thoriumPosX = cylinderDiameter + 1.*cm;
+	G4double throiumPosY = cylin
+
+	G4Box * throriumBox = new G4Box("solidThorium", thoriumThickness/2, thoriumLength/2, thoriumWidth/2);
+
+
+
+#endif
+
+
+#ifdef ADD_PADDLES
 
 //----------------Creating Scintillator Paddles------------------------------
 	G4double a;
