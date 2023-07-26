@@ -64,10 +64,10 @@ G4double yShift = 17.0 * cm;
 	G4Material * aluminum = nist -> FindOrBuildMaterial("G4_Al");
 	auto mesh = CADMesh::TessellatedMesh::FromPLY("../geometry/cryostat.stl");
 	auto meshSolid = mesh -> GetSolid();
-	G4LogicalVolume * meshLogical = new G4LogicalVolume(meshSolid, aluminum, "meshLogical");
-	// meshLogical -> SetUserLimits(mySteplimit);
+	G4LogicalVolume * logicalCryostat = new G4LogicalVolume(meshSolid, aluminum, "logicalCryostat");
+	// logicalCryostat -> SetUserLimits(mySteplimit);
 
-	G4VPhysicalVolume * meshPhysical = new G4PVPlacement(0, cryostatCenter, meshLogical, "meshPhysical", logicWorld, false, 0, true);
+	G4VPhysicalVolume * physCryostat = new G4PVPlacement(0, cryostatCenter, logicalCryostat, "physCryostat", logicWorld, false, 0, true);
 #endif
 
 
@@ -366,6 +366,7 @@ G4double yShift = 17.0 * cm;
 
 	logicWorld				-> SetVisAttributes(invisible);
 	logicAluminiumBox		-> SetVisAttributes(red);
+
 	// logicalCylinder->SetVisAttributes(green);
 	// substrateLogical->SetVisAttributes(yellow);
 
@@ -376,14 +377,7 @@ G4double yShift = 17.0 * cm;
 	logicSiliconNitride 	-> SetVisAttributes(red);
 	logicSiliconOxide 		-> SetVisAttributes(blue);
 	logicSiliconSubstrate 	-> SetVisAttributes(green);
-
-#ifdef GDML_ACTIVE
 	logicalCryostat			-> SetVisAttributes(green);
-#endif
-
-#ifndef GDML_ACTIVE
-	meshLogical 			-> SetVisAttributes(white);
-#endif
 
 #ifdef ADD_THORIUM
 	logicThorium			-> SetVisAttributes(blue);
