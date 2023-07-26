@@ -24,7 +24,7 @@ if (ENABLE_GDML)
 add_compile_definitions(GDML_ACTIVE)
 endif()
 
-option(ADD_PADDKES "Add the Paddles in the simulation option" ON)
+option(ADD_PADDLES "Add the Paddles in the simulation option" ON)
 if (ADD_PADDLES)
 	add_compile_definitions(ADD_PADDLES)
 endif()
