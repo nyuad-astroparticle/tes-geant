@@ -1,5 +1,7 @@
 #include  "ParticleMessenger.hh"
 
+#ifndef ADD_THORIUM
+
 #include "G4UIdirectory.hh"
 #include "G4UIcmdWithAString.hh"
 #include "G4UIcmdWithoutParameter.hh"
@@ -60,3 +62,5 @@ void ParticleMessenger::SetNewValue(G4UIcommand* command, G4String newValue)
    { primaryGenerator->CRYFromFile(newValue); }
 
 }
+
+#endif
