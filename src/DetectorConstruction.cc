@@ -213,7 +213,7 @@ G4double yShift = 17.0 * cm;
 		physSiliconNitride2 	-> SetRotation(stackRotationMatrix);
 		physSiliconNitride2		-> SetTranslation(G4ThreeVector(stackPosX, stackPosY - siliconNitrideRelativeY * std::cos(stackRotationAngle), stackPosZ + siliconNitrideRelativeY * std::sin(stackRotationAngle)));
 		
-#ifndef ADD_THORIUM
+#ifdef ADD_THORIUM
 
 //------------ ---Creating Thorium source------------------------------------
 
