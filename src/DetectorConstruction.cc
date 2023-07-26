@@ -221,12 +221,26 @@ G4double yShift = 17.0 * cm;
 	G4double thoriumLength = 3.*cm;
 	G4double thoriumThickness = 0.5*cm;
 
-	G4double thoriumPosX = cylinderDiameter + 1.*cm;
-	G4double throiumPosY = cylin
+	G4double thoriumPosX = cylinderDiameter/2 + 1.*cm;
+	G4double thoriumPosY = -cylinderHeight/2 + 11.5*cm + yShift;
+	G4double thoriumPosZ = 0.0 * cm;
 
-	G4Box * throriumBox = new G4Box("solidThorium", thoriumThickness/2, thoriumLength/2, thoriumWidth/2);
+	G4Material * thoriumMaterial = nist -> FindOrBuildMaterial("G4_Th");
 
 
+	G4Box * thoriumBox = new G4Box("solidThorium", thoriumThickness/2, thoriumLength/2, thoriumWidth/2);
+	G4LogicalVolume* logicThorium = new G4LogicalVolume(thoriumBox, thoriumMaterial, "logicalThorium");
+	G4ThreeVector thoriumPos = G4ThreeVector(thoriumPosX, thoriumPosY, thoriumPosZ);
+	G4PVPlacement* physThorium = new G4PVPlacement(
+		0,
+		thoriumPos,              // Position
+		logicThorium,            // Logical volume
+		"physicalThorium",       // Name
+		logicWorld,              // Mother volume (world in this case)
+		false,                   // No boolean operation (false)
+		0,                       // Copy number
+		true                     // Check overlap
+	);
 
 #endif
 
@@ -362,7 +376,6 @@ G4double yShift = 17.0 * cm;
 	logicSiliconNitride 	-> SetVisAttributes(red);
 	logicSiliconOxide 		-> SetVisAttributes(blue);
 	logicSiliconSubstrate 	-> SetVisAttributes(green);
-	logicWorld				-> SetVisAttributes(yellow);
 
 #ifdef GDML_ACTIVE
 	logicalCryostat			-> SetVisAttributes(green);
@@ -370,6 +383,10 @@ G4double yShift = 17.0 * cm;
 
 #ifndef GDML_ACTIVE
 	meshLogical 			-> SetVisAttributes(white);
+#endif
+
+#ifdef ADD_THORIUM
+	logicThorium			-> SetVisAttributes(blue);
 #endif
 
 //---------------Returning the mother volume---------------------------------
