@@ -24,6 +24,11 @@ if (ENABLE_GDML)
 add_compile_definitions(GDML_ACTIVE)
 endif()
 
+option(ADD_PADDKES "Add the Paddles in the simulation option" ON)
+if (ADD_PADDLES)
+	add_compile_definitions(ADD_PADDLES)
+endif()
+
 option(ENABLE_MPI "Compile for Multiprocessing using MPI" OFF)
 if (ENABLE_MPI) 
 
