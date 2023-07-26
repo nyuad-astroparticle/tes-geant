@@ -16,7 +16,7 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 {
 	G4NistManager *nist = G4NistManager::Instance();
 //------------------Creating the world volume-----------------------------------
-	G4Material *worldMat = nist->FindOrBuildMaterial("G4_AIR");
+	G4Material *worldMat = nist->FindOrBuildMaterial("G4_Galactic");
 
 	G4Box *solidWorld = new G4Box("solidWorld", 5.0*m, 5.0*m, 5.0*m);
 
@@ -175,7 +175,6 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 	// 		0,
 	// 		false);
 
-// Tengiz's code bit start {
 
 //------------Replacing the Silicon Thingy with a stack---------------------- 
 
@@ -278,10 +277,7 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 		physSiliconNitride2		-> SetTranslation(G4ThreeVector(stackPosX, stackPosY - siliconNitrideRelativeY * std::cos(stackRotationAngle), stackPosZ + siliconNitrideRelativeY * std::sin(stackRotationAngle)));
 		
 		
-
-		
-	
-// } Tengiz's code bit end
+#ifndef ADD_PADDLES
 
 //----------------Creating Scintillator Paddles------------------------------
 	G4double a;
@@ -383,6 +379,9 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 			false,
 			0,
 			false);
+
+#endif
+
 //----------------Setting atributes before returning the mother volume--------
 	G4VisAttributes* blue       = new G4VisAttributes(G4Colour(0.0, 0.0, 1.0, 0.3));
     	blue->SetVisibility(true);
@@ -401,8 +400,11 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 	logicAluminiumBox		-> SetVisAttributes(red);
 	// logicalCylinder->SetVisAttributes(green);
 	// substrateLogical->SetVisAttributes(yellow);
+
+#ifdef ADD_PADDLES
 	paddleLogical			-> SetVisAttributes(blue);
 	crossLogical			-> SetVisAttributes(white);
+#endif
 	logicSiliconNitride 	-> SetVisAttributes(red);
 	logicSiliconOxide 		-> SetVisAttributes(blue);
 	logicSiliconSubstrate 	-> SetVisAttributes(green);
@@ -425,8 +427,11 @@ void MyDetectorConstruction::ConstructSDandField()
 	auto detector = new SensitiveDetector("/SiliconSubstrate","SilliconHitsCollection");
 	G4SDManager::GetSDMpointer()->AddNewDetector(detector);
 	// SetSensitiveDetector(substrateLogical,detector);
+	
+#ifdef ADD_PADDLES
 	SetSensitiveDetector(paddleLogical,detector);
 	SetSensitiveDetector(crossLogical,detector);
+#endif
 	SetSensitiveDetector(logicSiliconOxide, detector);
 	SetSensitiveDetector(logicSiliconSubstrate, detector);
 	SetSensitiveDetector(logicSiliconNitride, detector);
