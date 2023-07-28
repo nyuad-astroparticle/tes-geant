@@ -17,7 +17,9 @@
 #include "G4SDManager.hh" 
 #include "G4ThreeVector.hh"
 #include "G4Transform3D.hh"
+#ifdef GDML_ACTIVE
 #include "G4GDMLParser.hh"
+#endif
 #include "G4UserLimits.hh"
 
 class MyDetectorConstruction : public G4VUserDetectorConstruction
