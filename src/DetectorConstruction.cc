@@ -233,7 +233,7 @@ G4double yShift = 17.0 * cm;
 
 
 	G4Box * thoriumBox = new G4Box("solidThorium", thoriumThickness/2, thoriumLength/2, thoriumWidth/2);
-	logicThorium = new G4LogicalVolume(thoriumBox, thoriumMaterial, "logicalThorium");
+	G4LogicalVolume* logicThorium = new G4LogicalVolume(thoriumBox, thoriumMaterial, "logicalThorium");
 	G4ThreeVector thoriumPos = G4ThreeVector(thoriumPosX, thoriumPosY, thoriumPosZ);
 	G4PVPlacement* physThorium = new G4PVPlacement(
 		0,
@@ -404,8 +404,4 @@ void MyDetectorConstruction::ConstructSDandField()
 	SetSensitiveDetector(logicSiliconOxide, detector);
 	SetSensitiveDetector(logicSiliconSubstrate, detector);
 	SetSensitiveDetector(logicSiliconNitride, detector);
-
-#ifdef ADD_THORIUM
-	SetSensitiveDetector(logicThorium, detector);
-#endif
 }

@@ -42,9 +42,6 @@ class MyDetectorConstruction : public G4VUserDetectorConstruction
 		G4GDMLParser*    GDMLParser				= nullptr;
 #endif
 
-#ifdef ADD_THORIUM
-		G4LogicalVolume* logicThorium 			= nullptr;
-#endif
 };
 #endif
 
