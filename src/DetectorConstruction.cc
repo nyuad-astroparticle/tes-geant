@@ -4,12 +4,16 @@
 
 MyDetectorConstruction::MyDetectorConstruction() : G4VUserDetectorConstruction()
 {
+#ifdef GDML_ACTIVE
 	GDMLParser = new G4GDMLParser();
+#endif
 }
 
 MyDetectorConstruction::~MyDetectorConstruction()
 {
+#ifdef GDML_ACTIVE
 	delete GDMLParser;
+#endif
 }
 
 G4VPhysicalVolume *MyDetectorConstruction::Construct()
