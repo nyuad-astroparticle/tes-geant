@@ -3,3 +3,5 @@ build
 cry_v1.7
 .vscode
 output
+__pycache__
+analysis/*.png

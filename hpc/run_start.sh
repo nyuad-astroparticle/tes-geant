@@ -23,7 +23,8 @@ source load_modules.sh
 # Run the application
 cd /scratch/po524/tes-geant/build/
 start_time=`date +%s`
-mpiexec -n 1024 ./sim ./macros/start.mac
+mpiexec -n 1024 ./sim ./macros/thorium.mac
+# mpiexec -n 1024 ./sim ./macros/start.mac
 end_time=`date +%s`
 echo execution time was `expr $end_time - $start_time` s.
 echo "SIM IS DONE!"

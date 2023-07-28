@@ -24,13 +24,18 @@ if (ENABLE_GDML)
 add_compile_definitions(GDML_ACTIVE)
 endif()
 
-option(ADD_PADDKES "Add the Paddles in the simulation option" ON)
+option(ADD_PADDLES "Add the Paddles in the simulation option" ON)
 if (ADD_PADDLES)
 	add_compile_definitions(ADD_PADDLES)
 endif()
 
+option(ADD_THORIUM "Add the Thorium box in the simulation option" ON)
+if (ADD_THORIUM)
+	add_compile_definitions(ADD_THORIUM)
+endif()
+
 option(ENABLE_MPI "Compile for Multiprocessing using MPI" OFF)
-if (ENABLE_MPI) 
+if (ENABLE_MPI)
 
 # Set the compiler flag to MPI in the code
 add_compile_definitions(MPI_ENABLE)

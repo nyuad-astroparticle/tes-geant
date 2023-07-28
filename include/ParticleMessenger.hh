@@ -1,3 +1,5 @@
+#ifndef ADD_THORIUM
+
 #ifndef ParticleMessenger_HH
 #define ParticleMessenger_HH
 
@@ -26,4 +28,6 @@ class ParticleMessenger : public G4UImessenger
 		G4UIcmdWithoutParameter*     	UpdateCmd;
 		std::string* 					MessInput;	
 };
+#endif
+
 #endif

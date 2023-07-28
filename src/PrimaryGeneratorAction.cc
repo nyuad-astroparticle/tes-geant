@@ -6,6 +6,9 @@
 PrimaryGeneratorAction::PrimaryGeneratorAction(const char* filename)
 {
 	// Define the particle gun
+#ifdef ADD_THORIUM
+	particleGun = new G4GeneralParticleSource();
+#else
 	particleGun = new G4ParticleGun();
 
 	// Start CRYing
@@ -41,15 +44,18 @@ PrimaryGeneratorAction::PrimaryGeneratorAction(const char* filename)
 
 	// Create the messenger
 	particleMessenger = new ParticleMessenger(this);
-
+#endif 
 }
 
 PrimaryGeneratorAction::~PrimaryGeneratorAction()
 {
 	delete particleGun;
+#ifndef ADD_THORIUM
 	delete particleMessenger;
+#endif
 }
 
+#ifndef ADD_THORIUM
 void PrimaryGeneratorAction::InputCRY()
 {
 	inputState = 1;
@@ -97,8 +103,51 @@ void PrimaryGeneratorAction::CRYFromFile(G4String newFilename)
 	}
 }
 
+#endif
+
 void PrimaryGeneratorAction::GeneratePrimaries(G4Event *anEvent)
 {
+#ifdef ADD_THORIUM
+
+	// Set up first General Particle Source (GPS) for Thorium-232
+	G4ParticleDefinition* thorium232 = G4IonTable::GetIonTable()->GetIon(90, 232, 0);
+	particleGun->SetParticleDefinition(thorium232);
+	particleGun->GetCurrentSource()->GetEneDist()->SetMonoEnergy(0.0 * keV);
+
+	// Position and confine within the copper box
+	particleGun->GetCurrentSource()->GetPosDist()->SetPosDisType("Volume");
+	particleGun->GetCurrentSource()->GetPosDist()->SetPosDisShape("Para");
+	particleGun->GetCurrentSource()->GetPosDist()->SetCentreCoords(G4ThreeVector( 35.2 * cm / 2 + 1.*cm, -106. * cm / 2 + 11.5*cm + 17*cm, 0));
+	particleGun->GetCurrentSource()->GetPosDist()->SetHalfX(0.25 * cm);
+	particleGun->GetCurrentSource()->GetPosDist()->SetHalfY(1.5 * cm);
+	particleGun->GetCurrentSource()->GetPosDist()->SetHalfZ(1.5 * cm);
+	particleGun->GetCurrentSource()->GetPosDist()->SetPosRot1(G4ThreeVector(1, 0, 0));
+	particleGun->GetCurrentSource()->GetPosDist()->SetPosRot2(G4ThreeVector(0, 0, 1));
+	// particleGun->GetCurrentSource()->GetPosDist()->ConfineSourceToVolume("AluminiumBox");
+
+	// Generate the first particle
+	particleGun->GeneratePrimaryVertex(anEvent);
+
+	// Set up second General Particle Source (GPS) for Thorium-230
+	G4ParticleDefinition* thorium230 = G4IonTable::GetIonTable()->GetIon(90, 230, 0);
+	particleGun->SetParticleDefinition(thorium230);
+	particleGun->GetCurrentSource()->GetEneDist()->SetMonoEnergy(0.0 * keV);
+
+	// Position and confine within the copper box (same as the first source)
+	particleGun->GetCurrentSource()->GetPosDist()->SetPosDisType("Volume");
+	particleGun->GetCurrentSource()->GetPosDist()->SetPosDisShape("Para");
+	particleGun->GetCurrentSource()->GetPosDist()->SetCentreCoords(G4ThreeVector( 35.2 * cm / 2 + 1.*cm, -106. * cm / 2 + 11.5*cm + 17*cm, 0));
+	particleGun->GetCurrentSource()->GetPosDist()->SetHalfX(0.25 * cm);
+	particleGun->GetCurrentSource()->GetPosDist()->SetHalfY(1.5 * cm);
+	particleGun->GetCurrentSource()->GetPosDist()->SetHalfZ(1.5 * cm);
+	particleGun->GetCurrentSource()->GetPosDist()->SetPosRot1(G4ThreeVector(1, 0, 0));
+	particleGun->GetCurrentSource()->GetPosDist()->SetPosRot2(G4ThreeVector(0, 0, 1));
+	// particleGun->GetCurrentSource()->GetPosDist()->ConfineSourceToVolume("AluminiumBox");
+
+	// Generate the second particle
+	particleGun->GeneratePrimaryVertex(anEvent);
+
+#else
 	if (inputState != 0) {
 		G4String* str = new G4String("CRY was not successfully initialized");
 		G4Exception("PrimaryGeneratorAction","1",RunMustBeAborted,*str);
@@ -134,4 +183,5 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event *anEvent)
     particleGun->GeneratePrimaryVertex(anEvent);
     delete (*vect)[j];
   }
+#endif
 }
