@@ -41,6 +41,7 @@ class MyDetectorConstruction : public G4VUserDetectorConstruction
 #ifdef GDML_ACTIVE
 		G4GDMLParser*    GDMLParser				= nullptr;
 #endif
+
 };
 #endif
 
