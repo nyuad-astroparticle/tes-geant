@@ -71,7 +71,7 @@ G4double yShift = 17.0 * cm;
 	G4LogicalVolume * logicalCryostat = new G4LogicalVolume(meshSolid, aluminum, "logicalCryostat");
 	// logicalCryostat -> SetUserLimits(mySteplimit);
 
-	G4VPhysicalVolume * physCryostat = new G4PVPlacement(0, cryostatCenter, logicalCryostat, "physCryostat", logicWorld, false, 0, true);
+	// G4VPhysicalVolume * physCryostat = new G4PVPlacement(0, cryostatCenter, logicalCryostat, "physCryostat", logicWorld, false, 0, true);
 #endif
 
 
@@ -95,15 +95,15 @@ G4double yShift = 17.0 * cm;
 
 	G4LogicalVolume *logicAluminiumBox = new G4LogicalVolume(solidAluminiumBox, boxMat, "logicAluminiumBox");
 
-	G4VPhysicalVolume *physAluminiumBox = new G4PVPlacement(
-			0,									// no rotation
-			G4ThreeVector(aluminiumBoxPosX, aluminiumBoxPosY, aluminiumBoxPosZ),	// Placed at the center of the world volume
-			logicAluminiumBox, 							// it's locical volume
-			"AluminiumBox", 							// It's name
-			logicWorld,								// logic volume of the mother
-			false, 									// no boolean operator
-			0, 									// copy number
-			false); 								// checking for overlaps
+	// G4VPhysicalVolume *physAluminiumBox = new G4PVPlacement(
+	// 		0,									// no rotation
+	// 		G4ThreeVector(aluminiumBoxPosX, aluminiumBoxPosY, aluminiumBoxPosZ),	// Placed at the center of the world volume
+	// 		logicAluminiumBox, 							// it's locical volume
+	// 		"AluminiumBox", 							// It's name
+	// 		logicWorld,								// logic volume of the mother
+	// 		false, 									// no boolean operator
+	// 		0, 									// copy number
+	// 		false); 								// checking for overlaps
 
 //----------------Creating Silicon thingy------------------------------------
 
@@ -125,9 +125,9 @@ G4double yShift = 17.0 * cm;
 		G4double stackLengthZ = siliconZ;
 
 		G4double stackHeight = stackLengthX;
-		G4double stackPosX = aluminiumBoxPosX;
-		G4double stackPosY = aluminiumBoxPosY - aluminiumBoxY/2 + aluminiumThickness + stackHeight; // used this line from previous code
-		G4double stackPosZ = aluminiumBoxPosZ;
+		G4double stackPosX = 0.;
+		G4double stackPosY = 0.; // used this line from previous code
+		G4double stackPosZ = 0.;
 
 
 	// Adding Materials
@@ -225,9 +225,9 @@ G4double yShift = 17.0 * cm;
 	G4double thoriumLength = 3.*cm;
 	G4double thoriumThickness = 0.5*cm;
 
-	G4double thoriumPosX = cylinderDiameter/2 + 1.*cm;
-	G4double thoriumPosY = -cylinderHeight/2 + 11.5*cm + yShift;
-	G4double thoriumPosZ = 0.0 * cm;
+	G4double thoriumPosX = 5.*cm;
+	G4double thoriumPosY = 0.;
+	G4double thoriumPosZ = 0.;
 
 	G4Material * thoriumMaterial = nist -> FindOrBuildMaterial("G4_Th");
 
@@ -369,7 +369,7 @@ G4double yShift = 17.0 * cm;
     	invisible->SetVisibility(false);
 
 	logicWorld				-> SetVisAttributes(invisible);
-	logicAluminiumBox		-> SetVisAttributes(red);
+	// logicAluminiumBox		-> SetVisAttributes(red);
 
 	// logicalCylinder->SetVisAttributes(green);
 	// substrateLogical->SetVisAttributes(yellow);
@@ -381,7 +381,7 @@ G4double yShift = 17.0 * cm;
 	logicSiliconNitride 	-> SetVisAttributes(red);
 	logicSiliconOxide 		-> SetVisAttributes(blue);
 	logicSiliconSubstrate 	-> SetVisAttributes(green);
-	logicalCryostat			-> SetVisAttributes(green);
+	// logicalCryostat			-> SetVisAttributes(green);
 
 #ifdef ADD_THORIUM
 	logicThorium			-> SetVisAttributes(blue);
