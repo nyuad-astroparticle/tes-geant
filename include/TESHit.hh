@@ -46,7 +46,7 @@ private:
     G4double        time = -1;
     G4String        volume = "";
     G4int           verboseLevel = 0;
-    G4double        initialEnergy = 0.;
+    G4double        initialEnergy = 0;
 };
 
 

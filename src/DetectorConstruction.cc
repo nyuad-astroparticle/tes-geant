@@ -1,6 +1,6 @@
 #include "DetectorConstruction.hh"
 #include <cmath>
-#include "CADMesh.hh"
+// #include "CADMesh.hh"
 
 MyDetectorConstruction::MyDetectorConstruction() : G4VUserDetectorConstruction()
 {
@@ -62,13 +62,13 @@ G4double yShift = 17.0 * cm;
 #ifndef GDML_ACTIVE
 	// Trying to load the cryostat using CADMesh
 
-	G4ThreeVector cryostatCenter(cylinderPosX, cylinderPosY + yShift, cylinderPosZ);
+	// G4ThreeVector cryostatCenter(cylinderPosX, cylinderPosY + yShift, cylinderPosZ);
 
 
-	G4Material * aluminum = nist -> FindOrBuildMaterial("G4_Al");
-	auto mesh = CADMesh::TessellatedMesh::FromPLY("../geometry/cryostat.stl");
-	auto meshSolid = mesh -> GetSolid();
-	G4LogicalVolume * logicalCryostat = new G4LogicalVolume(meshSolid, aluminum, "logicalCryostat");
+	// G4Material * aluminum = nist -> FindOrBuildMaterial("G4_Al");
+	// auto mesh = CADMesh::TessellatedMesh::FromPLY("../geometry/cryostat.stl");
+	// auto meshSolid = mesh -> GetSolid();
+	// G4LogicalVolume * logicalCryostat = new G4LogicalVolume(meshSolid, aluminum, "logicalCryostat");
 	// logicalCryostat -> SetUserLimits(mySteplimit);
 
 	// G4VPhysicalVolume * physCryostat = new G4PVPlacement(0, cryostatCenter, logicalCryostat, "physCryostat", logicWorld, false, 0, true);
@@ -87,13 +87,13 @@ G4double yShift = 17.0 * cm;
 	G4double aluminiumBoxPosZ = - 1.*cm;
 
 
-	G4Box *solidOuterAluminiumBox = new G4Box("solidOuterAluminiumBox", aluminiumBoxX/2., aluminiumBoxY/2., aluminiumBoxZ/2.);
-	G4Box *solidInnerAluminiumBox = new G4Box("solidInnerAluminiumBox", (aluminiumBoxX - 2*aluminiumThickness)/2, (aluminiumBoxY - 2*aluminiumThickness)/2, (aluminiumBoxZ - 2*aluminiumThickness)/2);
-	G4SubtractionSolid *solidAluminiumBox = new G4SubtractionSolid("solidAluminiumBox", solidOuterAluminiumBox, solidInnerAluminiumBox, 0, G4ThreeVector(0.*mm, 0.*mm, 0.*mm));
+	// G4Box *solidOuterAluminiumBox = new G4Box("solidOuterAluminiumBox", aluminiumBoxX/2., aluminiumBoxY/2., aluminiumBoxZ/2.);
+	// G4Box *solidInnerAluminiumBox = new G4Box("solidInnerAluminiumBox", (aluminiumBoxX - 2*aluminiumThickness)/2, (aluminiumBoxY - 2*aluminiumThickness)/2, (aluminiumBoxZ - 2*aluminiumThickness)/2);
+	// G4SubtractionSolid *solidAluminiumBox = new G4SubtractionSolid("solidAluminiumBox", solidOuterAluminiumBox, solidInnerAluminiumBox, 0, G4ThreeVector(0.*mm, 0.*mm, 0.*mm));
 
 
 
-	G4LogicalVolume *logicAluminiumBox = new G4LogicalVolume(solidAluminiumBox, boxMat, "logicAluminiumBox");
+	// G4LogicalVolume *logicAluminiumBox = new G4LogicalVolume(solidAluminiumBox, boxMat, "logicAluminiumBox");
 
 	// G4VPhysicalVolume *physAluminiumBox = new G4PVPlacement(
 	// 		0,									// no rotation
@@ -133,23 +133,23 @@ G4double yShift = 17.0 * cm;
 	// Adding Materials
 
 		// Si3N4
-		G4double siliconNitrideDensity = 3.17 * g/cm3; // source: Wikipedia, correct if wrong
-		G4Material * siliconNitride = new G4Material("siliconNitride", siliconNitrideDensity, 2);
-		G4Element  * Si = nist->FindOrBuildElement("Si");
-		G4Element  * N = nist->FindOrBuildElement("N");
-		siliconNitride -> AddElement(Si, 3);
-		siliconNitride -> AddElement(N , 4);
+		// G4double siliconNitrideDensity = 3.17 * g/cm3; // source: Wikipedia, correct if wrong
+		G4Material * siliconNitride = worldMat;
+		// G4Element  * Si = nist->FindOrBuildElement("Si");
+		// G4Element  * N = nist->FindOrBuildElement("N");
+		// siliconNitride -> AddElement(Si, 3);
+		// siliconNitride -> AddElement(N , 4);
 
 
 		// SiO2
-		G4double siliconOxideDensity = 2.65 * g/cm3; // source : Wikipedia, correct if wrong 
-		G4Material * siliconOxide = new G4Material("siliconOxide", siliconOxideDensity, 2);
-		G4Element  * O = nist->FindOrBuildElement("O");
-		siliconOxide -> AddElement(Si, 1);
-		siliconOxide -> AddElement(O , 2);
+		// G4double siliconOxideDensity = 2.65 * g/cm3; // source : Wikipedia, correct if wrong 
+		G4Material * siliconOxide = worldMat;
+		// G4Element  * O = nist->FindOrBuildElement("O");
+		// siliconOxide -> AddElement(Si, 1);
+		// siliconOxide -> AddElement(O , 2);
 
 		// Si
-		G4Material * Silicon = nist -> FindOrBuildMaterial("G4_Si");
+		G4Material * Silicon = worldMat;
 	
 	// Silicon inner layer
 		G4double siliconSubstrateHeight = 5. * mm;

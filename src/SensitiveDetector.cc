@@ -19,7 +19,7 @@ G4bool SensitiveDetector::ProcessHits(G4Step* step, G4TouchableHistory* history)
 {
     G4double edep = step->GetTotalEnergyDeposit();
 
-    if(edep == 0.0) return false;
+    // if(edep == 0.0) return false;
 
     auto hit = new TESHit();
     hit->setTrackID(step->GetTrack()->GetTrackID());
@@ -28,7 +28,7 @@ G4bool SensitiveDetector::ProcessHits(G4Step* step, G4TouchableHistory* history)
     hit->setPosition(step->GetPostStepPoint()->GetPosition());
     hit->setTime(step->GetPostStepPoint()->GetLocalTime());
     hit->setVolume(step->GetPreStepPoint()->GetPhysicalVolume()->GetName());
-    hit->setInitialEnergy   (step->GetTrack()->GetTotalEnergy());
+    hit->setInitialEnergy   (step->GetTrack()->GetVertexKineticEnergy());
 
     hitsCollection->insert(hit);
 
