@@ -40,7 +40,7 @@ int main(int argc,char**  argv){
     auto runManager = G4RunManagerFactory::CreateRunManager(); // creating a run manager
 #endif
 	runManager->SetUserInitialization(new MyDetectorConstruction);
-	runManager->SetUserInitialization(new MyPhysicsList);
+	runManager->SetUserInitialization(new PhysicsList);
 	runManager->SetUserInitialization(new MyActionInitialization);
 
 	runManager->Initialize();

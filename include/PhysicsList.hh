@@ -1,19 +1,32 @@
-#ifndef MyPhysicsList_HH
-#define MyPhysicsList_HH
+/************************************
+        ╔═╗╦ ╦╦ ╦╔═╗╦╔═╗╔═╗
+        ╠═╝╠═╣╚╦╝╚═╗║║  ╚═╗
+        ╩  ╩ ╩ ╩ ╚═╝╩╚═╝╚═╝
+            ╦  ╦╔═╗╔╦╗     
+            ║  ║╚═╗ ║      
+            ╩═╝╩╚═╝ ╩      
 
+Define all the physical interactions
+needed for the simulation.
+
+Includes Radioactive Decay and some
+stuff for correctly releasing energy
+in metals.
+************************************/
+
+#ifndef PhysicsList_hh
+#define PhysicsList_hh
+
+// Geant4 Classes that we are using
 #include "G4VModularPhysicsList.hh"
-#include "G4EmStandardPhysics.hh"
-#include "G4EmLivermorePhysics.hh"
-#include "G4OpticalPhysics.hh"
-#include "G4DecayPhysics.hh"
-#include "G4RadioactiveDecayPhysics.hh"
 
-class MyPhysicsList : public G4VModularPhysicsList
+class PhysicsList : public G4VModularPhysicsList
 {
-public:
-	MyPhysicsList();
-	~MyPhysicsList();
+    public:
+        PhysicsList();      // Constructor
+        ~PhysicsList();     // Destructor
+
+        void ConstructProcess() override;
 };
 
 #endif
-
