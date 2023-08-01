@@ -133,23 +133,23 @@ G4double yShift = 17.0 * cm;
 	// Adding Materials
 
 		// Si3N4
-		// G4double siliconNitrideDensity = 3.17 * g/cm3; // source: Wikipedia, correct if wrong
-		G4Material * siliconNitride = worldMat;
-		// G4Element  * Si = nist->FindOrBuildElement("Si");
-		// G4Element  * N = nist->FindOrBuildElement("N");
-		// siliconNitride -> AddElement(Si, 3);
-		// siliconNitride -> AddElement(N , 4);
+		G4double siliconNitrideDensity = 3.17 * g/cm3; // source: Wikipedia, correct if wrong
+		G4Material * siliconNitride = new G4Material("siliconNitride", siliconNitrideDensity, 2);
+		G4Element  * Si = nist->FindOrBuildElement("Si");
+		G4Element  * N = nist->FindOrBuildElement("N");
+		siliconNitride -> AddElement(Si, 3);
+		siliconNitride -> AddElement(N , 4);
 
 
 		// SiO2
-		// G4double siliconOxideDensity = 2.65 * g/cm3; // source : Wikipedia, correct if wrong 
-		G4Material * siliconOxide = worldMat;
-		// G4Element  * O = nist->FindOrBuildElement("O");
-		// siliconOxide -> AddElement(Si, 1);
-		// siliconOxide -> AddElement(O , 2);
+		G4double siliconOxideDensity = 2.65 * g/cm3; // source : Wikipedia, correct if wrong 
+		G4Material * siliconOxide = new G4Material("siliconOxide", siliconOxideDensity, 2);
+		G4Element  * O = nist->FindOrBuildElement("O");
+		siliconOxide -> AddElement(Si, 1);
+		siliconOxide -> AddElement(O , 2);
 
 		// Si
-		G4Material * Silicon = worldMat;
+		G4Material * Silicon = nist -> FindOrBuildMaterial("G4_Si");
 	
 	// Silicon inner layer
 		G4double siliconSubstrateHeight = 5. * mm;
