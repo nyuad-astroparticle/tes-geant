@@ -40,7 +40,7 @@ void TrackingAction::PreUserTrackingAction(const G4Track* track)
         G4Track* tr = (G4Track*) track;
 
         // and it isn't the original atom
-        if (track->GetTrackID() > 100){
+        if (track->GetTrackID() > 35){
             // Kill that track
             tr->SetTrackStatus(fStopAndKill);
         }
