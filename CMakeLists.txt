@@ -24,6 +24,11 @@ if (ENABLE_GDML)
 add_compile_definitions(GDML_ACTIVE)
 endif()
 
+option(TES_VACUUM "Make TES material vacuum" OFF)
+if (TES_VACUUM)
+add_compile_definitions(TES_VACUUM)
+endif()
+
 option(ADD_PADDLES "Add the Paddles in the simulation option" ON)
 if (ADD_PADDLES)
 	add_compile_definitions(ADD_PADDLES)
