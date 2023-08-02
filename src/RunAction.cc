@@ -51,5 +51,6 @@ void RunAction::BookAnalysis(G4String filename, G4bool ntupleMerging){
     analysisManager->CreateNtupleDColumn("ZPosition");
     analysisManager->CreateNtupleDColumn("LocalTime");
     analysisManager->CreateNtupleSColumn("Volume");
+    analysisManager->CreateNtupleDColumn("Initial Energy");
     analysisManager->FinishNtuple();
 }
