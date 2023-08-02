@@ -129,9 +129,14 @@ G4double yShift = 17.0 * cm;
 		G4double stackPosY = aluminiumBoxPosY - aluminiumBoxY/2 + aluminiumThickness + stackHeight; // used this line from previous code
 		G4double stackPosZ = aluminiumBoxPosZ;
 
-
 	// Adding Materials
 
+#ifdef TES_VACUUM
+		G4Material * siliconNitride = worldMat;
+		G4Material * siliconOxide = worldMat;
+		G4Material * Silicon = worldMat;
+
+#else
 		// Si3N4
 		G4double siliconNitrideDensity = 3.17 * g/cm3; // source: Wikipedia, correct if wrong
 		G4Material * siliconNitride = new G4Material("siliconNitride", siliconNitrideDensity, 2);
@@ -150,6 +155,8 @@ G4double yShift = 17.0 * cm;
 
 		// Si
 		G4Material * Silicon = nist -> FindOrBuildMaterial("G4_Si");
+
+#endif
 	
 	// Silicon inner layer
 		G4double siliconSubstrateHeight = 5. * mm;
@@ -378,9 +385,12 @@ G4double yShift = 17.0 * cm;
 	paddleLogical			-> SetVisAttributes(blue);
 	crossLogical			-> SetVisAttributes(white);
 #endif
+
+#ifndef TES_VACUUM
 	logicSiliconNitride 	-> SetVisAttributes(red);
 	logicSiliconOxide 		-> SetVisAttributes(blue);
 	logicSiliconSubstrate 	-> SetVisAttributes(green);
+#endif
 	logicalCryostat			-> SetVisAttributes(green);
 
 #ifdef ADD_THORIUM

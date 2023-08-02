@@ -30,14 +30,12 @@ void TESHit::Draw()
 void TESHit::Print()
 {
     if( verboseLevel > 0) G4cout
-        << " trackID: " << trackID
-        << " Particle: " << particle
-        << " Edep: "
-        << std::setw(7) << G4BestUnit(energyDeposited,"Energy")
-        << " Position: "
-        << std::setw(7) << G4BestUnit(position,"Length")
-        << " Time: "
-        << std::setw(7) << G4BestUnit(time,"Time")
+        << " trackID: "     << trackID
+        << " Particle: "    << particle
+        << " Einitial: "    << std::setw(7) << G4BestUnit(initialEnergy,    "Energy")
+        << " Edep: "        << std::setw(7) << G4BestUnit(energyDeposited,  "Energy")
+        << " Position: "    << std::setw(7) << G4BestUnit(position,         "Length")
+        << " Time: "        << std::setw(7) << G4BestUnit(time,             "Time")
         << " Volume: " << volume
         << G4endl;
 }

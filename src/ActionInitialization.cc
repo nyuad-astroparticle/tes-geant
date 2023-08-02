@@ -3,6 +3,10 @@
 #include "RunAction.hh"
 #include "PrimaryGeneratorAction.hh" 
 
+#ifdef ADD_THORIUM
+#include "TrackingAction.hh"
+#endif
+
 #ifdef MPI_ENABLE
 #include "MPIRunActionMaster.hh"
 #endif
@@ -33,5 +37,8 @@ void MyActionInitialization::Build() const
 	
 	SetUserAction(new EventAction());
 	SetUserAction(generator);
+	#ifdef ADD_THORIUM
+	SetUserAction(new TrackingAction);
+	#endif
 }
 
