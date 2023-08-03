@@ -1,5 +1,6 @@
 #include "SensitiveDetector.hh"
 #include "G4SDManager.hh"
+#include "TrackInformation.hh"
 
 SensitiveDetector::SensitiveDetector(const G4String& name, const G4String& hitsCollectionName)
 : G4VSensitiveDetector(name)
@@ -26,6 +27,14 @@ G4bool SensitiveDetector::ProcessHits(G4Step* step, G4TouchableHistory* history)
         parentVolume = step->GetTrack()->GetOriginTouchable()->GetVolume()->GetName();
     }
 
+    // Get the migrantID if any
+    G4int migrantID = -1;
+    if (step->GetTrack()->GetUserInformation()){
+        TrackInformation* info  = static_cast<TrackInformation*> (step->GetTrack()->GetUserInformation());
+        migrantID               = info->GetMigrantID();
+    }
+
+
     auto hit = new TESHit();
     hit->setTrackID(step->GetTrack()->GetTrackID());
     hit->setParticle(step->GetTrack()->GetParticleDefinition()->GetParticleName());
@@ -35,6 +44,7 @@ G4bool SensitiveDetector::ProcessHits(G4Step* step, G4TouchableHistory* history)
     hit->setVolume(step->GetPreStepPoint()->GetPhysicalVolume()->GetName());
     hit->setInitialEnergy   (step->GetTrack()->GetVertexKineticEnergy());
     hit->setOrigin(parentVolume);
+    hit->setMigrantID       (migrantID);
 
     hitsCollection->insert(hit);
 
