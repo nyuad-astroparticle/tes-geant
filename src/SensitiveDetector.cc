@@ -19,7 +19,12 @@ G4bool SensitiveDetector::ProcessHits(G4Step* step, G4TouchableHistory* history)
 {
     G4double edep = step->GetTotalEnergyDeposit();
 
+
     // if(edep == 0.0) return false;
+    G4String parentVolume = "NA";
+    if (step->GetTrack()->GetOriginTouchable()){
+        parentVolume = step->GetTrack()->GetOriginTouchable()->GetVolume()->GetName();
+    }
 
     auto hit = new TESHit();
     hit->setTrackID(step->GetTrack()->GetTrackID());
@@ -29,6 +34,7 @@ G4bool SensitiveDetector::ProcessHits(G4Step* step, G4TouchableHistory* history)
     hit->setTime(step->GetPostStepPoint()->GetLocalTime());
     hit->setVolume(step->GetPreStepPoint()->GetPhysicalVolume()->GetName());
     hit->setInitialEnergy   (step->GetTrack()->GetVertexKineticEnergy());
+    hit->setOrigin(parentVolume);
 
     hitsCollection->insert(hit);
 

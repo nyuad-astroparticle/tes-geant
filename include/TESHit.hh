@@ -29,6 +29,7 @@ public:
     void setTime(G4double time)                         {this->time = time;};
     void setVolume(G4String volume)                     {this->volume = volume;};
     void setInitialEnergy(G4double initialEnergy)       {this->initialEnergy = initialEnergy;};
+    void setOrigin(G4String origin)                     {this->origin = origin;};
 
     G4int           getTrackID()            {return trackID;};
     G4String        getParticle()           {return particle;};
@@ -37,6 +38,7 @@ public:
     G4double        getTime()               {return time;};
     G4String        getVolume()             {return volume;};
     G4double        getInitialEnergy()      {return initialEnergy;};
+    G4String        getOrigin()             {return origin;};
 
 private:
     G4int           trackID = -1;
@@ -47,6 +49,7 @@ private:
     G4String        volume = "";
     G4int           verboseLevel = 0;
     G4double        initialEnergy = 0;
+    G4String        origin = "";
 };
 
 

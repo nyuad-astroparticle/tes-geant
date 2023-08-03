@@ -28,6 +28,7 @@ void EventAction::EndOfEventAction(const G4Event* event)
             analysisManager->FillNtupleDColumn(7,hit->getTime()/ns);
             analysisManager->FillNtupleSColumn(8,hit->getVolume());
             analysisManager->FillNtupleDColumn(9,hit->getInitialEnergy()/keV);
+            analysisManager->FillNtupleSColumn(10,hit->getOrigin());
             analysisManager->AddNtupleRow();
         }
     }
