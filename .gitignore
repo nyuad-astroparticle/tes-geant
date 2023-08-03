@@ -5,3 +5,7 @@ cry_v1.7
 output
 __pycache__
 analysis/*.png
+*/.ipynb_checkpoints
+hpc/start*
+*build*
+*vacuum*
