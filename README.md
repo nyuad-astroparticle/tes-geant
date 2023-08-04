@@ -17,7 +17,7 @@ A brief description of your project goes here. Explain what your project does, w
 
 ## Installation
 
-## Geant4 on Jubail HPC
+### Geant4 on Jubail HPC
 
 This guide explains how to install Geant4 on NYUAD Jubail high-performance computing (HPC) cluster.
 
@@ -48,6 +48,10 @@ cd build;
 ccmake ../geant4-v11.1.2;
 ```
 
+Your screen should look something like this before you configure:
+<!-- ![Alt text](<Pasted Graphic.png>){:height="10px" width="10px"} -->
+<img src="README_files/BeforeConfigure.png" alt="Before Configure" style="width: 30%;">
+
 You should press ``c`` to configure. If it prompts you to exit press ``e``. Then configure untill you see ``generate`` option at the bottom of the screen. Generate by pressing ``g``. 
 
 After this you can ``make`` using a separate screen, because the installation may take a while, especially on login nodes.
@@ -65,10 +69,11 @@ make install;
 
 You can detach the screen after you started ``make`` by first pressing ``Ctrl A `` and then ``Ctrl D``. To check the installation you just go back to screen by ``screen`` again.
 
-## tes-geant github repo
+### tes-geant github repo
 
 You will need a workign ssh key on git generated on the HPC. For that please follow the official github guide.
 
+###
 
 ## Usage
 
