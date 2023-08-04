@@ -50,7 +50,7 @@ ccmake ../geant4-v11.1.2;
 
 Your screen should look something like this before you configure:
 <!-- ![Alt text](<Pasted Graphic.png>){:height="10px" width="10px"} -->
-<img src="README_files/BeforeConfigure.png" alt="Before Configure" style="width: 30%;">
+<img src="README_files/BeforeConfigure.png" alt="Before Configure" style="width: 40%;">
 
 You should press ``c`` to configure. If it prompts you to exit press ``e``. Then configure untill you see ``generate`` option at the bottom of the screen. Generate by pressing ``g``. 
 
@@ -69,9 +69,17 @@ make install;
 
 You can detach the screen after you started ``make`` by first pressing ``Ctrl A `` and then ``Ctrl D``. To check the installation you just go back to screen by ``screen`` again.
 
-### tes-geant github repo
+### tes-geant
+```terminal
+git clone git@github.com:nyuad-astroparticle/tes-geant.git
+```
+You will need a working ssh key on git generated on the HPC. For that please follow the official [GitHub guide](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent).
 
-You will need a workign ssh key on git generated on the HPC. For that please follow the official github guide.
+After that you need to cry by doing the following:
+```terminal
+cd tes-geant;
+tar -xzf cry_v1.7.tar.gzcry_v1.7.tar.gz
+```
 
 ###
 
