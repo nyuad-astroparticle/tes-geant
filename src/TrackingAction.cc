@@ -92,8 +92,8 @@ void TrackingAction::PostUserTrackingAction(const G4Track* track)
         G4String childVolume = child->GetVolume()->GetName();
         if (childVolume.find("Silicon") == G4String::npos) return;
 
-        // If the parent does not originate from detectLogical
-        if (volume.compare(""))
+        // If the parent does not originate from sensitive detector volume
+        if (volume.find("Silicon") == G4String::npos)
         {
             // This was the first migrant, add its information
             child->SetUserInformation(new TrackInformation(track->GetTrackID()));
