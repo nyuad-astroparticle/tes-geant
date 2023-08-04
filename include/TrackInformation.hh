@@ -8,7 +8,7 @@
 
 An object attached to each
 track that stores the first 
-generation migrant id for the
+generation migrant id
 that generated it.
 *****************************/
 
