@@ -90,7 +90,7 @@ void TrackingAction::PostUserTrackingAction(const G4Track* track)
 
         // If the child's volume is not a sensitive detector, we don't care
         G4String childVolume = child->GetVolume()->GetName();
-        if (childVolume.find("Silicon") == G4String::npos) return;
+        if (childVolume.find("Silicon") == G4String::npos) continue;
 
         // If the parent does not originate from sensitive detector volume
         if (volume.find("Silicon") == G4String::npos)
