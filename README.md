@@ -4,7 +4,7 @@
 
 ## Description
 
-A brief description of your project goes here. Explain what your project does, why it's useful, and any key features.
+This repo is for building a GEANT4 simulation of a Cryostat with a Transition edge sensor (TES) substrate within it. 
 
 ## Table of Contents
 
@@ -12,8 +12,8 @@ A brief description of your project goes here. Explain what your project does, w
 - [Usage](#usage)
 - [Features](#features)
 - [Contributing](#contributing)
-- [License](#license)
 - [Acknowledgments](#acknowledgments)
+- [Contact](#contact)
 
 ## Installation
 
@@ -128,19 +128,37 @@ Explain how to use your project. Include examples or code snippets to demonstrat
 
 List the main features of your project. This helps users quickly understand what your project can do.
 
-## Contributing
+## Contributions
 
-If you welcome contributions to your project, outline the guidelines for contributing. Include information on how to submit bug reports, feature requests, and pull requests.
+We welcome contributions to this project! If you find a bug, have a feature request, or want to improve the code, feel free to fork this repository and create your own version.
+After you've submitted the pull request, we will review your changes and provide feedback if necessary. Once everything looks good, we'll merge your changes into the main project. 
 
-## License
+### Creating Your Own Version
 
-Specify the license under which your project is distributed. If you're not sure which license to use, the MIT License is a popular choice for open-source projects. Include a link to the full license file.
+We encourage you to create your own version of this project based on your needs. You are free to modify, extend, or adapt the code in any way you want. There are no restrictions on using this project as a starting point for your own creations.
+
+### Feedback and Support
+
+If you have any questions, feedback, or need assistance, don't hesitate to open an issue on this repository.
+
+Thank you for considering contributing to our project and making it better for everyone.
 
 ## Acknowledgments
 
-If your project builds upon the work of others, acknowledges any third-party libraries or tools that you've used. You can also mention contributors or people who have inspired your project.
+Tools:
+- [CADMesh](https://github.com/christopherpoole/CADMesh)
+- [GEANT4](https://geant4.web.cern.ch/)
+- [FreeCad](https://www.freecad.org/)
+- [Fusion360](https://www.autodesk.com/products/fusion-360/overview?term=1-YEAR&tab=subscription)
+- [MeshLab](https://www.meshlab.net/)
+
+Contributors:
+- Danish Khan
+- Panos Economou
+- Tengiz Ibrayev
+- Zak Saeed
 
 ## Contact
 
-Provide a way for users to get in touch with you or your team if they have questions, concerns, or feedback about the project.
+[Panos Economou](https://github.com/PanosEconomou), [Tengiz Ibrayev](https://github.com/F7East)
 
