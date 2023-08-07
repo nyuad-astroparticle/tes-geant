@@ -21,21 +21,21 @@ A brief description of your project goes here. Explain what your project does, w
 
 This guide explains how to install Geant4 on NYUAD Jubail high-performance computing (HPC) cluster.
 
-### Connecting to HPC
+#### Connecting to HPC
 
 ```terminal
 ssh your_id@jubail.abudhabi.nyu.edu;
 cd scratch/your_id;
 ```
 
-### Downloading GEANT4
+#### Downloading GEANT4
 
 ```terminal
 wget https://gitlab.cern.ch/geant4/geant4/-/archive/v11.1.2/geant4-v11.1.2.tar.gz ;
 tar -xzf geant4-v11.1.2.tar.gz;
 ```
 
-### Installing GEANT4
+#### Installing GEANT4
 
 ```terminal
 module load gcc cmake mpich expat;
@@ -69,6 +69,44 @@ make install;
 
 You can detach the screen after you started ``make`` by first pressing ``Ctrl A `` and then ``Ctrl D``. To check the installation you just go back to screen by ``screen`` again.
 
+After your installation is done you need to source GEANT4 by:
+
+```terminal
+source /scratch/tyour_id/geant4/install/bin/geant4.sh
+```
+
+#### Installing GEANT4 MPI (Message Passing Interaface)
+
+Iff you have followed the guide you should do the following in order to insall MPI for GEANT4 to use multiprocessing on the HPC
+```terminal
+cd /scratch/your_ID/geant4;
+mkdir g4mpi;
+cd /scratch/your_ID/geant4/install/share/Geant4/examples/extended/parallel/MPI/source;
+mkdir build;
+cd build;
+ccmake ..
+```
+
+![MPI ccmake](README_files/MPI.png)
+
+In your ``ccmake`` change your ``CMAKE_INSTALL_PREFIX`` to:
+
+```terminal
+/scratch/your_ID/geant4/g4mpi
+```
+
+After this set your MPI variable:
+```terminal
+echo "export G4MPI_DIR=/scratch/your_ID/geant4/g4mpi/lib64/G4mpi-11.1.2" >> /home/your_ID/.bashrc;
+source /home/your_ID/.bashrc;
+```
+
+Then:
+```terminal
+make;
+make install
+```
+
 ### tes-geant
 ```terminal
 git clone git@github.com:nyuad-astroparticle/tes-geant.git
@@ -81,7 +119,6 @@ cd tes-geant;
 tar -xzf cry_v1.7.tar.gzcry_v1.7.tar.gz
 ```
 
-###
 
 ## Usage
 

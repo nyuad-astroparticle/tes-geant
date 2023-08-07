@@ -44,7 +44,7 @@ void TrackingAction::PreUserTrackingAction(const G4Track* track)
         G4Track* tr = (G4Track*) track;
 
         // and it isn't the original atom
-        if (track->GetTrackID() > 35){
+        if (track->GetTrackID() > 30){
             // Kill that track
             tr->SetTrackStatus(fStopAndKill);
         }
@@ -90,10 +90,10 @@ void TrackingAction::PostUserTrackingAction(const G4Track* track)
 
         // If the child's volume is not a sensitive detector, we don't care
         G4String childVolume = child->GetVolume()->GetName();
-        if (childVolume.find("Silicon") == G4String::npos) continue;
+        if ( (childVolume.find("Silicon") == G4String::npos) or (childVolume.find("Aluminium") == G4String::npos)) continue;
 
         // If the parent does not originate from sensitive detector volume
-        if (volume.find("Silicon") == G4String::npos)
+        if ( (volume.find("Silicon") == G4String::npos) or (volume.find("Aluminium") == G4String::npos) )
         {
             // This was the first migrant, add its information
             child->SetUserInformation(new TrackInformation(track->GetTrackID()));
