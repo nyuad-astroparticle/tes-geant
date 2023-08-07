@@ -122,11 +122,27 @@ tar -xzf cry_v1.7.tar.gzcry_v1.7.tar.gz
 
 ## Usage
 
-Explain how to use your project. Include examples or code snippets to demonstrate its functionality. You can also add screenshots or gifs to visually illustrate usage.
+After you modify any of the code, from your directory create a ``build`` directory if it does not exist:
+```terminal
+mkdir build
+```
+Otherwise remove all of the CMake cash from the ``build`` folder:
+```terminal
+rm -rf CMakeCache.txt cmake_install.cmake CMakeFiles Makefile;
+```
+
+Then make. Use -j flag to denote number of core you want to use in the process. It is not recommened to use all of the cores available.
+```terminal
+make -j7
+```
 
 ## Features
 
-List the main features of your project. This helps users quickly understand what your project can do.
+- HPC-enabled multiprocessing for optimized performance on parallel systems.
+- Support for various mesh file formats, including gdml.
+- Built-in radioactive decay simulation option.
+- Toggleable geometry and property settings for flexible customization.
+- Integration of low-energy physics.
 
 ## Contributions
 
