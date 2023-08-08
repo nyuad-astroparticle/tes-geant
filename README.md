@@ -72,7 +72,7 @@ You can detach the screen after you started ``make`` by first pressing ``Ctrl A 
 After your installation is done you need to source GEANT4 by:
 
 ```terminal
-source /scratch/tyour_id/geant4/install/bin/geant4.sh
+source /scratch/your_id/geant4/install/bin/geant4.sh
 ```
 
 #### Installing GEANT4 MPI (Message Passing Interaface)
@@ -136,6 +136,21 @@ Then make. Use -j flag to denote number of core you want to use in the process. 
 make -j7
 ```
 
+### Running with mpi
+
+To run on NYUAD Jubail HPC you need to be registered. Please read on the [official website](https://crc-docs.abudhabi.nyu.edu/hpc/hpc.html) how to register an account and submit jobs.
+
+Go to tes-geant/hpc and modify run-start.sh file:
+```terminal
+cd tes-geant/hpc;
+vim run-start.sh
+```
+<img src="README_files/run-statr.png" alt="run-start" style="width: 40%;">
+
+Then submit the job by typing:
+```terminal
+sbatch run-start.sh
+```
 ## Features
 
 - HPC-enabled multiprocessing for optimized performance on parallel systems.
