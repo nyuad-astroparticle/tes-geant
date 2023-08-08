@@ -151,6 +151,28 @@ Then submit the job by typing:
 ```terminal
 sbatch run-start.sh
 ```
+You can see the output of programm by tailing the output file:
+```terminal
+tail -f start-job....out
+```
+
+To exit, simply press ``Ctrl + C``
+To see the status of your job you can use ``sacct`` or ``squeue``. To check the HPC use you can type ``cmap``.
+
+### Pre-run checklist:
+
+- [ ] Are you on a correct branch?
+- [ ] Have you pulled all the changes?
+- [ ] Have you loaded all modules?
+- [ ] Have you sourced GEANT4?
+- [ ] Have you ccmade your build directory?
+- [ ] Have you made your directory?
+- [ ] Have you adjusted macros in your directory?
+- [ ] Have you modified run_start.sh?
+- [ ] Have you run sbatch?
+- [ ] Have you tailed the outptu to verify if it is loading?
+- [ ] Have you waited for 2 mins after starting the job to verify that it does not crash in a short time?
+
 ## Features
 
 - HPC-enabled multiprocessing for optimized performance on parallel systems.
