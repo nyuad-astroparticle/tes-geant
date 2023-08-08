@@ -17,9 +17,7 @@
 #include "G4SDManager.hh" 
 #include "G4ThreeVector.hh"
 #include "G4Transform3D.hh"
-#ifdef GDML_ACTIVE
 #include "G4GDMLParser.hh"
-#endif
 #include "G4UserLimits.hh"
 
 class MyDetectorConstruction : public G4VUserDetectorConstruction
@@ -38,9 +36,7 @@ class MyDetectorConstruction : public G4VUserDetectorConstruction
 		G4LogicalVolume* logicSiliconSubstrate 	= nullptr;
 		G4LogicalVolume* logicSiliconOxide 		= nullptr;
 		G4LogicalVolume* logicSiliconNitride 	= nullptr;
-#ifdef GDML_ACTIVE
 		G4GDMLParser*    GDMLParser				= nullptr;
-#endif
 
 };
 #endif

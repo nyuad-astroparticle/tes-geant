@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://service-spi.web.cern.ch/service-spi/app/releases/GDML/schema/gdml.xsd">
+
+  <define>
+
+    <!-- Constants -->
+    <constant name="cylinderThickness"        value="3.0 * mm"/>
+    <constant name="cylinderDiameter"         value="35.2 * cm"/>
+    <constant name="cylinderHeight"           value="106 * cm"/>
+    <constant name="yShift"                   value="17.0 * cm"/>
+    <constant name="copperThickness"          value="3.0 * mm"/>
+    <constant name="copperBoxX"               value="2.5 * cm"/>
+    <constant name="copperBoxY"               value="2.5 * cm"/>
+    <constant name="copperBoxZ"               value="5.0 * cm"/>
+    <constant name="copperBoxPosX"            value="-4.5 * cm"/>
+    <constant name="siliconThickness"         value="0.5 * mm"/>
+    <constant name="siliconX"                 value="0.5 * cm"/>
+    <constant name="siliconZ"                 value="0.5 * cm"/>
+    <constant name="siliconSubstrateHeight"   value="5.0 * mm"/>
+    <constant name="siliconOxideHeight"       value="150.0 * nm"/>
+    <constant name="siliconNitrideHeight"     value="500.0 * nm"/>
+
+    <!-- Calculated quantities using expressions -->
+    <quantity name="copperBoxPosY" formula="-cylinderHeight/2 + cylinderThickness + yShift - 1.0 * cm + copperThickness"/>
+    <quantity name="siliconY" formula="siliconThickness"/>
+    <quantity name="siliconPosY" formula="copperBoxPosY - copperBoxY/2 + copperThickness + siliconThickness"/>
+    <quantity name="stackLengthX" formula="siliconX"/>
+    <quantity name="stackLengthZ" formula="siliconZ"/>
+    <quantity name="stackHeight" formula="stackLengthX"/>
+    <quantity name="stackPosX" formula="copperBoxPosX"/>
+    <quantity name="stackPosY" formula="copperBoxPosY - copperBoxY/2 + copperThickness + stackHeight"/>
+    <quantity name="stackPosZ" formula="copperBoxPosZ"/>
+    <quantity name="siliconOxideRelativeY" formula="siliconSubstrateHeight/2 + siliconOxideHeight/2"/>
+    <quantity name="siliconNitrideRelativeY" formula="siliconSubstrateHeight/2 + siliconOxideHeight + siliconNitrideHeight/2"/>
+  
+
+    <position name="stackPos" x="0" y="0" z="0"/>
+    <position name="siliconSubstrateCenter" x="stackPosX" y="stackPosY" z="stackPosZ"/>
+    <position name="siliconOxideCenter1" x="stackPosX" y="stackPosY + siliconSubstrateHeight/2 + siliconOxideHeight/2" z="stackPosZ"/>
+    <position name="siliconOxideCenter2" x="stackPosX" y="stackPosY - siliconSubstrateHeight/2 - siliconOxideHeight/2" z="stackPosZ"/>
+    <position name="siliconNitrideCenter1" x="stackPosX" y="stackPosY + siliconSubstrateHeight/2 + siliconOxideHeight + siliconNitrideHeight/2" z="stackPosZ"/>
+    <position name="siliconNitrideCenter2" x="stackPosX" y="stackPosY - siliconSubstrateHeight/2 - siliconOxideHeight - siliconNitrideHeight/2" z="stackPosZ"/>
+
+  </define>
+
+  <materials>
+    <element name="Si" Z="14" N="28.0855" />
+    <element name="N" Z="7" N="14.01" />
+    <element name="O" Z="8" N="16.00" />
+
+    <material name="siliconNitride" state="solid" formula="siliconNitride">
+      <D value="3.17" unit="g/cm3"/>
+      <fraction n="3" ref="Si"/>
+      <fraction n="4" ref="N"/>
+    </material>
+
+    <material name="siliconOxide" state="solid" formula="siliconOxide">
+      <D value="2.65" unit="g/cm3"/>
+      <fraction n="1" ref="Si"/>
+      <fraction n="2" ref="O"/>
+    </material>
+
+    <material name="Silicon" state="solid">
+      <D value="2.3290" unit="g/cm3"/>
+      <fraction n="1" ref="Si"/>
+    </material>
+  </materials>
+
+  <solids>
+    <!-- Define the Stack Position and Dimensions -->
+    <box name="solidSiliconSubstrate" x="stackLengthX/2" y="siliconSubstrateHeight/2" z="stackLengthZ/2"/>
+    <box name="solidSiliconOxide" x="stackLengthX/2" y="siliconOxideHeight/2" z="stackLengthZ/2"/>
+    <box name="solidSiliconNitride" x="stackLengthX/2" y="siliconNitrideHeight/2" z="stackLengthZ/2"/>
+  </solids>
+
+  <structure>
+    <!-- Define Silicon Substrate Layer -->
+    <volume name="logicSiliconSubstrate">
+      <materialref ref="Silicon"/>
+      <solidref ref="solidSiliconSubstrate"/>
+    </volume>
+    <physvol name="physSiliconSubstrate">
+      <volumeref ref="logicSiliconSubstrate"/>
+      <positionref ref="siliconSubstrateCenter"/>
+    </physvol>
+
+    <!-- Define Silicon Oxide Layers -->
+    <volume name="logicSiliconOxide">
+      <materialref ref="siliconOxide"/>
+      <solidref ref="solidSiliconOxide"/>
+    </volume>
+    <physvol name="physSiliconOxide1">
+      <volumeref ref="logicSiliconOxide"/>
+      <positionref ref="siliconOxideCenter1"/>
+    </physvol>
+    <physvol name="physSiliconOxide2">
+      <volumeref ref="logicSiliconOxide"/>
+      <positionref ref="siliconOxideCenter2"/>
+    </physvol>
+
+    <!-- Define Silicon Nitride Layers -->
+    <volume name="logicSiliconNitride">
+      <materialref ref="siliconNitride"/>
+      <solidref ref="solidSiliconNitride"/>
+    </volume>
+    <physvol name="physSiliconNitride1">
+      <volumeref ref="logicSiliconNitride"/>
+      <positionref ref="siliconNitrideCenter1"/>
+    </physvol>
+    <physvol name="physSiliconNitride2">
+      <volumeref ref="logicSiliconNitride"/>
+      <positionref ref="siliconNitrideCenter2"/>
+    </physvol>
+
+  </structure>
+
+    <!-- Set Visual Attributes -->
+  <visattributes>
+      <volume name="logicSiliconSubstrate" color="0.0 1.0 0.0"/> <!-- Green -->
+      <volume name="logicSiliconOxide" color="0.0 0.0 1.0"/>    <!-- Blue -->
+      <volume name="logicSiliconNitride" color="1.0 0.0 0.0"/>  <!-- Red -->
+  </visattributes>
+    
+  <setup>
+    <!-- Define the World Volume -->
+    <world ref="logicWorld"/>
+  </setup>
+
+</gdml>

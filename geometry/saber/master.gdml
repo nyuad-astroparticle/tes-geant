@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://service-spi.web.cern.ch/service-spi/app/releases/GDML/schema/gdml.xsd">
+
+  <!-- Definitions -->
+  <define>
+    <position name="pos_saber" x="-10." y="0" z="0" unit="cm"/>
+    <rotation name="rot_saber" x="90" y="0" z="0" unit="deg"/>
+  </define>
+
+  <!-- Materials -->
+  <materials>
+
+    <element name="videRef"    formula="VACUUM" Z="1"> <atom value="1."/>       </element>
+
+    <!-- Define the Vacuum material -->
+    <material name="Vacuum">
+      <D value="1e-25" unit="g/cm3"/>
+      <fraction n="1.0" ref="videRef" />
+
+    </material>
+    <!-- You can define other materials here if needed -->
+  </materials>
+
+  <!-- Solids -->
+  <solids>
+    <box lunit="mm" name="world_solid" x="10000.0" y="10000.0" z="10000.0" />
+    <!-- You can define other solids here if needed -->
+  </solids>
+
+  <!-- Geometry Structure -->
+  <structure>
+    <volume name="world_volume">
+      <materialref ref="Vacuum"/>
+      <solidref ref="world_solid"/>
+
+      <!-- Include the first geometry -->
+      <physvol>
+        <file name="./geometry/saber/saber.gdml"/>
+      </physvol>
+    </volume>
+  </structure>
+
+  <!-- Setup -->
+  <setup name="Default" version="1.0">
+    <world ref="world_volume"/>
+  </setup>
+
+</gdml>

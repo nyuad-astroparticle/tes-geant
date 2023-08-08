@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://service-spi.web.cern.ch/service-spi/app/releases/GDML/schema/gdml.xsd">
+
+   <!-- Define materials -->
+  <materials>
+    <element name="Si" formula="Si"/>
+    <!-- You can define other materials here if needed -->
+  </materials>
+
+  <!-- Define the world volume -->
+  <solids>
+    <box name="WorldBox" lunit="cm" x="100" y="100" z="100"/>
+  </solids>
+
+  <structure>
+    <volume name="World" material="G4_Galactic" solid="WorldBox"/>
+  </structure>
+
+  <!-- Define the sensitive detector volume (parallelepiped) -->
+  <solids>
+    <parallelepiped name="SiSensor" lunit="cm" x="5" y="10" z="20" alpha="90" beta="60" gamma="120"/>
+  </solids>
+
+  <structure>
+    <volume name="SiDetector" material="Si" solid="SiSensor"/>
+  </structure>
+
+  <!-- Place the sensitive detector volume inside the world -->
+  <setup>
+    <world ref="World"/>
+    <volume name="SiDetectorPlacement">
+      <materialref ref="Si"/>
+      <volumeref ref="SiDetector"/>
+    </volume>
+    <position name="SiDetectorPosition" unit="cm" x="0" y="0" z="0"/>
+    <rotation name="SiDetectorRotation" unit="deg" x="0" y="0" z="0"/>
+    <physvol>
+      <volumeref ref="SiDetectorPlacement"/>
+      <positionref ref="SiDetectorPosition"/>
+      <rotationref ref="SiDetectorRotation"/>
+    </physvol>
+  </setup>
+
+</gdml>
