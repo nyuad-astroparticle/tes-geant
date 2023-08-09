@@ -36,7 +36,7 @@ class MyDetectorConstruction : public G4VUserDetectorConstruction
 		G4LogicalVolume* logicSiliconSubstrate 	= nullptr;
 		G4LogicalVolume* logicSiliconOxide 		= nullptr;
 		G4LogicalVolume* logicSiliconNitride 	= nullptr;
-		G4GDMLParser*    GDMLParser				= nullptr;
+		// G4GDMLParser*    GDMLParser				= nullptr;
 
 };
 #endif

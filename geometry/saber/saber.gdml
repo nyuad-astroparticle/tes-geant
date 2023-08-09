@@ -1,44 +1,37 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://service-spi.web.cern.ch/service-spi/app/releases/GDML/schema/gdml.xsd">
 
-   <!-- Define materials -->
-  <materials>
-    <element name="Si" formula="Si"/>
-    <!-- You can define other materials here if needed -->
-  </materials>
+  <!-- Definitions -->
+  <define>
 
-  <!-- Define the world volume -->
-  <solids>
-    <box name="WorldBox" lunit="cm" x="100" y="100" z="100"/>
-  </solids>
+    <position name="pos_saber" x="-10." y="0" z="0" unit="cm"/>
+    <rotation name="rot_saber" x="0" y="0" z="0" unit="deg"/>
 
-  <structure>
-    <volume name="World" material="G4_Galactic" solid="WorldBox"/>
-  </structure>
+  </define>
 
-  <!-- Define the sensitive detector volume (parallelepiped) -->
-  <solids>
-    <parallelepiped name="SiSensor" lunit="cm" x="5" y="10" z="20" alpha="90" beta="60" gamma="120"/>
-  </solids>
+    <materials>
+        <!-- Silicon -->
+        <material name="Si" Z="14.0">
+            <D value="2.33" unit="g/cm3" />
+            <atom value="28.0855" />
+        </material>
+    </materials>
 
-  <structure>
-    <volume name="SiDetector" material="Si" solid="SiSensor"/>
-  </structure>
+    <solids>
+        <!-- Silicon Sensor -->
+        <box name="saberSolid" x="14.25" y="2" z="0.5" lunit="cm"/>
+    </solids>
 
-  <!-- Place the sensitive detector volume inside the world -->
-  <setup>
-    <world ref="World"/>
-    <volume name="SiDetectorPlacement">
-      <materialref ref="Si"/>
-      <volumeref ref="SiDetector"/>
-    </volume>
-    <position name="SiDetectorPosition" unit="cm" x="0" y="0" z="0"/>
-    <rotation name="SiDetectorRotation" unit="deg" x="0" y="0" z="0"/>
-    <physvol>
-      <volumeref ref="SiDetectorPlacement"/>
-      <positionref ref="SiDetectorPosition"/>
-      <rotationref ref="SiDetectorRotation"/>
-    </physvol>
-  </setup>
+    <structure>
+        <!-- Logical Volume of the Silicon Sensor -->
+        <volume name="saberLogical">
+            <materialref ref="Si" />
+            <solidref ref="saberSolid" />
+        </volume>
+    </structure>
+
+    <setup name="Default" version="1.0">
+        <world ref="saberLogical" />
+    </setup>
 
 </gdml>
