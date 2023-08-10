@@ -3,48 +3,18 @@
 
   <define>
 
-    <quantity name="cylinderThickness"    value="3.0" unit="mm"/>
-    <quantity name="cylinderDiameter"     value="35.2" unit="cm"/>
-    <quantity name="cylinderHeight"       value="106" unit="cm"/>
-    <quantity name="yShift"               value="17.0" unit="cm"/>
-
-    <quantity name="copperThickness"      value="3.0" unit="mm"/>
-    <quantity name="copperBoxX"           value="2.5" unit="cm"/>
-    <quantity name="copperBoxY"           value="2.5" unit="cm"/>
-    <quantity name="copperBoxZ"           value="5.0" unit="cm"/>
-    <quantity name="copperBoxPosX"        value="-4.5" unit="cm"/>
-    <variable name="copperBoxPosY"        value="-cylinderHeight/2 + cylinderThickness + yShift - 1.0 * cm + copperThickness"/>
-    <quantity name="copperBoxPosZ"        value="-1.0" unit="cm"/>
-
-    <quantity name="siliconThickness"     value="0.5" unit="mm"/>
-    <quantity name="siliconX"             value="0.5" unit="cm"/>
-    <variable name="siliconY"             value="siliconThickness"/>
-    <quantity name="siliconZ"             value="0.5" unit="cm"/>
-    <quantity name="siliconPosX"          value="0.0" unit="cm"/>
-    <variable name="siliconPosY"          value="copperBoxPosY - copperBoxY/2 + copperThickness + siliconThickness"/>
-    <quantity name="siliconPosZ"          value="0.0" unit="cm"/>
-
-    <variable name="stackLengthX"         value="siliconX"/>
-    <variable name="stackLengthZ"         value="siliconZ"/>
-    <variable name="stackHeight"          value="stackLengthX"/>
-    <variable name="stackPosX"            value="copperBoxPosX"/>
-    <variable name="stackPosY"            value="copperBoxPosY - copperBoxY/2 + copperThickness + stackHeight"/>
-    <variable name="stackPosZ"            value="copperBoxPosZ"/>
-
-    <!-- <quantity type="length" name="stackLengthX"         value="0.5" unit="cm"/>
+    <quantity type="length" name="stackLengthX"         value="0.5" unit="cm"/>
     <quantity type="length" name="stackLengthZ"         value="0.5" unit="cm"/>
     <quantity type="length" name="stackPosX"            value="0" unit="cm"/>
     <quantity type="length" name="stackPosY"            value="0" unit="cm"/>
-    <quantity type="length" name="stackPosZ"            value="0" unit="cm"/> -->
+    <quantity type="length" name="stackPosZ"            value="0" unit="cm"/>
 
     <!-- <variable name="siliconSubstrateHeight"    value="siliconThickness" /> -->
     <quantity type="length" name="siliconSubstrateHeight"    value="0.5" unit="mm" />
     <quantity type="length" name="siliconOxideHeight"        value="150" unit="nm" />
     <variable name="siliconOxideRelativeY"     value="siliconSubstrateHeight/2 + siliconOxideHeight/2" />
-    <!-- <quantity type="length" name="siliconOxideRelativeY" value = "0.5/2 + 0.00015/2"> -->
     <quantity type="length" name="siliconNitrideHeight"      value="500" unit="nm" />
     <variable name="siliconNitrideRelativeY"   value="siliconSubstrateHeight/2 + siliconOxideHeight + siliconNitrideHeight/2" />
-    <!-- <quantity type="length" name="siliconOxideRelativeY" value = "0.5/2 + 0.00015/2"> -->
 
     <position name="siliconSubstrateCenter" x="stackPosX" y="stackPosY" z="stackPosZ"/>
     <position name="siliconOxideCenter1" x="stackPosX" y="stackPosY + siliconOxideRelativeY" z="stackPosZ"/>
@@ -91,7 +61,7 @@
     <box name="solidSiliconSubstrate" x="stackLengthX" y="siliconSubstrateHeight" z="stackLengthZ"/>
     <box name="solidSiliconOxide" x="stackLengthX" y="siliconOxideHeight" z="stackLengthZ"/>
     <box name="solidSiliconNitride" x="stackLengthX" y="siliconNitrideHeight" z="stackLengthZ"/>
-    <box name="solidMotherVolume" x="5." y="5." z="5." lunit="m"/>
+    <box name="solidMotherVolume" x="stackLengthX" y="siliconSubstrateHeight + siliconOxideHeight*2 + siliconNitrideHeight*2" z="stackLengthZ"/>
   </solids>
 
   <structure>

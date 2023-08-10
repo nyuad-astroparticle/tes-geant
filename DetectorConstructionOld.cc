@@ -66,7 +66,7 @@ G4double yShift = 17.0 * cm;
 
 
 	G4Material * aluminum = nist -> FindOrBuildMaterial("G4_Al");
-	auto mesh = CADMesh::TessellatedMesh::FromPLY("../geometry/cryostat.stl");
+	auto mesh = CADMesh::TessellatedMesh::FromPLY("../geometry/cryostat/cryostat.stl");
 	auto meshSolid = mesh -> GetSolid();
 	G4LogicalVolume * logicalCryostat = new G4LogicalVolume(meshSolid, aluminum, "logicalCryostat");
 	// logicalCryostat -> SetUserLimits(mySteplimit);
@@ -159,7 +159,7 @@ G4double yShift = 17.0 * cm;
 #endif
 	
 	// Silicon inner layer
-		G4double siliconSubstrateHeight = 5. * mm;
+		G4double siliconSubstrateHeight = 0.5 * mm;
 
 		G4ThreeVector siliconSubstrateCenter(stackPosX, stackPosY , stackPosZ);
 
@@ -391,7 +391,7 @@ G4double yShift = 17.0 * cm;
 	logicSiliconOxide 		-> SetVisAttributes(blue);
 	logicSiliconSubstrate 	-> SetVisAttributes(green);
 #endif
-	logicalCryostat			-> SetVisAttributes(green);
+	logicalCryostat			-> SetVisAttributes(invisible);
 
 #ifdef ADD_THORIUM
 	logicThorium			-> SetVisAttributes(blue);

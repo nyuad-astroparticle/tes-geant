@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://service-spi.web.cern.ch/service-spi/app/releases/GDML/schema/gdml.xsd">
+
+  <define>
+
+    <quantity name="cylinderThickness"    value="3.0" unit="mm"/>
+    <quantity name="cylinderDiameter"     value="35.2" unit="cm"/>
+    <quantity name="cylinderHeight"       value="106" unit="cm"/>
+
+    <quantity name="copperThickness"      value="3.0" unit="mm"/>
+    <quantity name="copperBoxX"           value="2.5" unit="cm"/>
+    <quantity name="copperBoxY"           value="2.5" unit="cm"/>
+    <quantity name="copperBoxZ"           value="5.0" unit="cm"/>
+    <quantity name="copperBoxPosX"        value="-4.5" unit="cm"/>
+    <variable name="copperBoxPosY"        value="-cylinderHeight/2 + cylinderThickness - 1.0 * cm + copperThickness"/>
+    <quantity name="copperBoxPosZ"        value="-1.0" unit="cm"/>
+
+    <quantity name="siliconThickness"     value="0.5" unit="mm"/>
+    <quantity name="siliconX"             value="0.5" unit="cm"/>
+    <variable name="siliconY"             value="siliconThickness"/>
+    <quantity name="siliconZ"             value="0.5" unit="cm"/>
+    <quantity name="siliconPosX"          value="0.0" unit="cm"/>
+    <variable name="siliconPosY"          value="copperBoxPosY - copperBoxY/2 + copperThickness + siliconThickness"/>
+    <quantity name="siliconPosZ"          value="0.0" unit="cm"/>
+
+    <variable name="stackLengthX"         value="siliconX"/>
+    <variable name="stackLengthZ"         value="siliconZ"/>
+    <variable name="stackHeight"          value="stackLengthX"/>
+    <variable name="stackPosX"            value="copperBoxPosX"/>
+    <variable name="stackPosY"            value="copperBoxPosY - copperBoxY/2 + copperThickness + stackHeight"/>
+    <variable name="stackPosZ"            value="copperBoxPosZ"/>
+
+    <position name="tesposition"          x="stackPosX" y="stackPosY" z="stackPosZ"/>
+    <rotation name="tesrotation"          x="0"         y="0"         z="90" unit="deg"/>
+  </define>
+
+  <solids>
+    <box      name ="worldSolid"         x ="4." y="4." z="4." lunit="m"/>
+  </solids>
+
+  <structure>
+    <volume name="worldVolume">
+      <materialref ref="G4_Galactic"/>
+      <solidref ref="worldSolid"/>
+
+      <physvol>
+        <file name="./geometry/tes/tes.gdml"/>
+        <positionref ref="tesposition"/>
+        <rotationref ref="tesrotation"/>
+      </physvol>
+
+    </volume>
+  </structure>
+
+    <setup name="Default" version="1.0">
+    <!-- Define the World Volume -->
+    <world ref="worldVolume"/>
+  </setup>
+
+</gdml>
