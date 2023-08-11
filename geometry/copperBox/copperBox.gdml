@@ -6,7 +6,6 @@
     <quantity name="cylinderThickness" type="G4double" value="3.0 * mm" />
     <quantity name="cylinderDiameter" type="G4double" value="35.2 * cm" />
     <quantity name="cylinderHeight" type="G4double" value="106 * cm" />
-    <quantity name="yShift" type="G4double" value="17.0 * cm" />
     
     <quantity name="copperThickness" type="G4double" value="3.0 * mm" />
     <quantity name="copperBoxX" type="G4double" value="2.5 * cm" />
