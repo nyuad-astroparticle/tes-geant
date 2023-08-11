@@ -41,7 +41,7 @@ void MyDetectorConstruction::ConstructSDandField()
 {
 	auto detector = new SensitiveDetector("/SiliconSubstrate","SilliconHitsCollection");
 	G4SDManager::GetSDMpointer()->AddNewDetector(detector);
-	// SetSensitiveDetector(logicSiliconOxide, detector);
-	// SetSensitiveDetector(logicSiliconSubstrate, detector);
-	// SetSensitiveDetector(logicSiliconNitride, detector);
+	SetSensitiveDetector(logicSiliconOxide, detector);
+	SetSensitiveDetector(logicSiliconSubstrate, detector);
+	SetSensitiveDetector(logicSiliconNitride, detector);
 }
