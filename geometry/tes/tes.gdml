@@ -84,7 +84,7 @@
     </volume>
 
     <!-- Define a Mother Volume -->
-    <volume name="logicMotherVolume">
+    <volume name="logicTES">
       <materialref ref="G4_Galactic"/>
       <solidref ref="solidMotherVolume"/>
 
@@ -118,7 +118,7 @@
     
   <setup name="Default" version="1.0">
     <!-- Define the World Volume -->
-    <world ref="logicMotherVolume"/>
+    <world ref="logicTES"/>
   </setup>
 
 </gdml>

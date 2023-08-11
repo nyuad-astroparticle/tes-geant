@@ -23,7 +23,7 @@
 class MyDetectorConstruction : public G4VUserDetectorConstruction
 {
 	public:
-		MyDetectorConstruction();
+		MyDetectorConstruction(const G4GDMLParser& parser);
 		~MyDetectorConstruction();
 
 		G4VPhysicalVolume *Construct() override;
@@ -36,7 +36,7 @@ class MyDetectorConstruction : public G4VUserDetectorConstruction
 		G4LogicalVolume* logicSiliconSubstrate 	= nullptr;
 		G4LogicalVolume* logicSiliconOxide 		= nullptr;
 		G4LogicalVolume* logicSiliconNitride 	= nullptr;
-		// G4GDMLParser*    GDMLParser				= nullptr;
+		const G4GDMLParser & GDMLParser;
 
 };
 #endif

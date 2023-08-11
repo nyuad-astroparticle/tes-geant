@@ -3,10 +3,6 @@
 
   <define>
     
-    <quantity name="cylinderThickness" type="G4double" value="3.0 * mm" />
-    <quantity name="cylinderDiameter" type="G4double" value="35.2 * cm" />
-    <quantity name="cylinderHeight" type="G4double" value="106 * cm" />
-    
     <quantity name="copperThickness" type="G4double" value="3.0 * mm" />
     <quantity name="copperBoxX" type="G4double" value="2.5 * cm" />
     <quantity name="copperBoxY" type="G4double" value="2.5 * cm" />
@@ -15,14 +11,14 @@
     <position name="copperBoxCenter" x="0 * mm" y="0 * mm" z="0 * mm" />
   </define>
 
-  <materials>
+  <!-- <materials>
     
     <material name="Copper" Z="29"/>
         <D value="8.96" unit="g/cm3"/>
         <atom value="63.546"/>
     </material>
 
-  </materials>
+  </materials> -->
 
   <solids>
     <box name="solidOutercopperBox" x="copperBoxX" y="copperBoxY" z="copperBoxZ" />
@@ -36,13 +32,13 @@
 
   <structure>
     <volume name="logicCopperBox">
-      <materialref ref="Copper" />
+      <materialref ref="G4_Cu" />
       <solidref ref="solidcopperBox" />
     </volume>
   </structure>
 
-  <setup>
-    <world ref="logicWorld" />
-    <volume name="logicCopperBox" />
+  <setup name="Default" version="1.0">
+      <!-- Define the World Volume -->
+      <world ref="logicCopperBox"/>
   </setup>
 </gdml>

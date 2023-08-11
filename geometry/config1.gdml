@@ -37,7 +37,7 @@
     </define>
 
     <solids>
-        <box name="worldSolid" unit="m" x="4" y="4" z="4"/>
+        <box name="worldSolid" lunit="m" x="10." y="10." z="10."/>
     </solids>
 
     <structure>
@@ -63,4 +63,8 @@
         </volume>
     </structure>
 
+    <setup name="Default" version="1.0">
+        <!-- Define the World Volume -->
+        <world ref="worldVolume"/>
+  </setup>
 </gdml>
