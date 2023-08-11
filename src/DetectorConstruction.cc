@@ -46,6 +46,10 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 		logicWorld -> AddDaughter(cryostat);
 		parser.Clear();
 
+		parser.Read("./geometry/copperBox/copperBox.gdml");
+		parser.GetVolume("logicCopperBox") -> SetVisAttributes(G4Colour(1,0,0,0.5));
+		logicWorld -> AddDaughter()
+
 
     // Reading the sensitive detector
         // GDMLParser -> Read("./geometry/sensitiveDetector/sensitiveDetector.gdml");
