@@ -19,19 +19,19 @@
 
     <solids>
         <!-- Silicon Sensor -->
-        <box name="saberSolid" x="14.25" y="2" z="0.5" lunit="cm"/>
+        <box name="solidSaber" x="28.5" y="4.0" z="1.0" lunit="cm"/>
     </solids>
 
     <structure>
         <!-- Logical Volume of the Silicon Sensor -->
-        <volume name="saberLogical">
+        <volume name="logicSaber">
             <materialref ref="Si" />
-            <solidref ref="saberSolid" />
+            <solidref ref="solidSaber" />
         </volume>
     </structure>
 
     <setup name="Default" version="1.0">
-        <world ref="saberLogical" />
+        <world ref="logicSaber" />
     </setup>
 
 </gdml>

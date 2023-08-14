@@ -76,9 +76,9 @@ int main(int argc,char**  argv){
 		uiManager->ApplyCommand("/hits/verbose 0");
 
         //Run the commands in batch mode
-        for (int i=1;i<argc;i++){                               // For each input
+        for (int i=2;i<argc;i++){                               // For each input
             G4String command  = "/control/execute ";            // The command to execute it in Geant4
-            G4String filename = argv[1];                        // The input filename
+            G4String filename = argv[i];                        // The input filename
             uiManager->ApplyCommand(command + filename);        // Execute it
         }
     } else {

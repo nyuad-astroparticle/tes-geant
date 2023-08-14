@@ -5,6 +5,7 @@
         <variable name="logicTES"             value="0" />
         <variable name="Cryostat_Aluminum"   value="0" />
         <variable name="logicCopperBox"       value="0" />
+        <variable name="logicThorium"         value="0" />
 
         <quantity name="cylinderThickness"    value="3.0"       unit="mm"/>
         <quantity name="cylinderDiameter"     value="35.2"      unit="cm"/>
@@ -33,10 +34,16 @@
         <variable name="stackPosY"            value="copperBoxPosY - copperBoxY/2 + copperThickness + stackHeight"/>
         <variable name="stackPosZ"            value="copperBoxPosZ"/>
 
-        <position name="copperBoxCenter"      x="copperBoxPosX" y="copperBoxPosY" z="copperBoxPosZ"/>
+        <variable name="thoriumPosX"          value="-cylinderDiameter/2 - 1.0 * cm"/>
+        <variable name="thoriumPosY"          value="-cylinderHeight/2 + 11.5 * cm"/>
+        <quantity name="thoriumPosZ"          value="0.0"         unit="cm"/>
 
-        <position name="tesposition"          x="stackPosX" y="stackPosY" z="stackPosZ"/>
-        <rotation name="tesrotation"          x="0"         y="0"         z="90" unit="deg"/>
+        <position name="copperBoxCenter"      x="copperBoxPosX" y="copperBoxPosY"   z="copperBoxPosZ"/>
+
+        <position name="tesposition"          x="stackPosX"     y="stackPosY"       z="stackPosZ"/>
+        <rotation name="tesrotation"          x="0"             y="0"               z="90" unit="deg"/>
+
+        <position name="thoriumPosition"      x="thoriumPosX"   y="thoriumPosY"       z="thoriumPosZ"/>
 
     </define>
 
@@ -62,6 +69,11 @@
                 <file name="./geometry/tes/tes.gdml"/>
                 <positionref ref="tesposition"/>
                 <rotationref ref="tesrotation"/>
+            </physvol>
+
+            <physvol>
+                <file name="./geometry/thorium/thorium.gdml"/>
+                <positionref ref="thoriumPosition"/>
             </physvol>
 
         </volume>
