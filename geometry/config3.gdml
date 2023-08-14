@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://service-spi.web.cern.ch/service-spi/app/releases/GDML/schema/gdml.xsd">
+
+    <define>
+
+        <variable name="logicSaber"             value="0" />
+        <variable name="logicThorium"           value="0" />
+
+        <quantity name="cylinderThickness"      value="3.0"         unit="mm"/>
+        <quantity name="cylinderDiameter"       value="35.2"        unit="cm"/>
+        <quantity name="cylinderHeight"         value="106"         unit="cm"/>
+
+        <variable name="thoriumPosX"            value="-cylinderDiameter/2 - 1.0 * cm"/>
+        <variable name="thoriumPosY"            value="-cylinderHeight/2 + 11.5 * cm"/>
+        <quantity name="thoriumPosZ"            value="0.0"         unit="cm"/>
+        <quantity name="saberLength"            value="28.5"        unit="cm"/>
+        <quantity name="thoriumLength"          value="0.5"         unit="cm"/>
+        
+        <position name="thoriumPosition"        x="thoriumPosX"   y="thoriumPosY"   z="thoriumPosZ"/>
+
+        <position name="saber"                  x="thoriumPosX + thoriumLength/2 + saberLength/2 + 5.0 * cm" y="thoriumPosY" z="thoriumPosZ"/>
+
+
+    </define>
+
+    <solids>
+        <box name="worldSolid" lunit="m" x="10." y="10." z="10."/>
+    </solids>
+
+    <structure>
+        <volume name="worldVolume">
+            <materialref ref="G4_Galactic"/>
+            <solidref ref="worldSolid"/>
+            
+            <physvol>
+                <file name="./geometry/saber/saber.gdml"/>
+                <positionref ref="saber"/>
+            </physvol>
+
+            <physvol>
+                <file name="./geometry/thorium/thorium.gdml"/>
+                <positionref ref="thoriumPosition"/>
+            </physvol>
+
+        </volume>
+    </structure>
+
+    <setup name="Default" version="1.0">
+        <!-- Define the World Volume -->
+        <world ref="worldVolume"/>
+  </setup>
+</gdml>
