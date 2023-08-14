@@ -2,4 +2,4 @@
 /run/initialize
 /tracking/verbose 0
 /vis/scene/endOfEventAction accumulate
-/run/beamOn 500
+/run/beamOn 1000000000
