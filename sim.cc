@@ -46,7 +46,7 @@ int main(int argc,char**  argv){
 
 #ifdef MPI_ENABLE
 
-    for (int i = 1; i < (*argc - 1); i++) {argv[i] = argv[i + 1];}
+    for (int i = 1; i < (argc - 1); i++) {argv[i] = argv[i + 1];}
 
 	G4MPImanager* mpiManager    = new G4MPImanager(argc-1,argv);
     mpiManager->SetVerbose(1);
