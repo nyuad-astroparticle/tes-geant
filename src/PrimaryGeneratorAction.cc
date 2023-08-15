@@ -115,7 +115,7 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event *anEvent)
 	particleGun->GetCurrentSource()->GetEneDist()->SetMonoEnergy(0.0 * keV);
 
 	// Position and confine within the copper box
-	particleGun->GetCurrentSource()->GetPosDist()->SetPosDisType("Volume");
+	particleGun->GetCurrentSource()->GetPosDist()->SetPosDisType("Surface");
 	particleGun->GetCurrentSource()->GetPosDist()->SetPosDisShape("Para");
 	particleGun->GetCurrentSource()->GetPosDist()->SetCentreCoords(G4ThreeVector( -35.2 * cm / 2 - 1.*cm, -106. * cm / 2 + 11.5*cm, 0));
 	particleGun->GetCurrentSource()->GetPosDist()->SetHalfX(0.25 * cm);
