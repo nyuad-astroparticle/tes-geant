@@ -46,14 +46,9 @@ int main(int argc,char**  argv){
 
 #ifdef MPI_ENABLE
 
-    std::vector<G4String> newArray;
-    for (size_t i = 0; i < argc; ++i) {
-        if (i != 1) {
-            newArray.push_back(argv[i]);
-        }
-    }
+    for (int i = 1; i < (*argc - 1); i++) {argv[i] = argv[i + 1];}
 
-	G4MPImanager* mpiManager    = new G4MPImanager(argc-1,newArray);
+	G4MPImanager* mpiManager    = new G4MPImanager(argc-1,argv);
     mpiManager->SetVerbose(1);
 
     G4MPIsession* session       = mpiManager->GetMPIsession();
