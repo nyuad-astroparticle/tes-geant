@@ -48,7 +48,7 @@ int main(int argc,char**  argv){
 
     std::vector<G4double> newArray;
     for (size_t i = 0; i < argv.size(); ++i) {
-        if (i != indexToRemove) {
+        if (i != 1) {
             newArray.push_back(argv[i]);
         }
     }
