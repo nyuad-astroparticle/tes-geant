@@ -46,8 +46,8 @@ int main(int argc,char**  argv){
 
 #ifdef MPI_ENABLE
 
-    std::vector<G4double> newArray;
-    for (size_t i = 0; i < argv.size(); ++i) {
+    std::vector<G4String> newArray;
+    for (size_t i = 0; i < argc; ++i) {
         if (i != 1) {
             newArray.push_back(argv[i]);
         }
