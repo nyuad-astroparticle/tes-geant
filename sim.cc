@@ -12,6 +12,8 @@
 
 
 #ifdef MPI_ENABLE
+#include <iostream>
+#include <vector>
 #include "G4MPImanager.hh"
 #include "G4MPIsession.hh"
 #include "G4RunManager.hh"
@@ -43,7 +45,15 @@ int main(int argc,char**  argv){
 
 
 #ifdef MPI_ENABLE
-	G4MPImanager* mpiManager    = new G4MPImanager(argc,argv);
+
+    std::vector<G4double> newArray;
+    for (size_t i = 0; i < argv.size(); ++i) {
+        if (i != indexToRemove) {
+            newArray.push_back(argv[i]);
+        }
+    }
+
+	G4MPImanager* mpiManager    = new G4MPImanager(argc-1,newArray);
     mpiManager->SetVerbose(1);
 
     G4MPIsession* session       = mpiManager->GetMPIsession();
