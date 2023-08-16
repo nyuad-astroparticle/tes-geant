@@ -26,21 +26,45 @@ This guide explains how to install Geant4 on NYUAD Jubail high-performance compu
 ```terminal
 ssh your_id@jubail.abudhabi.nyu.edu;
 cd scratch/your_id;
+module load gcc cmake mpich expat;
+mkdir geant4
+```
+
+#### Installing xerces-c and for GDML support
+
+Following the [GEANT4 GDML prerequisites](https://geant4-userdoc.web.cern.ch/UsersGuides/InstallationGuide/html/gettingstarted.html) we need to install Xerces-C++ >=3, and build it with netaccessor curl.
+
+##### Xerces-C.
+
+From you geant4 directory:
+
+```terminal
+wget https://dlcdn.apache.org//xerces/c/3/sources/xerces-c-3.2.4.tar.gz;
+tar -xzf xerces-c-3.2.4.tar.gz;
+cd xerces-c-3.2.4;
+./configure --enable-netaccessor-curl;
+mkdir build;
+cd build;
+ccmake --build ..
+```
+
+Change the cmake_install_prefix to /scratch/your_id/geant4/xerces-c-3.2.4/install. Then install. 
+
+```terminal
+make install
 ```
 
 #### Downloading GEANT4
 
 ```terminal
-wget https://gitlab.cern.ch/geant4/geant4/-/archive/v11.1.2/geant4-v11.1.2.tar.gz ;
+cd /scratch/your_id/;
+wget https://gitlab.cern.ch/geant4/geant4/-/archive/v11.1.2/geant4-v11.1.2.tar.gz;
 tar -xzf geant4-v11.1.2.tar.gz;
 ```
 
 #### Installing GEANT4
 
 ```terminal
-module load gcc cmake mpich expat;
-mkdir geant4;
-cd geant4;
 mkdir build;
 mkdir install;
 mv ../geant4-v11.1.2 ./geant4-v11.1.2;
@@ -48,9 +72,18 @@ cd build;
 ccmake ../geant4-v11.1.2;
 ```
 
+Enable the gdml option, change the install prefix to /scratch/your_id/geant4/install. Toggle advance mode.
+Set the following to these:
+
+```terminal
+XercesC_INCLUDE_DIR              /scratch/your_id/geant4/xerces-c-3.2.4/install/include
+XercesC_LIBRARY_RELEASE          /scratch/your_id/geant4/xerces-c-3.2.4/install/lib64/libxerces-c.sotqq
+```
+
 Your screen should look something like this before you configure:
 <!-- ![Alt text](<Pasted Graphic.png>){:height="10px" width="10px"} -->
 <img src="README_files/BeforeConfigure.png" alt="Before Configure" style="width: 40%;">
+![Alt text](<Pasted Graphic.png>)
 
 You should press ``c`` to configure. If it prompts you to exit press ``e``. Then configure untill you see ``generate`` option at the bottom of the screen. Generate by pressing ``g``. 
 
@@ -181,7 +214,7 @@ To see the status of your job you can use ``sacct`` or ``squeue``. To check the 
 - Toggleable geometry and property settings for flexible customization.
 - Integration of low-energy physics.
 
-## Contributions
+## Contributing
 
 We welcome contributions to this project! If you find a bug, have a feature request, or want to improve the code, feel free to fork this repository and create your own version.
 After you've submitted the pull request, we will review your changes and provide feedback if necessary. Once everything looks good, we'll merge your changes into the main project. 
