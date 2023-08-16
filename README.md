@@ -83,7 +83,6 @@ XercesC_LIBRARY_RELEASE          /scratch/your_id/geant4/xerces-c-3.2.4/install/
 Your screen should look something like this before you configure:
 <!-- ![Alt text](<Pasted Graphic.png>){:height="10px" width="10px"} -->
 <img src="README_files/BeforeConfigure.png" alt="Before Configure" style="width: 40%;">
-![Alt text](<Pasted Graphic.png>)
 
 You should press ``c`` to configure. If it prompts you to exit press ``e``. Then configure untill you see ``generate`` option at the bottom of the screen. Generate by pressing ``g``. 
 
