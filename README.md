@@ -26,8 +26,6 @@ This guide explains how to install Geant4 on NYUAD Jubail high-performance compu
 ```terminal
 ssh your_id@jubail.abudhabi.nyu.edu;
 cd scratch/your_id;
-module load gcc cmake mpich expat;
-mkdir geant4
 ```
 
 #### Installing xerces-c and for GDML support
@@ -39,6 +37,8 @@ Following the [GEANT4 GDML prerequisites](https://geant4-userdoc.web.cern.ch/Use
 From you geant4 directory:
 
 ```terminal
+module load gcc cmake mpich expat;
+mkdir geant4
 wget https://dlcdn.apache.org//xerces/c/3/sources/xerces-c-3.2.4.tar.gz;
 tar -xzf xerces-c-3.2.4.tar.gz;
 cd xerces-c-3.2.4;
