@@ -3,20 +3,21 @@
 
     <define>
         <variable name="logicTES"             value="0" />
-        <variable name="Cryostat_Aluminum"   value="0" />
+        <variable name="Cryostat_Aluminum"    value="0" />
         <variable name="logicCopperBox"       value="0" />
         <variable name="logicThorium"         value="0" />
 
         <quantity name="cylinderThickness"    value="3.0"       unit="mm"/>
         <quantity name="cylinderDiameter"     value="35.2"      unit="cm"/>
         <quantity name="cylinderHeight"       value="106"       unit="cm"/>
+        <quantity name="cryostatBottom"       value="-698.771"  unit="mm"/>
 
         <quantity name="copperThickness"      value="3.0"       unit="mm"/>
         <quantity name="copperBoxX"           value="2.5"       unit="cm"/>
         <quantity name="copperBoxY"           value="2.5"       unit="cm"/>
         <quantity name="copperBoxZ"           value="5.0"       unit="cm"/>
         <quantity name="copperBoxPosX"        value="-4.5"      unit="cm"/>
-        <variable name="copperBoxPosY"        value="-cylinderHeight/2 + cylinderThickness - 1.0 * cm + copperThickness"/>
+        <variable name="copperBoxPosY"        value="cryostatBottom + copperBoxY/2 + 11.5 * cm + copperThickness"/>
         <quantity name="copperBoxPosZ"        value="-1.0"      unit="cm"/>
 
         <quantity name="siliconThickness"     value="0.5"       unit="mm"/>
@@ -34,8 +35,9 @@
         <variable name="stackPosY"            value="copperBoxPosY - copperBoxY/2 + copperThickness + stackHeight"/>
         <variable name="stackPosZ"            value="copperBoxPosZ"/>
 
+        <quantity name="thoriumHeight"        value="3.0"         unit="cm"/>
         <variable name="thoriumPosX"          value="-cylinderDiameter/2 - 1.0 * cm"/>
-        <variable name="thoriumPosY"          value="-cylinderHeight/2 + 11.5 * cm"/>
+        <variable name="thoriumPosY"          value="cryostatBottom + thoriumHeight/2 + 11.5 * cm"/>
         <quantity name="thoriumPosZ"          value="0.0"         unit="cm"/>
 
         <position name="copperBoxCenter"      x="copperBoxPosX" y="copperBoxPosY"   z="copperBoxPosZ"/>

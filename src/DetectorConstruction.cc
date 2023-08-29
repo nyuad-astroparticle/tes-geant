@@ -12,6 +12,9 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 {
 
 //------------------Set visual attributes---------------------------------------
+	G4VisAttributes* invisible  = new G4VisAttributes(G4Colour(1.0, 1.0, 1.0));
+    invisible->SetVisibility(false);
+
 	if (GDMLParser.IsValid("logicTES"))
 	{
 		logicSiliconSubstrate 	= 	GDMLParser.GetVolume("logicSiliconSubstrate"); 	
@@ -33,16 +36,27 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 
 	if (GDMLParser.IsValid("Cryostat_Aluminum"))
 	{
-		GDMLParser.GetVolume("Cryostat_Aluminum") 	-> SetVisAttributes(G4Colour(0,1,0, 0.1));
+		GDMLParser.GetVolume("Cryostat_Aluminum") 			-> SetVisAttributes(G4Colour(0,1,0, 0.1));
 	}
 	if (GDMLParser.IsValid("logicCopperBox"))
 	{
-		GDMLParser.GetVolume("logicCopperBox") 		-> SetVisAttributes(G4Colour(1,0,0, 0.1));
+		GDMLParser.GetVolume("logicCopperBox") 				-> SetVisAttributes(G4Colour(1,0,0, 0.1));
 	}
 	if (GDMLParser.IsValid("logicThorium"))
 	{
-		GDMLParser.GetVolume("logicThorium")		-> SetVisAttributes(G4Colour(0,0,1));
+		GDMLParser.GetVolume("logicThorium")				-> SetVisAttributes(G4Colour(0,0,1));
 	}
+
+	if (GDMLParser.IsValid("logicBottomScintillators"))
+	{
+		GDMLParser.GetVolume("logicBottomScintillators")	-> SetVisAttributes(invisible);
+		logicLong				= GDMLParser.GetVolume("logicLong");					
+		logicShort 				= GDMLParser.GetVolume("logicShort");					
+		
+		logicLong											-> SetVisAttributes(G4Colour(1,1,1));
+		logicShort 											-> SetVisAttributes(G4Colour(1,1,1));
+	}
+
 
 //------------------Returning the mother volume---------------------------------
 	return GDMLParser.GetWorldVolume();
@@ -57,6 +71,8 @@ void MyDetectorConstruction::ConstructSDandField()
 		SetSensitiveDetector(logicSiliconOxide, detector);
 		SetSensitiveDetector(logicSiliconSubstrate, detector);
 		SetSensitiveDetector(logicSiliconNitride, detector);
+		SetSensitiveDetector(logicLong, detector);
+		SetSensitiveDetector(logicShort, detector);
 	}
 	else if (logicSaber)
 	{
