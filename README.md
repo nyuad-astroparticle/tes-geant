@@ -151,6 +151,8 @@ After that you need to cry by doing the following:
 ```terminal
 cd tes-geant;
 tar -xzf cry_v1.7.tar.gz
+cd cry_v1.7;
+make
 ```
 
 
