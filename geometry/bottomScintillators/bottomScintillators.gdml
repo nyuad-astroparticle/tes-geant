@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="/scratch/ti602/geant4/geant4-v11.1.2/source/persistency/gdml/schema/gdml.xsd">
+
+    <define>
+        <quantity name="separation"     value="2"           unit="mm"/>
+        <quantity name="longX"          value="38.5"        unit="cm"/>
+        <quantity name="longY"          value="2.0"         unit="cm"/>
+        <quantity name="longZ"          value="4.0"         unit="cm"/>
+
+        <quantity name="shortX"         value="28.5"        unit="cm"/>
+        <quantity name="shortY"         value="1.0"         unit="cm"/>
+        <quantity name="shortZ"         value="4.0"         unit="cm"/>
+        
+        <position name="position1" x="0" y="0" z="-shortZ/2 - longZ/2 - separation"/>
+        <position name="position2" x="0" y="0" z="shortZ/2  + longZ/2 + separation"/>
+        <position name="position4" x="0" y="0" z="0"/>
+    </define>
+
+
+    <!-- Building CH2CH(C6H4CH3) -->
+    <materials>
+
+        <element name="Carbon"      formula="C" Z="6">
+            <atom value="12.011"/>
+        </element>
+
+        <element name="Hydrogen"    formula="H" Z="1">
+            <atom value="1.0078"/>
+        </element>
+
+        <material name="PVT"        formula="CH2CH(C6H4CH3)">
+            <D          value="1.05"            unit="g/cm3"/>
+            <composite  n="9"                   ref="Carbon"/>
+            <composite  n="6"                   ref="Hydrogen"/>
+        </material>
+        
+    </materials>
+
+    <solids>
+        <box name="long"    lunit="cm" x="38.5" y="2" z="4"/>
+        <box name="short"   lunit="cm" x="28.5" y="1" z="4"/>
+        <box name="solidBottomScintillators" lunit="m" x="1.0" y="1.0" z="1.0" />
+    </solids>
+
+    <structure>
+
+        <volume name="logicLong">
+            <materialref    ref="PVT"/>
+            <solidref       ref="long"/>
+        </volume>
+
+        <volume name="logicShort">
+            <materialref    ref="PVT"/>
+            <solidref       ref="short"/>
+        </volume>
+
+
+        <volume name="logicBottomScintillators">
+            <materialref    ref="G4_Galactic"/>
+            <solidref       ref="solidBottomScintillators"/>
+
+            <physvol name="phys1">
+                <volumeref      ref="logicLong"/>
+                <positionref    ref="position1"/>
+            </physvol>
+
+            <physvol name="phys2">
+                <volumeref      ref="logicLong"/>
+                <positionref    ref="position2"/>
+            </physvol>
+
+            <physvol name="phys4">
+                <volumeref      ref="logicShort"/>
+                <positionref    ref="position4"/>
+            </physvol>
+
+        </volume>
+
+    </structure>
+
+    <setup name="Default" version="1.0">
+        <world ref="logicBottomScintillators"/>
+    </setup>
+
+</gdml>

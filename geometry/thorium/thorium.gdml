@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="/scratch/ti602/geant4/geant4-v11.1.2/source/persistency/gdml/schema/gdml.xsd">
+
+    <solids>
+        <box name="solidThorium" lunit="cm" x="0.5" y="3.0" z="3.0"/>
+    </solids>
+
+    <structure>
+        <volume name="logicThorium">
+            <solidref ref="solidThorium"/>
+            <materialref ref="G4_Th"/>
+        </volume>
+    </structure>
+
+    <setup name="Default" version="1.0">
+        <world ref="logicThorium"/>
+    </setup>
+
+</gdml>

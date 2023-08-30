@@ -12,6 +12,8 @@
 
 
 #ifdef MPI_ENABLE
+#include <iostream>
+#include <vector>
 #include "G4MPImanager.hh"
 #include "G4MPIsession.hh"
 #include "G4RunManager.hh"
@@ -26,8 +28,27 @@ int main(int argc,char**  argv){
 	// Evaluate the arguments
     G4UIExecutive* ui = nullptr;
 
+    G4cout << G4endl;
+    G4cout << "Usage: gdml_det <intput_gdml_file:mandatory>"
+          << G4endl;
+    G4cout << G4endl;
+
+    if (argc<2)
+    {
+        G4cout << "Error! Mandatory input file is not specified!" << G4endl;
+        G4cout << G4endl;
+        return -1;
+    }
+
+    G4GDMLParser parser;
+    parser.Read(argv[1]);
+
+
 #ifdef MPI_ENABLE
-	G4MPImanager* mpiManager    = new G4MPImanager(argc,argv);
+
+    for (int i = 1; i < (argc - 1); i++) {argv[i] = argv[i + 1];}
+
+	G4MPImanager* mpiManager    = new G4MPImanager(argc-1,argv);
     mpiManager->SetVerbose(1);
 
     G4MPIsession* session       = mpiManager->GetMPIsession();
@@ -36,10 +57,10 @@ int main(int argc,char**  argv){
 
     G4RunManager* runManager    = new G4RunManager();
 #else
-    if (argc == 1) {ui = new G4UIExecutive(argc,argv);}     // If no macro file has been created Create the UI
+    if (argc == 2) {ui = new G4UIExecutive(argc,argv);}     // If no macro file has been created Create the UI
     auto runManager = G4RunManagerFactory::CreateRunManager(); // creating a run manager
 #endif
-	runManager->SetUserInitialization(new MyDetectorConstruction);
+	runManager->SetUserInitialization(new MyDetectorConstruction(parser));
 	runManager->SetUserInitialization(new PhysicsList);
 	runManager->SetUserInitialization(new MyActionInitialization);
 
@@ -60,9 +81,9 @@ int main(int argc,char**  argv){
 		uiManager->ApplyCommand("/hits/verbose 0");
 
         //Run the commands in batch mode
-        for (int i=1;i<argc;i++){                               // For each input
+        for (int i=2;i<argc;i++){                               // For each input
             G4String command  = "/control/execute ";            // The command to execute it in Geant4
-            G4String filename = argv[1];                        // The input filename
+            G4String filename = argv[i];                        // The input filename
             uiManager->ApplyCommand(command + filename);        // Execute it
         }
     } else {
