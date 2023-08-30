@@ -57,7 +57,6 @@ make install
 
 ```terminal
 cd /scratch/your_id/;
-mkdir geant4;
 wget https://gitlab.cern.ch/geant4/geant4/-/archive/v11.1.2/geant4-v11.1.2.tar.gz;
 tar -xzf geant4-v11.1.2.tar.gz;
 ```
@@ -65,6 +64,8 @@ tar -xzf geant4-v11.1.2.tar.gz;
 #### Installing GEANT4
 
 ```terminal
+mkdir geant4;
+cd geant4;
 mkdir build;
 mkdir install;
 mv ../geant4-v11.1.2 ./geant4-v11.1.2;
