@@ -150,7 +150,7 @@ You will need a working ssh key on git generated on the HPC. For that please fol
 After that you need to cry by doing the following:
 ```terminal
 cd tes-geant;
-tar -xzf cry_v1.7.tar.gzcry_v1.7.tar.gz
+tar -xzf cry_v1.7.tar.gz
 ```
 
 
