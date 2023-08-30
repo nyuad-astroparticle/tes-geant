@@ -34,7 +34,7 @@ Following the [GEANT4 GDML prerequisites](https://geant4-userdoc.web.cern.ch/Use
 
 ##### Xerces-C.
 
-From you geant4 directory:
+From your directory:
 
 ```terminal
 module load gcc cmake mpich expat;
