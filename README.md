@@ -38,7 +38,6 @@ From you geant4 directory:
 
 ```terminal
 module load gcc cmake mpich expat;
-mkdir geant4;
 wget https://dlcdn.apache.org//xerces/c/3/sources/xerces-c-3.2.4.tar.gz;
 tar -xzf xerces-c-3.2.4.tar.gz;
 cd xerces-c-3.2.4;
@@ -58,6 +57,7 @@ make install
 
 ```terminal
 cd /scratch/your_id/;
+mkdir geant4;
 wget https://gitlab.cern.ch/geant4/geant4/-/archive/v11.1.2/geant4-v11.1.2.tar.gz;
 tar -xzf geant4-v11.1.2.tar.gz;
 ```
