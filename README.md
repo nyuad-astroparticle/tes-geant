@@ -25,7 +25,7 @@ This guide explains how to install Geant4 on NYUAD Jubail high-performance compu
 
 ```terminal
 ssh your_id@jubail.abudhabi.nyu.edu;
-cd scratch/your_id;
+cd /scratch/your_id;
 ```
 
 #### Installing xerces-c and for GDML support
