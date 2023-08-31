@@ -69,3 +69,12 @@ tripleEvents        = sum(processed[1])
 quadrupleEvents     = sum(processed[2])
 
 print("TES Hits =", tesHits, "; Triple Coincidences =", tripleEvents, "; Quadruple Coincidences =", quadrupleEvents)
+
+content = f"TES Hits = {tesHits}; Triple Coincidences = {tripleEvents}; Quadruple Coincidences = {quadrupleEvents}"
+
+# Save the content to a file
+output_filename = "output_results.txt"
+with open(output_filename, "w") as output_file:
+    output_file.write(content)
+
+print(f"Results saved to {output_filename}")
