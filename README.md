@@ -79,7 +79,7 @@ Set the following to these:
 
 ```terminal
 XercesC_INCLUDE_DIR              /scratch/your_id/geant4/xerces-c-3.2.4/install/include
-XercesC_LIBRARY_RELEASE          /scratch/your_id/geant4/xerces-c-3.2.4/install/lib64/libxerces-c.sotqq
+XercesC_LIBRARY_RELEASE          /scratch/your_id/geant4/xerces-c-3.2.4/install/lib64/libxerces-c.so
 ```
 
 Your screen should look something like this before you configure:
