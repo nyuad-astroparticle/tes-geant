@@ -1,6 +1,6 @@
 #!/bin/bash
 # Number of tasks 
-#SBATCH --ntasks 1024 
+#SBATCH --ntasks 4096 
 # Set Memory
 #SBATCH --mem 64GB
 # Set WALLTIME
@@ -21,9 +21,12 @@ module purge
 source load_modules.sh
 
 # Run the application
-cd /scratch/ti602/tes-geant/build/
+cd /scratch/ti602/tes-geant/analysis/
 start_time=`date +%s`
-mpiexec -n 1024 ./sim ./geometry/config1.gdml ./macros/start.mac
+
+conda activate TES
+python coincidence.py
+# mpiexec -n 1024 ./sim ./geometry/config1.gdml ./macros/start.mac
 # mpiexec -n 1024 ./sim ./geometry/config2.gdml ./macros/thorium.mac
 # mpiexec -n 1024 ./sim ./geometry/config3.gdml ./macros/thorium.mac
 # mpiexec -n 1024 ./sim ./macros/start.mac
