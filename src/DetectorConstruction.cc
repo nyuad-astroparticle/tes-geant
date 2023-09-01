@@ -34,6 +34,12 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 		logicSaber				->	SetVisAttributes(G4Colour(1,1,1));
 	}
 
+	if (GDMLParser.IsValid("logicCopperPlate"))
+	{
+		logicCopperPlate				= 	GDMLParser.GetVolume("logicCopperPlate");
+		logicCopperPlate				->	SetVisAttributes(G4Colour(265,165,0));
+	}
+
 	if (GDMLParser.IsValid("Cryostat_Aluminum"))
 	{
 		GDMLParser.GetVolume("Cryostat_Aluminum") 			-> SetVisAttributes(G4Colour(0,1,0, 0.1));
