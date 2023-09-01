@@ -19,20 +19,6 @@ add_library(libCRY STATIC IMPORTED)
 set_target_properties(libCRY PROPERTIES IMPORTED_LOCATION "${PROJECT_SOURCE_DIR}/cry_v1.7/lib/libCRY.a")
 set_target_properties(libCRY PROPERTIES INTERFACE_INCLUDE_DIRECTORIES "${PROJECT_SOURCE_DIR}/cry_v1.7/src")
 
-option(ENABLE_GDML "Compile with GDML option" OFF)
-if (ENABLE_GDML)
-add_compile_definitions(GDML_ACTIVE)
-endif()
-
-option(TES_VACUUM "Make TES material vacuum" OFF)
-if (TES_VACUUM)
-add_compile_definitions(TES_VACUUM)
-endif()
-
-option(ADD_PADDLES "Add the Paddles in the simulation option" OFF)
-if (ADD_PADDLES)
-	add_compile_definitions(ADD_PADDLES)
-endif()
 
 option(ADD_THORIUM "Add the Thorium box in the simulation option" OFF)
 if (ADD_THORIUM)
