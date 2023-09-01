@@ -14,8 +14,8 @@ PROCESSES   = os.cpu_count()-1
 Pool        = context("fork").Pool
 
 # Find the files
-foldername  = f'./build1/output'
-os.system(f'rm -rf ./build1/output/.ipynb_checkpoints')
+foldername  = f'../build1/output'
+os.system(f'rm -rf ../build1/output/.ipynb_checkpoints')
 filenames   = os.listdir(foldername)
 
 print(f'Found {len(filenames)} data files in {foldername}')
@@ -35,7 +35,8 @@ def loadfile(filename):
     return df
 
 
-def process_file(file):
+def process_file(filename):
+    file = loadfile(filename)
     data = file.groupby(['Filename', 'EventID', 'Volume'])['EnergyDeposited'].sum().reset_index()
     data = data[data['EnergyDeposited'] > 0.2]
     data = data.groupby(['Filename', 'EventID'])['Volume'].unique().reset_index()
@@ -57,20 +58,19 @@ def process_file(file):
 
     return (tesHits, tripleEvents, quadrupleEvents)
 
-loadfiles           = parallel(loadfile)
+# loadfiles           = parallel(loadfile)
 process_files       = parallel(process_file)
 
-files               = loadfiles(filenames)
-processed           = process_files(files)
+# files               = loadfiles(filenames)
+processed           = process_files(filenames)
 processed           = np.array(processed).T
 
 tesHits             = sum(processed[0])
 tripleEvents        = sum(processed[1])
 quadrupleEvents     = sum(processed[2])
 
-print("TES Hits =", tesHits, "; Triple Coincidences =", tripleEvents, "; Quadruple Coincidences =", quadrupleEvents)
-
 content = f"TES Hits = {tesHits}; Triple Coincidences = {tripleEvents}; Quadruple Coincidences = {quadrupleEvents}"
+print(content)
 
 # Save the content to a file
 output_filename = "output_results.txt"
