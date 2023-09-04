@@ -39,7 +39,7 @@
     <solids>
         <box name="long"    lunit="cm" x="38.5" y="2" z="4"/>
         <box name="short"   lunit="cm" x="28.5" y="1" z="4"/>
-        <box name="solidBottomScintillators" lunit="m" x="1.0" y="1.0" z="1.0" />
+        <box name="solidBottomScintillators" lunit="cm" x="40" y="10" z="10" />
     </solids>
 
     <structure>
