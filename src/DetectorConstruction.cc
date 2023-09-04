@@ -77,6 +77,9 @@ void MyDetectorConstruction::ConstructSDandField()
 		SetSensitiveDetector(logicSiliconOxide, detector);
 		SetSensitiveDetector(logicSiliconSubstrate, detector);
 		SetSensitiveDetector(logicSiliconNitride, detector);
+	}
+	if (logicLong)
+	{
 		SetSensitiveDetector(logicLong, detector);
 		SetSensitiveDetector(logicShort, detector);
 	}
