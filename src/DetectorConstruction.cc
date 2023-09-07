@@ -26,12 +26,10 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 		logicSiliconNitride		-> 	SetVisAttributes(G4Colour(0,0,1, 0.1));
 	}
 
-	// GDMLParser.GetWorldVolume()->GetLogicalVolume()->
-
-	if (GDMLParser.IsValid("logicSaber"))
+	if (GDMLParser.IsValid("logicDetectorSaber"))
 	{
-		logicSaber				= 	GDMLParser.GetVolume("logicSaber");
-		logicSaber				->	SetVisAttributes(G4Colour(1,1,1));
+		logicSaber				= 	GDMLParser.GetVolume("logicDetectorSaber");
+		logicSaber				->	SetVisAttributes(G4Colour(1,1,1, 0.4));
 	}
 
 	if (GDMLParser.IsValid("logicCopperPlate"))

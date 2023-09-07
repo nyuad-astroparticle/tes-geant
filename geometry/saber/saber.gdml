@@ -8,14 +8,14 @@
 
     <structure>
         <!-- Logical Volume of the Silicon Sensor -->
-        <volume name="logicSaber">
+        <volume name="logicDetectorSaber">
             <materialref ref="G4_Si" />
             <solidref ref="solidSaber" />
         </volume>
     </structure>
 
     <setup name="Default" version="1.0">
-        <world ref="logicSaber" />
+        <world ref="logicDetectorSaber" />
     </setup>
 
 </gdml>

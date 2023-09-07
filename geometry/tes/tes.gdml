@@ -88,27 +88,27 @@
       <materialref ref="G4_Galactic"/>
       <solidref ref="solidMotherVolume"/>
 
-        <physvol name="physSiliconSubstrate">
+        <physvol name="physDetectorSiliconSubstrate">
           <volumeref ref="logicSiliconSubstrate"/>
           <positionref ref="siliconSubstrateCenter"/>
         </physvol>
 
-        <physvol name="physSiliconOxide1">
+        <physvol name="physDetectorSiliconOxide1">
           <volumeref ref="logicSiliconOxide"/>
           <positionref ref="siliconOxideCenter1"/>
         </physvol>
 
-        <physvol name="physSiliconOxide2">
+        <physvol name="physDetectorSiliconOxide2">
           <volumeref ref="logicSiliconOxide"/>
           <positionref ref="siliconOxideCenter2"/>
         </physvol>
 
-        <physvol name="physSiliconNitride1">
+        <physvol name="physDetectorSiliconNitride1">
           <volumeref ref="logicSiliconNitride"/>
           <positionref ref="siliconNitrideCenter1"/>
         </physvol>
 
-        <physvol name="physSiliconNitride2">
+        <physvol name="physDetectorSiliconNitride2">
           <volumeref ref="logicSiliconNitride"/>
           <positionref ref="siliconNitrideCenter2"/>
         </physvol>
