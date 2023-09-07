@@ -31,37 +31,34 @@ def parallel(function):
 # Function to load a single file
 def loadfile(filename):
     df = pd.read_csv(os.path.join(foldername,filename),skiprows=16,names=header)
-    df.insert(0, 'Filename', filename)
     return df
 
 
 def process_file(filename):
     file = loadfile(filename)
-    data = file.groupby(['Filename', 'EventID', 'Volume'])['EnergyDeposited'].sum().reset_index()
-    data = data[data['EnergyDeposited'] > 0.2]
-    data = data.groupby(['Filename', 'EventID'])['Volume'].unique().reset_index()
+    data = file.groupby(['EventID', 'Volume'])['EnergyDeposited'].sum().reset_index()
+    data = data[((data.Volume.str.contains('Silicon')) & data.EnergyDeposited > 0.000010) | (data.EnergyDeposited > 0.2)]
+    data = data.groupby(['EventID'])['Volume'].unique().reset_index()
 
     tripleEvents = 0
     quadrupleEvents = 0
     tesHits = 0
     
-    for line in data.Volume:
-        for volume in line:
+    for event in data.Volume:
+        tesHit = 0
+        for volume in event:
             if 'Silicon' in volume:
-                tesHits += 1
-                continue
-            
-        if not set(line).issuperset({'phys1','phys2','phys4'}): continue
+                tesHit += 1
+                break
+        tesHits += tesHit
+        if not set(event).issuperset({'phys1','phys2','phys4'}): continue
         tripleEvents += 1
-        if not tesHits: continue
+        if not tesHit: continue
         quadrupleEvents += 1
 
     return (tesHits, tripleEvents, quadrupleEvents)
 
-# loadfiles           = parallel(loadfile)
 process_files       = parallel(process_file)
-
-# files               = loadfiles(filenames)
 processed           = process_files(filenames)
 processed           = np.array(processed).T
 
