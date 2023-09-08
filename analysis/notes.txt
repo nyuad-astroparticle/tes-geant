@@ -1,0 +1,129 @@
+Notes for report on what the hell we were doing for GEANT4 simulation of the TES. 
+I will try to do that chronologically
+
+
+[July 3 - 10 ]   
+
+First we had to load the cryostat into GEANT4.Panos and Tengiz have simplified the cryostat CAD model provided by Laura. 
+
+The holes nuts, screws, complicated geometry far away from the TES were removed using Fusion 360 software.
+
+Panos managed to do that by using a python script from [https://github.com/tihonav/cad-to-GEANT4-converter#examples]
+
+[July 10 - 13]  
+
+We had a problem with the cryostat geometry, because it had issues with overlapping volumes. Tengiz, by method of bruteforce elimination
+
+has found two small volumes that were overlapping and has merged them into one. The working version of the file was then saved into an stl file
+
+and commited to github repository. 
+
+There was a problem with loading gdml in jubail. So we temporarily resorted to use CAD mesh [https://github.com/christopherpoole/CADMesh] that 
+
+allowed to load stl files directly to GEANT4. 
+
+Zak was working on implementing radioactivity in GEANT4. 
+
+
+[July 13 - 17]
+
+Panos has enabled cosmic rays using CRY (Cosmic-ray Shower Library and data it provides regarding the particles spectra and direction). 
+
+[https://nuclear.llnl.gov/simulation/]
+
+By firing 1B muons we got a range of 5-16 muon events per every triple coincidence. The energy spectrum of muons was:
+
+https://files.slack.com/files-pri/T010DFULT27-F05JV4ZNDS6/0f1f9177-ceb9-47ca-9b16-d8b5ec6647ac.png
+
+It has to be noted that the size of the TES substrate was 1cm x 1cm x 0.5cm so that number is most likely higher than expected. This is however
+
+unimportant since both IRL and in sim the paddles were constantly detecting rays renderring useless the triple coincidence detection IRL. 
+
+[July 17 - 26]
+
+Debugging the simulation
+
+[July 26 - 28]
+
+Using Zak's macros for radioactivity, Throium decay was implemented. We realized there is a need for low energy physics in our simulation. Since
+
+we had energies on the scale of keV to MeV. 
+
+[July 28 - 31]
+
+Implementing the LiverMore low energy physics list in GEANT4.
+
+[Aug 1 - 7]
+
+LiverMore physics simulates secondary partiles that are produced from primary particle interaction. For this reason we had to implement Tracking 
+
+action in GEANT4. The intuition behind it is the following: A particle that enters a detector volume from outside is called a migrant as an 
+
+analogy to bordern control. All secondary and tertiary an so on particles are than tracked back to this first generation migrant and all assigned
+
+its track id before it has enetered the sensitive volume. This is done so that the pulses obtained from electronics are consistant with hits
+
+obtained from the simulation. The rational behind it is that the time difference between the primary hit energy deposition and its secondary 
+
+particles is too small to be detected as a separate pulse in electronics. 
+
+One problem with this method (that is fixable if need be) is that it does not trak secondary particles that are produced in non sensitive volumes.
+
+In practice it is only problematic when the copper box is hit with a gamma and produces electrons that then hit the silicon substrate. In this
+
+particular case the electrons are counted as a separate hit from the gamma, which is unfortunate (but happens so rarerly that we did not take it
+
+into accound untill Sep 7, more on that later)
+
+We got a spectrum of gammas' initial energy that have reached the substrate. It was consistant with the expected Thorium spectrum.
+
+https://files.slack.com/files-pri/T010DFULT27-F05LB57PGJD/image.png
+
+We also a specturm of energy deposited by gamma on the substrate.
+
+https://files.slack.com/files-pri/T010DFULT27-F05LC23TGHH/image.png
+
+
+[Aug 7 - 15]
+
+Tengiz had been implementing gdml file structure. Essentially, instead of having multiple configurations with if statements in detector
+
+construction file, each geometrical component was given its own gdml file. Then, each component is loaded into a config.gdml file where 
+
+they are assembled according to their relative positions.
+
+[Aug 16 - 28]
+
+Writing the documentation on tes-geant github an working on Light1 geant4. 
+
+
+[Aug 28 - Sep 5]
+
+Laura came back and asked to implement the quadruple counting experiment in the simulation. The configuration consisted of three muon sabers below 
+
+the crysotat + tes + copper box and plate. Combination of cosmic rays was fired. We were getting around 45 quadruple coincidence
+
+events in 4700 triple coincidences (between the 3 muons sabers). We then implemented a heat propagation argument saying that only the heat that
+
+has radiated with inverse square and was within the solid angle of the actual TES sensor visible from the point of energy deposition on the  
+
+substrate would be registered as a TES hit. This argument has brought down the number of quadruple coincidences from 45 down to 6 out 4700. Which
+
+is somewhat consistant with 1/1600 expermiental data observed. 
+
+[Sep 5 - 7]
+
+Throium + saber double coincidence experiment simulation. 
+
+
+
+
+
+Our simulation had several configurations along its development, and currently has two. 
+
+
+1. The first one that we had consisted of two paddles (one on top and one on the bottom) + Cryostat + TES. We were tryign to calculate the triple
+coincidence rate between the two paddles and the TES. The result of that simulation was 
+
+1. Cryostat + Copper Box and Plate + TES. It is used in combination with cosmic rays to simulate the following:
+    1. We were trying to 
