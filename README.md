@@ -167,7 +167,7 @@ Otherwise remove all of the CMake cash from the ``build`` folder:
 rm -rf CMakeCache.txt cmake_install.cmake CMakeFiles Makefile;
 ```
 
-Then make. Use -j flag to denote number of core you want to use in the process. It is not recommened to use all of the cores available.
+Then make. Use -j flag to denote number of cores you want to use in the process. It is not recommened to use all of the cores available.
 ```terminal
 make -j7
 ```
