@@ -101,7 +101,14 @@ Writing the documentation on tes-geant github an working on Light1 geant4.
 
 Laura came back and asked to implement the quadruple counting experiment in the simulation. The configuration consisted of three muon sabers below 
 
-the crysotat + tes + copper box and plate. Combination of cosmic rays was fired. We were getting around 45 quadruple coincidence
+the crysotat + tes + copper box and plate. The copper plate that is a 30mK heat sink was added accorind to Tengiz's propostion that more showers
+
+would be observed. This was done because the runs would show 0 substrate hits due to a problem of overlapping mother volume of the bottom 
+
+scintialltors and the substrate. It was fixed. The bottom scintialltors 1,2,4 were added.  
+
+
+Combination of cosmic rays was fired. We were getting around 45 quadruple coincidence
 
 events in 4700 triple coincidences (between the 3 muons sabers). We then implemented a heat propagation argument saying that only the heat that
 
@@ -111,19 +118,68 @@ substrate would be registered as a TES hit. This argument has brought down the n
 
 is somewhat consistant with 1/1600 expermiental data observed. 
 
+Preliminary conclusion: the simulation and the experiment agree. NEED to prove the heat propagation and show statically that the 1 in 1600 could 
+
+correspond to 6/4700 with high likelyhood. 
+
 [Sep 5 - 7]
 
 Throium + saber double coincidence experiment simulation. 
 
+10 million throium atom decays were simulated registering 8.2M hits on the muon saber including alpha particles and 2.0M hits without with the 
+
+cut of 200keV. Out of those 8 have reached and deposited some energy on the substrate. 1 of those was a double coincidence event. 
+
+As a sanity check to make sure that all 8 events went through the saber, we removed the 200keV threshold and expected to see 8 double coincidences.
+
+however only 6 were observed. Upon closer inspection we found out that the two missing events were due to copper box secondary electrons, 
+
+a problem that was mentioned above. So in the end we are getting 1-3 double coincidences in 2M saber hits. With 1 being the most likely since the
+
+other 2 events with electrons had gamma that created them and likely those gamma were not registered by the saber with 200keV threshold on. 
+
+The activity measured by the muon saber with thorium mantle in front of it was 175Hz => 175*3*3600 = 1890000 hits in 3 hours during which the 
+
+experiment was conducted. During those 3 hours no double coincidences were observed. The only double coincidence in the simulation had an energy of
+
+320 keV that is close to the muon saber threshold. The real threshold is unkown since it was not meausred. For threshold calculation see the 
+
+image below. 
+
+https://files.slack.com/files-pri/T010DFULT27-F05RGRFTQ0Z/img_3341.jpg.
+
+Preliminary conclusion, the experimental result is in agreement with the simulation. NEED statistical arguemnt for this. 
 
 
+[Sep 8]
+
+Current state of the simulation (Description)
+
+Our simulation had several configurations along its development, and currently has two used and 1 unused. 
 
 
-Our simulation had several configurations along its development, and currently has two. 
+GDML file structure:
+
+1. Config1
+
+Cryostat + copper box + copper plate + substrate + 3 bottom scintialltors
+
+All kinds of cosmic rays are fired.
+
+2. Config2
+
+Cryostat + copper box + muon saber + thorium
+
+Radioactive decay of Thorium 232 is simulated
+
+3. Config3
+
+Thorium + muon saber
+
+Radioactive decay of Thorium 232 is simulated. This run was in attemnt to calculate the thorium mantle activity separetely from the config 2 
+
+simulation, because file sizes produces by the muon saber directly in front of thorium are too large to simulate a big enough number of events 
+
+to register substrate hits. 
 
 
-1. The first one that we had consisted of two paddles (one on top and one on the bottom) + Cryostat + TES. We were tryign to calculate the triple
-coincidence rate between the two paddles and the TES. The result of that simulation was 
-
-1. Cryostat + Copper Box and Plate + TES. It is used in combination with cosmic rays to simulate the following:
-    1. We were trying to 
