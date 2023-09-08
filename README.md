@@ -240,6 +240,7 @@ Tools:
 - [FreeCad](https://www.freecad.org/)
 - [Fusion360](https://www.autodesk.com/products/fusion-360/overview?term=1-YEAR&tab=subscription)
 - [MeshLab](https://www.meshlab.net/)
+- [CRY](https://nuclear.llnl.gov/simulation/)
 
 Contributors:
 - Danish Khan
