@@ -206,7 +206,7 @@ To see the status of your job you can use ``sacct`` or ``squeue``. To check the 
 - [ ] Have you adjusted macros in your directory?
 - [ ] Have you modified run_start.sh?
 - [ ] Have you run sbatch?
-- [ ] Have you tailed the outptu to verify if it is loading?
+- [ ] Have you tailed the output to verify if it is loading?
 - [ ] Have you waited for 2 mins after starting the job to verify that it does not crash in a short time?
 
 ## Features
