@@ -126,9 +126,9 @@ correspond to 6/4700 with high likelyhood.
 
 [Sep 5 - 7]
 
-Throium + saber double coincidence experiment simulation. 
+Thorium + saber double coincidence experiment simulation. 
 
-10 million throium atom decays were simulated registering 8.2M hits on the muon saber including alpha particles and 2.0M hits without. The 
+10 million thorium atom decays were simulated registering 8.2M hits on the muon saber including alpha particles and 2.0M hits without. The 
 
 cut was 200keV. Out of those 8 have reached and deposited some energy on the substrate. 1 of those was a double coincidence event. 
 
