@@ -16,7 +16,10 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
     invisible->SetVisibility(false);
 
 	if (GDMLParser.IsValid("logicTES"))
-	{
+	{	
+		G4LogicalVolume	*logicTES	= 	GDMLParser.GetVolume("logicTES");
+		logicTES 					->	SetVisAttributes(invisible);
+		
 		logicSiliconSubstrate 	= 	GDMLParser.GetVolume("logicSiliconSubstrate"); 	
 		logicSiliconOxide 		= 	GDMLParser.GetVolume("logicSiliconOxide"); 		
 		logicSiliconNitride 	=	GDMLParser.GetVolume("logicSiliconNitride");
@@ -25,7 +28,7 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 		logicSiliconOxide		-> 	SetVisAttributes(G4Colour(1,0,0));
 		logicSiliconNitride		-> 	SetVisAttributes(G4Colour(0,0,1, 0.1));
 	}
-
+	
 	if (GDMLParser.IsValid("logicDetectorSaber"))
 	{
 		logicSaber				= 	GDMLParser.GetVolume("logicDetectorSaber");

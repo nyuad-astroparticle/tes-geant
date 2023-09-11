@@ -96,5 +96,5 @@
     <setup name="Default" version="1.0">
         <!-- Define the World Volume -->
         <world ref="worldVolume"/>
-  </setup>
+    </setup>
 </gdml>
