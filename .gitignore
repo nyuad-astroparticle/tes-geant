@@ -6,6 +6,7 @@ output
 __pycache__
 analysis/*.png
 */.ipynb_checkpoints
+.ipynb_checkpoints
 hpc/start*
 *build*
 *vacuum*
