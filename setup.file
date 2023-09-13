@@ -8,3 +8,5 @@ date 7-1-2012
 latitude 0.0
 altitude 0
 subboxLength 2.2
+nParticlesMin 1
+nParticlesMax 100
