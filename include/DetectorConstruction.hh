@@ -33,9 +33,12 @@ class MyDetectorConstruction : public G4VUserDetectorConstruction
 		G4LogicalVolume* substrateLogical 		= nullptr;
 		G4LogicalVolume* paddleLogical			= nullptr;
 		G4LogicalVolume* crossLogical			= nullptr;
-		G4LogicalVolume* logicSiliconSubstrate 	= nullptr;
-		G4LogicalVolume* logicSiliconOxide 		= nullptr;
-		G4LogicalVolume* logicSiliconNitride 	= nullptr;
+		G4LogicalVolume* logicSiliconSubstrateE = nullptr;
+		G4LogicalVolume* logicSiliconOxideE 	= nullptr;
+		G4LogicalVolume* logicSiliconNitrideE 	= nullptr;
+		G4LogicalVolume* logicSiliconSubstrateB = nullptr;
+		G4LogicalVolume* logicSiliconOxideB 	= nullptr;
+		G4LogicalVolume* logicSiliconNitrideB 	= nullptr;
 		G4LogicalVolume* logicSaber				= nullptr;
 		G4LogicalVolume* logicLong				= nullptr;
 		G4LogicalVolume* logicShort				= nullptr;

@@ -17,16 +17,30 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 
 	if (GDMLParser.IsValid("logicTES"))
 	{	
-		G4LogicalVolume	*logicTES	= 	GDMLParser.GetVolume("logicTES");
-		logicTES 					->	SetVisAttributes(invisible);
+		G4LogicalVolume	*logicTESE	= 	GDMLParser.GetVolume("logicTESE");
+		logicTESE 					->	SetVisAttributes(invisible);
 		
-		logicSiliconSubstrate 	= 	GDMLParser.GetVolume("logicSiliconSubstrate"); 	
-		logicSiliconOxide 		= 	GDMLParser.GetVolume("logicSiliconOxide"); 		
-		logicSiliconNitride 	=	GDMLParser.GetVolume("logicSiliconNitride");
+		logicSiliconSubstrateE 	= 	GDMLParser.GetVolume("logicSiliconSubstrate"); 	
+		logicSiliconOxideE 		= 	GDMLParser.GetVolume("logicSiliconOxide"); 		
+		logicSiliconNitrideE 	=	GDMLParser.GetVolume("logicSiliconNitride");
 				
-		logicSiliconSubstrate 	-> 	SetVisAttributes(G4Colour(0,1,0));
-		logicSiliconOxide		-> 	SetVisAttributes(G4Colour(1,0,0));
-		logicSiliconNitride		-> 	SetVisAttributes(G4Colour(0,0,1, 0.1));
+		logicSiliconSubstrateE 	-> 	SetVisAttributes(G4Colour(0,1,0));
+		logicSiliconOxideE		-> 	SetVisAttributes(G4Colour(1,0,0));
+		logicSiliconNitrideE		-> 	SetVisAttributes(G4Colour(0,0,1, 0.1));
+	}
+
+	if (GDMLParser.IsValid("logicTES"))
+	{	
+		G4LogicalVolume	*logicTESB	= 	GDMLParser.GetVolume("logicTESB");
+		logicTESB 					->	SetVisAttributes(invisible);
+		
+		logicSiliconSubstrateB 	= 	GDMLParser.GetVolume("logicSiliconSubstrate"); 	
+		logicSiliconOxideB 		= 	GDMLParser.GetVolume("logicSiliconOxide"); 		
+		logicSiliconNitrideB 	=	GDMLParser.GetVolume("logicSiliconNitride");
+				
+		logicSiliconSubstrateB 	-> 	SetVisAttributes(G4Colour(0,1,0));
+		logicSiliconOxideB		-> 	SetVisAttributes(G4Colour(1,0,0));
+		logicSiliconNitrideB	-> 	SetVisAttributes(G4Colour(0,0,1, 0.1));
 	}
 	
 	if (GDMLParser.IsValid("logicDetectorSaber"))
@@ -73,11 +87,14 @@ void MyDetectorConstruction::ConstructSDandField()
 {
 	auto detector = new SensitiveDetector("/SiliconSubstrate","SilliconHitsCollection");
 	G4SDManager::GetSDMpointer()->AddNewDetector(detector);
-	if (logicSiliconSubstrate)
+	if (logicSiliconSubstrateE)
 	{
-		SetSensitiveDetector(logicSiliconOxide, detector);
-		SetSensitiveDetector(logicSiliconSubstrate, detector);
-		SetSensitiveDetector(logicSiliconNitride, detector);
+		SetSensitiveDetector(logicSiliconOxideE, detector);
+		SetSensitiveDetector(logicSiliconSubstrateE, detector);
+		SetSensitiveDetector(logicSiliconNitrideE, detector);
+		SetSensitiveDetector(logicSiliconOxideB, detector);
+		SetSensitiveDetector(logicSiliconSubstrateB, detector);
+		SetSensitiveDetector(logicSiliconNitrideB, detector);
 	}
 	if (logicLong)
 	{

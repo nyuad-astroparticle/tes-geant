@@ -23,9 +23,9 @@
         <quantity name="copperBoxX"             value="2.5"         unit="cm"/>
         <quantity name="copperBoxY"             value="2.5"         unit="cm"/>
         <quantity name="copperBoxZ"             value="5.0"         unit="cm"/>
-        <quantity name="copperBoxPosX"          value="0.0"        unit="cm"/>
-        <variable name="copperBoxPosY"          value="cryostatBottom + copperBoxY/2 + 11.5 * cm + copperThickness"/>
-        <quantity name="copperBoxPosZ"          value="0.0"        unit="cm"/>
+        <quantity name="copperBoxPosX"          value="0.0"         unit="cm"/>
+        <variable name="copperBoxPosY"          value="cryostatBottom + 11.5 * cm"/>
+        <quantity name="copperBoxPosZ"          value="0.0"         unit="cm"/>
         <position name="copperBoxCenter"        x="copperBoxPosX"   y="copperBoxPosY"   z="copperBoxPosZ"/>
         <rotation name="copperBoxRotation"      x="90"              y="0"               z="0"   unit="deg"/>
 
@@ -47,12 +47,15 @@
 
 
         <!-- TES -->
-        <variable name="stackX"       value="0.5*mm + 150*2*nm + 500*2*nm"/>
+        <quantity name="offset"         value="0.5"         unit="cm"/>
+        <variable name="stackX"         value="0.5*mm + 150*2*nm + 500*2*nm"/>
         <variable name="stackPosX"      value="copperBoxPosX - copperBoxX/2 + copperThickness + separation + stackX/2"/>
         <variable name="stackPosY"      value="copperBoxPosY"/>
         <variable name="stackPosZ"      value="copperBoxPosZ"/>
-        <position name="tesposition"          x="stackPosX" y="stackPosY" z="stackPosZ"/>
-        <rotation name="tesrotation"          x="0"         y="0"         z="90" unit="deg"/>
+        <position name="tesEposition"          x="stackPosX" y="stackPosY + offset" z="stackPosZ - offset"/>
+        <rotation name="tesErotation"          x="0"         y="0"         z="90" unit="deg"/>
+        <position name="tesBposition"          x="stackPosX" y="stackPosY - offset" z="stackPosZ + offset"/>
+        <rotation name="tesBrotation"          x="0"         y="0"         z="90" unit="deg"/>
 
     </define>
 
@@ -76,9 +79,15 @@
             </physvol>
 
             <physvol>
-                <file name="./geometry/tes/tes.gdml"/>
-                <positionref ref="tesposition"/>
-                <rotationref ref="tesrotation"/>
+                <file name="./geometry/tes/tesE.gdml"/>
+                <positionref ref="tesEposition"/>
+                <rotationref ref="tesErotation"/>
+            </physvol>
+
+            <physvol>
+                <file name="./geometry/tes/tesB.gdml"/>
+                <positionref ref="tesBposition"/>
+                <rotationref ref="tesBrotation"/>
             </physvol>
 
             <physvol>
