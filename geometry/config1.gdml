@@ -10,31 +10,35 @@
         <variable name="logicCopperPlate"                           value="0" />
 
         <!-- Separation distance -->
-        <quantity name="separation"     value="2"           unit="mm"/>
+        <quantity name="separation"     value="0.1"           unit="mm"/>
         
         <!-- Cylinder -->
         <quantity name="cylinderThickness"      value="3.0"         unit="mm"/>
         <quantity name="cylinderDiameter"       value="35.2"        unit="cm"/>
         <quantity name="cylinderHeight"         value="106"         unit="cm"/>
-        <quantity name="cryostatBottom"         value="-698.771"    unit="mm"/>
-
-        <!-- Copper Box -->
-        <quantity name="copperThickness"        value="3.0"         unit="mm"/>
-        <quantity name="copperBoxX"             value="2.5"         unit="cm"/>
-        <quantity name="copperBoxY"             value="2.5"         unit="cm"/>
-        <quantity name="copperBoxZ"             value="5.0"         unit="cm"/>
-        <quantity name="copperBoxPosX"          value="0.0"         unit="cm"/>
-        <variable name="copperBoxPosY"          value="cryostatBottom + 11.5 * cm"/>
-        <quantity name="copperBoxPosZ"          value="0.0"         unit="cm"/>
-        <position name="copperBoxCenter"        x="copperBoxPosX"   y="copperBoxPosY"   z="copperBoxPosZ"/>
-        <rotation name="copperBoxRotation"      x="90"              y="0"               z="0"   unit="deg"/>
+        <quantity name="cryostatBottom"         value="-698.717"    unit="mm"/>
 
         <!-- Copper Plate -->
+        <!-- Position adjusted according to the center of the cold finger found in fusion -->
         <quantity name="copperPlateThickness"   value="3"           unit="mm"/>
-        <variable name="copperPlatePosX"        value="copperBoxPosX"/>
-        <variable name="copperPlatePosY"        value="copperBoxPosY + copperBoxZ/2 + separation + copperPlateThickness/2"/>
-        <variable name="copperPlatePosZ"        value="copperBoxPosZ"/>
+        <quantity name="copperPlatePosX"        value="-42.8739"    unit="mm"/>
+        <variable name="copperPlatePosY"        value="-519.6 * mm - separation"/>
+        <quantity name="copperPlatePosZ"        value="-11.8268"    unit="mm"/>
         <position name="copperPlatePosition"    x="copperPlatePosX" y="copperPlatePosY" z="copperPlatePosZ"/>
+
+        <!-- Copper Box -->
+        <quantity name="copperThickness"        value="1.0"         unit="mm"/>
+        <quantity name="copperBoxX"             value="1.5"         unit="cm"/>
+        <quantity name="copperBoxY"             value="2.0"         unit="cm"/>
+        <quantity name="copperBoxZ"             value="2.5"         unit="cm"/>
+        <variable name="copperBoxPosX"          value="copperPlatePosX - 4 * cm"/>
+        <variable name="copperBoxPosY"          value="copperPlatePosY - copperPlateThickness/2 - separation - copperBoxY/2"/>
+        <variable name="copperBoxPosZ"          value="copperPlatePosZ - 3 * cm"/>
+        <position name="copperBoxCenter"        x="copperBoxPosX"   y="copperBoxPosY"   z="copperBoxPosZ"/>
+        <rotation name="copperBoxRotation"      x="0"              y="0"               z="0"   unit="deg"/>
+        
+        <quantity name="hostPlateX"             value="0.3"         unit="cm"/>
+        <quantity name="hostPlatePosX"          value="copperBoxPosX+copperBoxX/2-0.2*cm - 0.3*cm/2"/>
 
         <!-- bottomScintillators -->
         <quantity name="longX"          value="38.5"        unit="cm"/>
@@ -45,16 +49,18 @@
         <quantity name="shortZ"         value="4.0"         unit="cm"/>
         <position name="bottomScintillatorsPosition" x="0"  y="cryostatBottom - longY/2 - separation"/>
 
-
         <!-- TES -->
-        <quantity name="offset"         value="0.5"         unit="cm"/>
-        <variable name="stackX"         value="0.5*mm + 150*2*nm + 500*2*nm"/>
-        <variable name="stackPosX"      value="copperBoxPosX - copperBoxX/2 + copperThickness + separation + stackX/2"/>
+        <!-- <quantity name="offset"         value="0.5"         unit="cm"/> -->
+        <!-- <variable name="stackPosX"      value="copperBoxPosX - copperBoxX/2 + copperThickness + separation + stackX/2"/>
         <variable name="stackPosY"      value="copperBoxPosY"/>
-        <variable name="stackPosZ"      value="copperBoxPosZ"/>
-        <position name="tesEposition"          x="stackPosX" y="stackPosY + offset" z="stackPosZ - offset"/>
+        <variable name="stackPosZ"      value="copperBoxPosZ"/> -->
+        <variable name="stackX"         value="0.5*mm + 150*2*nm + 500*2*nm"/>
+        <variable name="tesPosX"        value="hostPlatePosX + hostPlateX/2 + stackX / 2 + separation"/>
+        
+        <position name="tesEposition"          x="tesPosX" y="copperBoxPosY + 5 * mm - 6/2 * mm" z="copperBoxPosZ - 2.5/2 * cm + 0.8 * cm + 2/2 * mm"/>
         <rotation name="tesErotation"          x="0"         y="0"         z="90" unit="deg"/>
-        <position name="tesBposition"          x="stackPosX" y="stackPosY - offset" z="stackPosZ + offset"/>
+        
+        <position name="tesBposition"          x="tesPosX" y="copperBoxPosY - 5 * mm + 3/2 * mm" z="copperBoxPosZ + 2.5/2 * cm - 1.2 * cm + 2/2 * mm"/>
         <rotation name="tesBrotation"          x="0"         y="0"         z="90" unit="deg"/>
 
     </define>
@@ -79,15 +85,15 @@
             </physvol>
 
             <physvol>
-                <file name="./geometry/tes/tesE.gdml"/>
-                <positionref ref="tesEposition"/>
-                <rotationref ref="tesErotation"/>
-            </physvol>
-
-            <physvol>
                 <file name="./geometry/tes/tesB.gdml"/>
                 <positionref ref="tesBposition"/>
                 <rotationref ref="tesBrotation"/>
+            </physvol>
+
+            <physvol>
+                <file name="./geometry/tes/tesE.gdml"/>
+                <positionref ref="tesEposition"/>
+                <rotationref ref="tesErotation"/>
             </physvol>
 
             <physvol>

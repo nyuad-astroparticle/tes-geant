@@ -3,11 +3,11 @@
 
   <define>
 
-    <quantity type="length" name="stackLengthX"         value="0.5" unit="cm"/>
-    <quantity type="length" name="stackLengthZ"         value="0.5" unit="cm"/>
-    <quantity type="length" name="stackPosX"            value="0" unit="cm"/>
-    <quantity type="length" name="stackPosY"            value="0" unit="cm"/>
-    <quantity type="length" name="stackPosZ"            value="0" unit="cm"/>
+    <quantity type="length" name="stackBLengthX"         value="0.3" unit="cm"/>
+    <quantity type="length" name="stackBLengthZ"         value="0.2" unit="cm"/>
+    <quantity type="length" name="stackBPosX"            value="0" unit="cm"/>
+    <quantity type="length" name="stackBPosY"            value="0" unit="cm"/>
+    <quantity type="length" name="stackBPosZ"            value="0" unit="cm"/>
 
     <!-- <variable name="siliconSubstrateHeight"    value="siliconThickness" /> -->
     <quantity type="length" name="siliconSubstrateHeight"    value="0.5" unit="mm" />
@@ -16,11 +16,11 @@
     <quantity type="length" name="siliconNitrideHeight"      value="500" unit="nm" />
     <variable name="siliconNitrideRelativeY"   value="siliconSubstrateHeight/2 + siliconOxideHeight + siliconNitrideHeight/2" />
 
-    <position name="siliconSubstrateCenter" x="stackPosX" y="stackPosY" z="stackPosZ"/>
-    <position name="siliconOxideCenter1" x="stackPosX" y="stackPosY + siliconOxideRelativeY" z="stackPosZ"/>
-    <position name="siliconOxideCenter2" x="stackPosX" y="stackPosY - siliconOxideRelativeY" z="stackPosZ"/>
-    <position name="siliconNitrideCenter1" x="stackPosX" y="stackPosY + siliconNitrideRelativeY" z="stackPosZ"/>
-    <position name="siliconNitrideCenter2" x="stackPosX" y="stackPosY - siliconNitrideRelativeY" z="stackPosZ"/>
+    <position name="siliconSubstrateCenter" x="stackBPosX" y="stackBPosY" z="stackBPosZ"/>
+    <position name="siliconOxideCenter1" x="stackBPosX" y="stackBPosY + siliconOxideRelativeY" z="stackBPosZ"/>
+    <position name="siliconOxideCenter2" x="stackBPosX" y="stackBPosY - siliconOxideRelativeY" z="stackBPosZ"/>
+    <position name="siliconNitrideCenter1" x="stackBPosX" y="stackBPosY + siliconNitrideRelativeY" z="stackBPosZ"/>
+    <position name="siliconNitrideCenter2" x="stackBPosX" y="stackBPosY - siliconNitrideRelativeY" z="stackBPosZ"/>
 
   </define>
 
@@ -58,58 +58,58 @@
 
   <solids>
     <!-- Define the Stack Position and Dimensions -->
-    <box name="solidSiliconSubstrate" x="stackLengthX" y="siliconSubstrateHeight" z="stackLengthZ"/>
-    <box name="solidSiliconOxide" x="stackLengthX" y="siliconOxideHeight" z="stackLengthZ"/>
-    <box name="solidSiliconNitride" x="stackLengthX" y="siliconNitrideHeight" z="stackLengthZ"/>
-    <box name="solidMotherVolume" x="stackLengthX" y="siliconSubstrateHeight + siliconOxideHeight*2 + siliconNitrideHeight*2" z="stackLengthZ"/>
+    <box name="solidSiliconSubstrateB" x="stackBLengthX" y="siliconSubstrateHeight" z="stackBLengthZ"/>
+    <box name="solidSiliconOxideB" x="stackBLengthX" y="siliconOxideHeight" z="stackBLengthZ"/>
+    <box name="solidSiliconNitrideB" x="stackBLengthX" y="siliconNitrideHeight" z="stackBLengthZ"/>
+    <box name="solidMotherVolumeB" x="stackBLengthX" y="siliconSubstrateHeight + siliconOxideHeight*2 + siliconNitrideHeight*2" z="stackBLengthZ"/>
   </solids>
 
   <structure>
     <!-- Define Silicon Substrate Layer -->
-    <volume name="logicSiliconSubstrate">
+    <volume name="logicSiliconSubstrateB">
       <materialref ref="SiliconMaterial"/>
-      <solidref ref="solidSiliconSubstrate"/>
+      <solidref ref="solidSiliconSubstrateB"/>
     </volume>
 
     <!-- Define Silicon Oxide Layers -->
-    <volume name="logicSiliconOxide">
+    <volume name="logicSiliconOxideB">
       <materialref ref="siliconOxide"/>
-      <solidref ref="solidSiliconOxide"/>
+      <solidref ref="solidSiliconOxideB"/>
     </volume>
 
     <!-- Define Silicon Nitride Layers -->
-    <volume name="logicSiliconNitride">
+    <volume name="logicSiliconNitrideB">
       <materialref ref="siliconNitride"/>
-      <solidref ref="solidSiliconNitride"/>
+      <solidref ref="solidSiliconNitrideB"/>
     </volume>
 
     <!-- Define a Mother Volume -->
     <volume name="logicTESB">
       <materialref ref="G4_Galactic"/>
-      <solidref ref="solidMotherVolume"/>
+      <solidref ref="solidMotherVolumeB"/>
 
         <physvol name="physDetectorSiliconSubstrateB">
-          <volumeref ref="logicSiliconSubstrate"/>
+          <volumeref ref="logicSiliconSubstrateB"/>
           <positionref ref="siliconSubstrateCenter"/>
         </physvol>
 
         <physvol name="physDetectorSiliconOxide1B">
-          <volumeref ref="logicSiliconOxide"/>
+          <volumeref ref="logicSiliconOxideB"/>
           <positionref ref="siliconOxideCenter1"/>
         </physvol>
 
         <physvol name="physDetectorSiliconOxide2B">
-          <volumeref ref="logicSiliconOxide"/>
+          <volumeref ref="logicSiliconOxideB"/>
           <positionref ref="siliconOxideCenter2"/>
         </physvol>
 
         <physvol name="physDetectorSiliconNitride1B">
-          <volumeref ref="logicSiliconNitride"/>
+          <volumeref ref="logicSiliconNitrideB"/>
           <positionref ref="siliconNitrideCenter1"/>
         </physvol>
 
         <physvol name="physDetectorSiliconNitride2B">
-          <volumeref ref="logicSiliconNitride"/>
+          <volumeref ref="logicSiliconNitrideB"/>
           <positionref ref="siliconNitrideCenter2"/>
         </physvol>
     </volume>

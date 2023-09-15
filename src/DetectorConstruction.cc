@@ -20,9 +20,9 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 		G4LogicalVolume	*logicTESE	= 	GDMLParser.GetVolume("logicTESE");
 		logicTESE 					->	SetVisAttributes(invisible);
 		
-		logicSiliconSubstrateE 	= 	GDMLParser.GetVolume("logicSiliconSubstrate"); 	
-		logicSiliconOxideE 		= 	GDMLParser.GetVolume("logicSiliconOxide"); 		
-		logicSiliconNitrideE 	=	GDMLParser.GetVolume("logicSiliconNitride");
+		logicSiliconSubstrateE 	= 	GDMLParser.GetVolume("logicSiliconSubstrateE"); 	
+		logicSiliconOxideE 		= 	GDMLParser.GetVolume("logicSiliconOxideE"); 		
+		logicSiliconNitrideE 	=	GDMLParser.GetVolume("logicSiliconNitrideE");
 				
 		logicSiliconSubstrateE 	-> 	SetVisAttributes(G4Colour(0,1,0));
 		logicSiliconOxideE		-> 	SetVisAttributes(G4Colour(1,0,0));
@@ -34,9 +34,9 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 		G4LogicalVolume	*logicTESB	= 	GDMLParser.GetVolume("logicTESB");
 		logicTESB 					->	SetVisAttributes(invisible);
 		
-		logicSiliconSubstrateB 	= 	GDMLParser.GetVolume("logicSiliconSubstrate"); 	
-		logicSiliconOxideB 		= 	GDMLParser.GetVolume("logicSiliconOxide"); 		
-		logicSiliconNitrideB 	=	GDMLParser.GetVolume("logicSiliconNitride");
+		logicSiliconSubstrateB 	= 	GDMLParser.GetVolume("logicSiliconSubstrateB"); 	
+		logicSiliconOxideB 		= 	GDMLParser.GetVolume("logicSiliconOxideB"); 		
+		logicSiliconNitrideB 	=	GDMLParser.GetVolume("logicSiliconNitrideB");
 				
 		logicSiliconSubstrateB 	-> 	SetVisAttributes(G4Colour(0,1,0));
 		logicSiliconOxideB		-> 	SetVisAttributes(G4Colour(1,0,0));
