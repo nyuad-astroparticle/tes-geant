@@ -6,7 +6,7 @@
         <variable name="logicTES"               value="0" />
         <variable name="Cryostat_Aluminum"      value="0" />
         <variable name="logicCopperBox"         value="0" />
-        <!-- <variable name="logicDetectorSaber"     value="0" /> -->
+        <variable name="logicDetectorSaber"     value="0" />
         <variable name="logicThorium"           value="0" />
         <variable name="logicCopperPlate"       value="0" />
 
