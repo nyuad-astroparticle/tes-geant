@@ -32,42 +32,31 @@
         <quantity name="copperBoxX"             value="1.5"         unit="cm"/>
         <quantity name="copperBoxY"             value="2.0"         unit="cm"/>
         <quantity name="copperBoxZ"             value="2.5"         unit="cm"/>
-        <variable name="copperBoxPosX"          value="copperPlatePosX - 4 * cm"/>
+        <variable name="copperBoxPosX"          value="copperPlatePosX + 3 * cm"/>
         <variable name="copperBoxPosY"          value="copperPlatePosY - copperPlateThickness/2 - separation - copperBoxY/2"/>
-        <variable name="copperBoxPosZ"          value="copperPlatePosZ - 3 * cm"/>
+        <variable name="copperBoxPosZ"          value="copperPlatePosZ - 4 * cm"/>
         <position name="copperBoxCenter"        x="copperBoxPosX"   y="copperBoxPosY"   z="copperBoxPosZ"/>
-        <rotation name="copperBoxRotation"      x="0"              y="0"               z="0"   unit="deg"/>
+        <rotation name="copperBoxRotation"      x="0"              y="90"               z="0"   unit="deg"/>
         
         <quantity name="hostPlateX"             value="0.3"         unit="cm"/>
         <quantity name="hostPlatePosX"          value="copperBoxPosX+copperBoxX/2-0.2*cm - 0.3*cm/2"/>
 
-        <!-- TES -->
-        <variable name="stackX"         value="0.5*mm + 150*2*nm + 500*2*nm"/>
-        <variable name="tesPosX"        value="hostPlatePosX + hostPlateX/2 + stackX / 2 + separation"/>
-        
-        <position name="tesEposition"          x="tesPosX" y="copperBoxPosY + 5 * mm - 6/2 * mm" z="copperBoxPosZ - 2.5/2 * cm + 0.8 * cm + 2/2 * mm"/>
-        <rotation name="tesErotation"          x="0"         y="0"         z="90" unit="deg"/>
-        
-        <position name="tesBposition"          x="tesPosX" y="copperBoxPosY - 5 * mm + 3/2 * mm" z="copperBoxPosZ + 2.5/2 * cm - 1.2 * cm + 2/2 * mm"/>
-        <rotation name="tesBrotation"          x="0"         y="0"         z="90" unit="deg"/>
-
         <!-- Saber -->
-        <variable name="stackPosY"              value="copperBoxPosY"/>
-        <variable name="stackPosZ"              value="copperBoxPosZ"/>
+
         <quantity name="saberX"                 value="1.0"         unit="cm"/>
-        <variable name="saberPosX"              value="-cylinderDiameter/2 - separation - saberX/2"/>
-        <variable name="saberPosY"              value="stackPosY"/>
-        <!-- <variable name="saberPosZ"              value="stackPosZ"/> -->
-        <variable name="saberPosZ"              value="0"/>
+        <variable name="saberPosZ"              value="cylinderDiameter/2 + separation + saberX/2"/>
+        <variable name="saberPosY"              value="copperBoxPosY"/>
+        <variable name="saberPosX"              value="0"/>
         <position name="saberPosition"          x="saberPosX"       y="saberPosY" z="saberPosZ"/>
-        <rotation name="saberRotation"          x="0"               y="90"        z="0" unit="deg"/>
+        <rotation name="saberRotation"          x="0"               y="0"        z="0" unit="deg"/>
 
         <!-- Thorium -->
         <quantity name="thoriumX"               value="0.5"         unit="cm"/>
-        <variable name="thoriumPosX"            value="saberPosX - thoriumX/2 - separation - saberX/2"/>
+        <variable name="thoriumPosZ"            value="saberPosZ + thoriumX/2 + separation + saberX/2"/>
         <variable name="thoriumPosY"            value="saberPosY"/>
-        <quantity name="thoriumPosZ"            value="0"/>
+        <quantity name="thoriumPosX"            value="0"/>
         <position name="thoriumPosition"        x="thoriumPosX"   y="thoriumPosY"       z="thoriumPosZ"/>
+        <rotation name="thoriumRotation"        x="0"               y="90"              z="0"   unit="deg"/>
 
     </define>
 
@@ -91,20 +80,9 @@
             </physvol>
 
             <physvol>
-                <file name="./geometry/tes/tesB.gdml"/>
-                <positionref ref="tesBposition"/>
-                <rotationref ref="tesBrotation"/>
-            </physvol>
-
-            <physvol>
-                <file name="./geometry/tes/tesE.gdml"/>
-                <positionref ref="tesEposition"/>
-                <rotationref ref="tesErotation"/>
-            </physvol>
-
-            <physvol>
                 <file name="./geometry/thorium/thorium.gdml"/>
                 <positionref ref="thoriumPosition"/>
+                <rotationref ref="thoriumRotation"/>
             </physvol>
 
             <physvol>

@@ -117,14 +117,14 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event *anEvent)
 	// Position and confine within the copper box
 	particleGun->GetCurrentSource()->GetPosDist()->SetPosDisType("Volume");
 	particleGun->GetCurrentSource()->GetPosDist()->SetPosDisShape("Para");
-	particleGun->GetCurrentSource()->GetPosDist()->SetCentreCoords(G4ThreeVector( -35.2 * cm / 2 - 2*mm - 1*cm - 0.5*cm/2 -2 * mm, -529.75 * mm, 0));
+	particleGun->GetCurrentSource()->GetPosDist()->SetCentreCoords(G4ThreeVector(0, -529.75 * mm, 35.2 * cm / 2 + 2*mm + 1*cm + 0.5*cm/2 + 2 * mm));
 	// particleGun->GetCurrentSource()->GetPosDist()->SetCentreCoords(G4ThreeVector(0, 0, 0));
-	particleGun->GetCurrentSource()->GetPosDist()->SetHalfX(0.25 * cm);
-	particleGun->GetCurrentSource()->GetPosDist()->SetHalfY(1.5 * cm);
-	particleGun->GetCurrentSource()->GetPosDist()->SetHalfZ(1.5 * cm);
+	particleGun->GetCurrentSource()->GetPosDist()->SetHalfZ(10 * cm);
+	particleGun->GetCurrentSource()->GetPosDist()->SetHalfY(10 * cm);
+	particleGun->GetCurrentSource()->GetPosDist()->SetHalfX(10 * cm);
 	particleGun->GetCurrentSource()->GetPosDist()->SetPosRot1(G4ThreeVector(1, 0, 0));
 	particleGun->GetCurrentSource()->GetPosDist()->SetPosRot2(G4ThreeVector(0, 0, 1));
-	// particleGun->GetCurrentSource()->GetPosDist()->ConfineSourceToVolume("logicCopperBox_PV");
+	particleGun->GetCurrentSource()->GetPosDist()->ConfineSourceToVolume("logicThorium_PV");
 
 	// Generate the first particle
 	particleGun->GeneratePrimaryVertex(anEvent);
