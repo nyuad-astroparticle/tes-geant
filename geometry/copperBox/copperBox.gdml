@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="/scratch/ti602/geant4/geant4-v11.1.2/source/persistency/gdml/schema/gdml.xsd">
+<gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="/Users/ti602/geant4/geant4-v11.1.2/source/persistency/gdml/schema/gdml.xsd">
 
   <define>
     
@@ -43,6 +43,7 @@
     <!-- TES host plate -->
     <box name="solidHostPlate" x="hostPlateX" y="copperBoxY - 2.0 * copperThickness" z="copperBoxZ - 2.0 * copperThickness"/>
 
+    <box name="solidCopperBoxWorld" x="copperBoxX + 2 * cm" y="copperBoxY + 2 * cm" z="copperBoxZ + 2*cm"/>
   </solids>
 
   <structure>
@@ -52,9 +53,19 @@
       <solidref ref="solidHostPlate"/>
     </volume>
 
+    <volume name="logicBox">
+      <materialref ref="G4_Cu"/>
+      <solidref ref="solidcopperBox"/>
+    </volume>
+
     <volume name="logicCopperBox">
-      <materialref ref="G4_Cu" />
-      <solidref ref="solidcopperBox" />
+      <materialref ref="G4_Galactic"/>
+      <solidref ref="solidCopperBoxWorld"/>
+
+      <physvol>
+        <volumeref ref="logicBox"/>
+        <positionref ref="copperBoxCenter"/>
+      </physvol>
 
       <physvol>
         <volumeref ref="logicHostPlate"/>
