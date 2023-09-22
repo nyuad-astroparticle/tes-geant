@@ -8,7 +8,7 @@
     <structure>
         <volume name="logicThorium">
             <solidref ref="solidThorium"/>
-            <materialref ref="G4_Th"/>
+            <materialref ref="G4_Galactic"/>
         </volume>
     </structure>
 
