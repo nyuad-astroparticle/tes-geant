@@ -60,6 +60,9 @@
 
     </define>
 
+    <materials>
+    </materials>
+
     <solids>
         <box name="worldSolid" lunit="m" x="10." y="10." z="10."/>
     </solids>
