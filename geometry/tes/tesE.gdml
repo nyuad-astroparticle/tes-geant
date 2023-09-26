@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="/scratch/ti602/geant4/geant4-v11.1.2/source/persistency/gdml/schema/gdml.xsd">
+
+  <define>
+
+    <quantity type="length" name="stackELengthX"         value="0.6" unit="cm"/>
+    <quantity type="length" name="stackELengthZ"         value="0.2" unit="cm"/>
+    <quantity type="length" name="stackEPosX"            value="0" unit="cm"/>
+    <quantity type="length" name="stackEPosY"            value="0" unit="cm"/>
+    <quantity type="length" name="stackEPosZ"            value="0" unit="cm"/>
+
+    <!-- <variable name="siliconSubstrateHeight"    value="siliconThickness" /> -->
+    <quantity type="length" name="siliconSubstrateHeight"    value="0.5" unit="mm" />
+    <quantity type="length" name="siliconOxideHeight"        value="150" unit="nm" />
+    <variable name="siliconOxideRelativeY"     value="siliconSubstrateHeight/2 + siliconOxideHeight/2" />
+    <quantity type="length" name="siliconNitrideHeight"      value="500" unit="nm" />
+    <variable name="siliconNitrideRelativeY"   value="siliconSubstrateHeight/2 + siliconOxideHeight + siliconNitrideHeight/2" />
+
+    <position name="siliconSubstrateCenter" x="stackEPosX" y="stackEPosY" z="stackEPosZ"/>
+    <position name="siliconOxideCenter1" x="stackEPosX" y="stackEPosY + siliconOxideRelativeY" z="stackEPosZ"/>
+    <position name="siliconOxideCenter2" x="stackEPosX" y="stackEPosY - siliconOxideRelativeY" z="stackEPosZ"/>
+    <position name="siliconNitrideCenter1" x="stackEPosX" y="stackEPosY + siliconNitrideRelativeY" z="stackEPosZ"/>
+    <position name="siliconNitrideCenter2" x="stackEPosX" y="stackEPosY - siliconNitrideRelativeY" z="stackEPosZ"/>
+
+  </define>
+
+  <materials>
+
+    <element name="Nitrogen" formula="N" Z = "7">
+    <atom value = "14.01"/>
+    </element>
+    
+    <element name="Silicon" formula="Si" Z = "14">
+    <atom value = "28.0855"/>
+    </element>
+    
+    <element name="Oxygen" formula="O" Z = "8">
+    <atom value = "15.999"/>
+    </element>
+    
+    <material name="siliconNitride" state="solid" formula="siliconNitride">
+      <D value="3.17" unit="g/cm3"/>
+      <composite n="3" ref="Silicon"/>
+      <composite n="4" ref="Nitrogen"/>
+    </material>
+
+    <material name="siliconOxide" state="solid" formula="siliconOxide">
+      <D value="2.65" unit="g/cm3"/>
+      <composite n="1" ref="Silicon"/>
+      <composite n="2" ref="Oxygen"/>
+    </material>
+
+    <material name="SiliconMaterial" state="solid">
+      <D value="2.3290" unit="g/cm3"/>
+      <composite n="1" ref="Silicon"/>
+    </material>
+  </materials>
+
+  <solids>
+    <!-- Define the Stack Position and Dimensions -->
+    <box name="solidSiliconSubstrateE" x="stackELengthX" y="siliconSubstrateHeight" z="stackELengthZ"/>
+    <box name="solidSiliconOxideE" x="stackELengthX" y="siliconOxideHeight" z="stackELengthZ"/>
+    <box name="solidSiliconNitrideE" x="stackELengthX" y="siliconNitrideHeight" z="stackELengthZ"/>
+    <box name="solidMotherVolumeE" x="stackELengthX" y="siliconSubstrateHeight + siliconOxideHeight*2 + siliconNitrideHeight*2" z="stackELengthZ"/>
+  </solids>
+
+  <structure>
+    <!-- Define Silicon Substrate Layer -->
+    <volume name="logicSiliconSubstrateE">
+      <materialref ref="SiliconMaterial"/>
+      <solidref ref="solidSiliconSubstrateE"/>
+    </volume>
+
+    <!-- Define Silicon Oxide Layers -->
+    <volume name="logicSiliconOxideE">
+      <materialref ref="siliconOxide"/>
+      <solidref ref="solidSiliconOxideE"/>
+    </volume>
+
+    <!-- Define Silicon Nitride Layers -->
+    <volume name="logicSiliconNitrideE">
+      <materialref ref="siliconNitride"/>
+      <solidref ref="solidSiliconNitrideE"/>
+    </volume>
+
+    <!-- Define a Mother Volume -->
+    <volume name="logicTESE">
+      <materialref ref="G4_Galactic"/>
+      <solidref ref="solidMotherVolumeE"/>
+
+        <physvol name="physDetectorSiliconSubstrateE">
+          <volumeref ref="logicSiliconSubstrateE"/>
+          <positionref ref="siliconSubstrateCenter"/>
+        </physvol>
+
+        <physvol name="physDetectorSiliconOxide1E">
+          <volumeref ref="logicSiliconOxideE"/>
+          <positionref ref="siliconOxideCenter1"/>
+        </physvol>
+
+        <physvol name="physDetectorSiliconOxide2E">
+          <volumeref ref="logicSiliconOxideE"/>
+          <positionref ref="siliconOxideCenter2"/>
+        </physvol>
+
+        <physvol name="physDetectorSiliconNitride1E">
+          <volumeref ref="logicSiliconNitrideE"/>
+          <positionref ref="siliconNitrideCenter1"/>
+        </physvol>
+
+        <physvol name="physDetectorSiliconNitride2E">
+          <volumeref ref="logicSiliconNitrideE"/>
+          <positionref ref="siliconNitrideCenter2"/>
+        </physvol>
+    </volume>
+  </structure>
+
+    
+  <setup name="Default" version="1.0">
+    <!-- Define the World Volume -->
+    <world ref="logicTESE"/>
+  </setup>
+
+</gdml>

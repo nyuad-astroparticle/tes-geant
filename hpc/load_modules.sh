@@ -8,7 +8,7 @@ module load mpich
 module load expat
 
 # Geant4 ----------------------------------------------------
-source /scratch/po524/geant4/geant4-v11.1.1-mpi-install/bin/geant4.sh
-export G4MPI_DIR="/scratch/po524/geant4/g4mpi/lib64/G4mpi-11.1.1/"
+source /scratch/ti602/geant4/install/bin/geant4.sh
+export G4MPI_DIR="/scratch/ti602/geant4/g4mpi/lib64/G4mpi-11.1.2"
 
 # Now you should be all set to compile with the ENABLE_MPI flag on ccmake.
