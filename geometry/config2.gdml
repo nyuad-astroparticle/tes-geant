@@ -32,11 +32,11 @@
         <quantity name="copperBoxX"             value="1.5"         unit="cm"/>
         <quantity name="copperBoxY"             value="2.0"         unit="cm"/>
         <quantity name="copperBoxZ"             value="2.5"         unit="cm"/>
-        <variable name="copperBoxPosX"          value="copperPlatePosX + 3 * cm"/>
+        <variable name="copperBoxPosX"          value="copperPlatePosX - 3 * cm"/>
         <variable name="copperBoxPosY"          value="copperPlatePosY - copperPlateThickness/2 - separation - copperBoxY/2"/>
-        <variable name="copperBoxPosZ"          value="copperPlatePosZ - 4 * cm"/>
+        <variable name="copperBoxPosZ"          value="copperPlatePosZ + 4 * cm"/>
         <position name="copperBoxCenter"        x="copperBoxPosX"   y="copperBoxPosY"   z="copperBoxPosZ"/>
-        <rotation name="copperBoxRotation"      x="0"              y="90"               z="0"   unit="deg"/>
+        <rotation name="copperBoxRotation"      x="0"              y="270"               z="0"   unit="deg"/>
         
         <quantity name="hostPlateX"             value="0.3"         unit="cm"/>
         <quantity name="hostPlatePosX"          value="copperBoxPosX+copperBoxX/2-0.2*cm - 0.3*cm/2"/>

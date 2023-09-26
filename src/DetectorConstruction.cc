@@ -27,10 +27,7 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 		logicSiliconSubstrateE 	-> 	SetVisAttributes(G4Colour(0,1,0));
 		logicSiliconOxideE		-> 	SetVisAttributes(G4Colour(1,0,0));
 		logicSiliconNitrideE		-> 	SetVisAttributes(G4Colour(0,0,1, 0.1));
-	}
 
-	if (GDMLParser.IsValid("logicTES"))
-	{	
 		G4LogicalVolume	*logicTESB	= 	GDMLParser.GetVolume("logicTESB");
 		logicTESB 					->	SetVisAttributes(invisible);
 		
@@ -61,7 +58,8 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 	}
 	if (GDMLParser.IsValid("logicCopperBox"))
 	{
-		GDMLParser.GetVolume("logicCopperBox") 				-> SetVisAttributes(G4Colour(1,0,0, 0.1));
+		GDMLParser.GetVolume("logicCopperBox") 				-> SetVisAttributes(invisible);
+		GDMLParser.GetVolume("logicBox") 					-> SetVisAttributes(G4Colour(1,0,0,0.1));
 	}
 	if (GDMLParser.IsValid("logicThorium"))
 	{
