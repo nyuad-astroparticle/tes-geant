@@ -15,7 +15,7 @@
     <structure>
         <!-- Logical Volume of the Silicon Sensor -->
         <volume name="logicDetectorSaber">
-            <materialref ref="G4_Si" />
+            <materialref ref="G4_PLASTIC_SC_VINYLTOLUENE" />
             <solidref ref="solidSaber" />
         </volume>
     </structure>
