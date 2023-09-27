@@ -236,6 +236,7 @@ Thank you for considering contributing to our project and making it better for e
 
 Tools:
 - [CADMesh](https://github.com/christopherpoole/CADMesh)
+- [cad-to-geant4-converter](https://github.com/tihonav/cad-to-geant4-converter/tree/master)
 - [GEANT4](https://geant4.web.cern.ch/)
 - [FreeCad](https://www.freecad.org/)
 - [Fusion360](https://www.autodesk.com/products/fusion-360/overview?term=1-YEAR&tab=subscription)
