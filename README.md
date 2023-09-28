@@ -28,7 +28,7 @@ ssh your_id@jubail.abudhabi.nyu.edu;
 cd /scratch/your_id;
 ```
 
-#### Installing xerces-c and for GDML support
+#### Installing xerces-c for GDML support
 
 Following the [GEANT4 GDML prerequisites](https://geant4-userdoc.web.cern.ch/UsersGuides/InstallationGuide/html/gettingstarted.html) we need to install Xerces-C++ >=3, and build it with netaccessor curl.
 
