@@ -110,7 +110,7 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event *anEvent)
 #ifdef ADD_THORIUM
 
 	// Set up first General Particle Source (GPS) for Thorium-232
-	G4ParticleDefinition* thorium232 = G4IonTable::GetIonTable()->GetIon(90, 232, 0);
+	G4ParticleDefinition* thorium232 = G4IonTable::GetIonTable()->GetIon(11, 22, 0);
 	particleGun->SetParticleDefinition(thorium232);
 	particleGun->GetCurrentSource()->GetEneDist()->SetMonoEnergy(0.0 * keV);
 

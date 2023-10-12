@@ -2,24 +2,53 @@
 <gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="/scratch/ti602/geant4/geant4-v11.1.2/source/persistency/gdml/schema/gdml.xsd">
 
     <define>
+        <quantity name="foilThickness" value="0.1" unit="mm"/>
     </define>
 
     <materials>
     </materials>
 
     <solids>
-        <box name="solidThorium" lunit="cm" x="0.5" y="3.0" z="3.0"/>
+        <box name="aluminumFoilOuter" lunit="cm" x="3.0" y="3.0" z="0.5"/>
+        <box name="aluminumFoilInner"            x="3.0*cm-2*foilThickness" y="3.0*cm-2*foilThickness" z="0.5*cm-2*foilThickness"/>
+        <subtraction name="solidAluminumFoil">
+            <first ref="aluminumFoilOuter"/>
+            <second ref="aluminumFoilInner"/>
+        </subtraction>
+        
+        <tube name="solidThorium" rmin="0" rmax="25.4/2" z="3.4" deltaphi="360" starphi="0" aunit="deg" lunit="mm"/>
     </solids>
 
     <structure>
+
         <volume name="logicThorium">
             <materialref ref="G4_Galactic"/>
             <solidref ref="solidThorium"/>
         </volume>
+
+        <volume name="logicAluminumFoil">
+            <materialref ref="G4_Al"/>
+            <solidref ref="solidAluminumFoil"/>
+        </volume>
+
+        <volume name="logicThoriumMotherVolume">
+            <materialref ref="G4_Galactic"/>
+            <solidref ref="aluminumFoilOuter"/>
+            
+            <physvol>
+                <volumeref ref="logicThorium"/>
+            </physvol>
+            
+            <physvol>
+                <volumeref ref="logicAluminumFoil"/>
+            </physvol>
+
+        </volume>
+
     </structure>
 
     <setup name="Default" version="1.0">
-        <world ref="logicThorium"/>
+        <world ref="logicThoriumMotherVolume"/>
     </setup>
 
 </gdml>
