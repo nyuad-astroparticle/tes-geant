@@ -2,6 +2,8 @@
 #define ActionInitialization__HH
 
 #include "G4VUserActionInitialization.hh"
+#include "EventAction.hh"
+
 
 class MyActionInitialization : public G4VUserActionInitialization
 {
@@ -11,6 +13,8 @@ public:
 
 	void Build() const override;
 	void BuildForMaster() const override;
+	EventAction * eventAction = nullptr;
+private:
 };
 
 #endif

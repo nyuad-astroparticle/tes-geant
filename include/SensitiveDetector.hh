@@ -3,12 +3,14 @@
 
 #include "G4VSensitiveDetector.hh"
 #include "TESHit.hh"
+// #include "EventAction.hh"
+#include "ActionInitialization.hh"
 
 class SensitiveDetector : public G4VSensitiveDetector
 {
 public:
-    SensitiveDetector(const G4String& name, const G4String& hitsCollectionName);
-    ~SensitiveDetector() override = default;
+    SensitiveDetector(const G4String& name, const G4String& hitsCollectionName, MyActionInitialization * action);
+    ~SensitiveDetector();
 
     G4bool ProcessHits(G4Step* step, G4TouchableHistory* history) override;
 
@@ -17,6 +19,7 @@ public:
 
 private:
     HitsCollection* hitsCollection = nullptr;
+    MyActionInitialization * action = nullptr;
 };
 
 #endif

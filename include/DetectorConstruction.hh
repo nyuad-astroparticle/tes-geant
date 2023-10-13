@@ -19,11 +19,12 @@
 #include "G4Transform3D.hh"
 #include "G4GDMLParser.hh"
 #include "G4UserLimits.hh"
+#include "ActionInitialization.hh"
 
 class MyDetectorConstruction : public G4VUserDetectorConstruction
 {
 	public:
-		MyDetectorConstruction(const G4GDMLParser& parser);
+		MyDetectorConstruction(const G4GDMLParser& parser, MyActionInitialization * action);
 		~MyDetectorConstruction();
 
 		G4VPhysicalVolume *Construct() override;
@@ -45,6 +46,8 @@ class MyDetectorConstruction : public G4VUserDetectorConstruction
 		G4LogicalVolume* logicCopperPlate		= nullptr;
 		
 		const G4GDMLParser & GDMLParser;
+
+		MyActionInitialization * action = nullptr;
 
 };
 #endif

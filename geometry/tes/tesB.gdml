@@ -3,8 +3,8 @@
 
   <define>
 
-    <quantity type="length" name="stackBLengthX"         value="0.5" unit="cm"/>
-    <quantity type="length" name="stackBLengthZ"         value="0.2" unit="cm"/>
+    <quantity type="length" name="stackBLengthX"         value="15" unit="cm"/>
+    <quantity type="length" name="stackBLengthZ"         value="12" unit="cm"/>
     <quantity type="length" name="stackBPosX"            value="0" unit="cm"/>
     <quantity type="length" name="stackBPosY"            value="0" unit="cm"/>
     <quantity type="length" name="stackBPosZ"            value="0" unit="cm"/>

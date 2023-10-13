@@ -11,10 +11,16 @@
 #include "MPIRunActionMaster.hh"
 #endif
 
-MyActionInitialization::MyActionInitialization(){}
+MyActionInitialization::MyActionInitialization()
+{
+	eventAction = new EventAction();
+}
 
 
-MyActionInitialization::~MyActionInitialization(){}
+MyActionInitialization::~MyActionInitialization()
+{
+	delete eventAction;
+}
 
 void MyActionInitialization::BuildForMaster() const
 {
@@ -35,7 +41,8 @@ void MyActionInitialization::Build() const
 	SetUserAction(new RunActionMaster(true));
 	#endif
 	
-	SetUserAction(new EventAction());
+	// eventAction = new EventAction();
+	SetUserAction(eventAction);
 	SetUserAction(generator);
 	#ifdef ADD_THORIUM
 	SetUserAction(new TrackingAction);

@@ -1,12 +1,15 @@
 #include "DetectorConstruction.hh"
 #include "G4Colour.hh"
 
-MyDetectorConstruction :: MyDetectorConstruction(const G4GDMLParser& parser) : G4VUserDetectorConstruction() , GDMLParser(parser)
+MyDetectorConstruction :: MyDetectorConstruction(const G4GDMLParser& parser, MyActionInitialization * myaction) : G4VUserDetectorConstruction() , GDMLParser(parser)
 {
+	action = myaction;
 }
 
 MyDetectorConstruction :: ~MyDetectorConstruction()
-{}
+{
+	delete action;
+}
 
 G4VPhysicalVolume *MyDetectorConstruction::Construct()
 {
@@ -85,7 +88,7 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 
 void MyDetectorConstruction::ConstructSDandField()
 {
-	auto detector = new SensitiveDetector("/SiliconSubstrate","SilliconHitsCollection");
+	auto detector = new SensitiveDetector("/SiliconSubstrate","SilliconHitsCollection", action);
 	G4SDManager::GetSDMpointer()->AddNewDetector(detector);
 	if (logicSiliconSubstrateE)
 	{
