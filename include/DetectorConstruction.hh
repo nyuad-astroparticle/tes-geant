@@ -19,16 +19,18 @@
 #include "G4Transform3D.hh"
 #include "G4GDMLParser.hh"
 #include "G4UserLimits.hh"
-#include "ActionInitialization.hh"
+#include "EventAction.hh"
 
 class MyDetectorConstruction : public G4VUserDetectorConstruction
 {
 	public:
-		MyDetectorConstruction(const G4GDMLParser& parser, MyActionInitialization * action);
+		MyDetectorConstruction(const G4GDMLParser& parser);
 		~MyDetectorConstruction();
 
+		void passEventAction(EventAction * anEventAction){eventAction = anEventAction;}
 		G4VPhysicalVolume *Construct() override;
 		void ConstructSDandField() override;
+
 
 	private:
 		G4LogicalVolume* substrateLogical 		= nullptr;
@@ -47,7 +49,7 @@ class MyDetectorConstruction : public G4VUserDetectorConstruction
 		
 		const G4GDMLParser & GDMLParser;
 
-		MyActionInitialization * action = nullptr;
+		EventAction * eventAction = nullptr;
 
 };
 #endif

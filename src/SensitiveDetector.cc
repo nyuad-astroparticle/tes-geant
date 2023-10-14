@@ -2,17 +2,13 @@
 #include "G4SDManager.hh"
 #include "TrackInformation.hh"
 
-SensitiveDetector::SensitiveDetector(const G4String& name, const G4String& hitsCollectionName, MyActionInitialization * myaction)
-: G4VSensitiveDetector(name)
+SensitiveDetector::SensitiveDetector(const G4String& name, const G4String& hitsCollectionName, EventAction * anEventAction) : eventAction(anEventAction), G4VSensitiveDetector(name)
 {
-    action = myaction;
     collectionName.insert(hitsCollectionName);
 }
 
 SensitiveDetector::~SensitiveDetector()
-{  
-    delete action;
-}
+{}
 
 void SensitiveDetector::Initialize(G4HCofThisEvent* hitsCollection)
 {
@@ -26,7 +22,7 @@ G4bool SensitiveDetector::ProcessHits(G4Step* step, G4TouchableHistory* history)
 {
     G4double edep = step->GetTotalEnergyDeposit();
     G4String volume = step->GetPreStepPoint()->GetPhysicalVolume()->GetName();
-    if (volume.find("B") != G4String::npos){action->eventAction->SetHitTES(true);}
+    if (volume.find("B") != G4String::npos){eventAction->SetHitTES(true);}
 
     // if(edep == 0.0) return false;
     G4String parentVolume = "NA";
