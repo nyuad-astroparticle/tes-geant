@@ -2,7 +2,7 @@
 #include "G4Colour.hh"
 
 MyDetectorConstruction :: MyDetectorConstruction(const G4GDMLParser& parser) : G4VUserDetectorConstruction() , GDMLParser(parser)
-{
+{	
 }
 
 MyDetectorConstruction :: ~MyDetectorConstruction()
@@ -64,6 +64,8 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 	if (GDMLParser.IsValid("logicThorium"))
 	{
 		GDMLParser.GetVolume("logicThorium")				-> SetVisAttributes(G4Colour(0,0,1));
+		GDMLParser.GetVolume("logicAluminumFoil")			-> SetVisAttributes(G4Color(1,1,1,0.2));
+		GDMLParser.GetVolume("logicThoriumMotherVolume")	-> SetVisAttributes(invisible);
 	}
 
 	if (GDMLParser.IsValid("logicBottomScintillators"))
@@ -83,7 +85,7 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 
 void MyDetectorConstruction::ConstructSDandField()
 {
-	auto detector = new SensitiveDetector("/SiliconSubstrate","SilliconHitsCollection");
+	auto detector = new SensitiveDetector("/SiliconSubstrate","SilliconHitsCollection", eventAction);
 	G4SDManager::GetSDMpointer()->AddNewDetector(detector);
 	if (logicSiliconSubstrateE)
 	{

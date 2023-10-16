@@ -1,7 +1,9 @@
 #include "ActionInitialization.hh"
-#include "EventAction.hh"
+// #include "EventAction.hh"
 #include "RunAction.hh"
 #include "PrimaryGeneratorAction.hh" 
+#include "DetectorConstruction.hh"
+
 
 #ifdef ADD_THORIUM
 #include "TrackingAction.hh"
@@ -11,10 +13,13 @@
 #include "MPIRunActionMaster.hh"
 #endif
 
-MyActionInitialization::MyActionInitialization(){}
+MyActionInitialization::MyActionInitialization(MyDetectorConstruction * aDetector) : fDetector(aDetector)
+{
+}
 
 
-MyActionInitialization::~MyActionInitialization(){}
+MyActionInitialization::~MyActionInitialization()
+{}
 
 void MyActionInitialization::BuildForMaster() const
 {
@@ -35,7 +40,9 @@ void MyActionInitialization::Build() const
 	SetUserAction(new RunActionMaster(true));
 	#endif
 	
-	SetUserAction(new EventAction());
+	EventAction * eventAction = new EventAction();
+	fDetector->passEventAction(eventAction);
+	SetUserAction(eventAction);
 	SetUserAction(generator);
 	#ifdef ADD_THORIUM
 	SetUserAction(new TrackingAction);

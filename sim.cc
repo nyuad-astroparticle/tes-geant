@@ -60,9 +60,10 @@ int main(int argc,char**  argv){
     if (argc == 2) {ui = new G4UIExecutive(argc,argv);}     // If no macro file has been created Create the UI
     auto runManager = G4RunManagerFactory::CreateRunManager(); // creating a run manager
 #endif
-	runManager->SetUserInitialization(new MyDetectorConstruction(parser));
+    MyDetectorConstruction * myDetector = new MyDetectorConstruction(parser);
+	runManager->SetUserInitialization(myDetector);
 	runManager->SetUserInitialization(new PhysicsList);
-	runManager->SetUserInitialization(new MyActionInitialization);
+	runManager->SetUserInitialization(new MyActionInitialization(myDetector));
 
 	runManager->Initialize();
 

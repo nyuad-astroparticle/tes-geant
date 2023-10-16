@@ -43,20 +43,21 @@
 
         <!-- Saber -->
 
+        <quantity name="thoriumX"               value="0.5"         unit="cm"/>
         <quantity name="saberX"                 value="1.0"         unit="cm"/>
         <variable name="saberPosZ"              value="cylinderDiameter/2 + separation + saberX/2"/>
         <variable name="saberPosY"              value="copperBoxPosY"/>
         <variable name="saberPosX"              value="0"/>
-        <position name="saberPosition"          x="saberPosX"       y="saberPosY" z="saberPosZ"/>
+        <position name="saberPosition1"          x="saberPosX"       y="saberPosY" z="saberPosZ"/>
+        <position name="saberPosition2"          x="saberPosX"       y="saberPosY" z="saberPosZ+2*separation+thoriumX+saberX"/>
         <rotation name="saberRotation"          x="0"               y="0"        z="0" unit="deg"/>
 
         <!-- Thorium -->
-        <quantity name="thoriumX"               value="0.5"         unit="cm"/>
         <variable name="thoriumPosZ"            value="saberPosZ + thoriumX/2 + separation + saberX/2"/>
         <variable name="thoriumPosY"            value="saberPosY"/>
         <quantity name="thoriumPosX"            value="0"/>
         <position name="thoriumPosition"        x="thoriumPosX"   y="thoriumPosY"       z="thoriumPosZ"/>
-        <rotation name="thoriumRotation"        x="0"               y="90"              z="0"   unit="deg"/>
+        <rotation name="thoriumRotation"        x="0"               y="0"              z="0"   unit="deg"/>
 
     </define>
 
@@ -88,9 +89,15 @@
                 <rotationref ref="thoriumRotation"/>
             </physvol>
 
-            <physvol>
+            <physvol name="saber1">
                 <file name="./geometry/saber/saber.gdml"/>
-                <positionref ref="saberPosition"/>
+                <positionref ref="saberPosition1"/>
+                <rotationref ref="saberRotation"/>
+            </physvol>
+
+            <physvol name="saber2">
+                <file name="./geometry/saber/saber.gdml"/>
+                <positionref ref="saberPosition2"/>
                 <rotationref ref="saberRotation"/>
             </physvol>
 

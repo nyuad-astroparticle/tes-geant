@@ -5,10 +5,15 @@
 #include "G4AnalysisManager.hh"
 #include "G4SystemOfUnits.hh"
 
-void EventAction::BeginOfEventAction(const G4Event* event) {}
+void EventAction::BeginOfEventAction(const G4Event* event)
+{
+    hitTES = false;
+}
 
 void EventAction::EndOfEventAction(const G4Event* event)
 {
+    if (not hitTES) return;
+
     auto eventHitsCollections = event->GetHCofThisEvent();
     auto analysisManager = G4AnalysisManager::Instance();
 
