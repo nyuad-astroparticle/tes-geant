@@ -22,7 +22,7 @@ G4bool SensitiveDetector::ProcessHits(G4Step* step, G4TouchableHistory* history)
 {
     G4double edep = step->GetTotalEnergyDeposit();
     G4String volume = step->GetPreStepPoint()->GetPhysicalVolume()->GetName();
-    if (volume.find("B") != G4String::npos){eventAction->SetHitTES(true);}
+    if (volume.find("B") != G4String::npos or volume.find("E") != G4String::npos){eventAction->SetHitTES(true);}
 
     // if(edep == 0.0) return false;
     G4String parentVolume = "NA";
