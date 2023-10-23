@@ -6,7 +6,7 @@
         <variable name="logicTES"               value="0" />
         <variable name="Cryostat_Aluminum"      value="0" />
         <variable name="logicCopperBox"         value="0" />
-        <variable name="logicDetectorSaber"     value="0" />
+        <!-- <variable name="logicDetectorSaber"     value="0" /> -->
         <variable name="logicThorium"           value="0" />
         <variable name="logicCopperPlate"       value="0" />
 
@@ -43,7 +43,7 @@
 
         <!-- Saber -->
 
-        <quantity name="thoriumX"               value="0.5"         unit="cm"/>
+        <quantity name="thoriumX"               value="3.5"         unit="cm"/>
         <quantity name="saberX"                 value="1.0"         unit="cm"/>
         <variable name="saberPosZ"              value="cylinderDiameter/2 + separation + saberX/2"/>
         <variable name="saberPosY"              value="copperBoxPosY"/>
@@ -53,7 +53,8 @@
         <rotation name="saberRotation"          x="0"               y="0"        z="0" unit="deg"/>
 
         <!-- Thorium -->
-        <variable name="thoriumPosZ"            value="saberPosZ + thoriumX/2 + separation + saberX/2"/>
+        <!-- <variable name="thoriumPosZ"            value="saberPosZ + thoriumX/2 + separation + saberX/2"/> -->
+        <variable name="thoriumPosZ"            value="cylinderDiameter/2 + thoriumX/2 + separation"/>
         <variable name="thoriumPosY"            value="saberPosY"/>
         <quantity name="thoriumPosX"            value="0"/>
         <position name="thoriumPosition"        x="thoriumPosX"   y="thoriumPosY"       z="thoriumPosZ"/>
@@ -89,11 +90,11 @@
                 <rotationref ref="thoriumRotation"/>
             </physvol>
 
-            <physvol name="saber1">
+            <!-- <physvol name="saber1">
                 <file name="./geometry/saber/saber.gdml"/>
                 <positionref ref="saberPosition1"/>
                 <rotationref ref="saberRotation"/>
-            </physvol>
+            </physvol> -->
 
             <!-- <physvol name="saber2">
                 <file name="./geometry/saber/saber.gdml"/>

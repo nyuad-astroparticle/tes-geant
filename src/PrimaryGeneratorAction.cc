@@ -118,10 +118,11 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event *anEvent)
 	particleGun->GetCurrentSource()->GetPosDist()->SetPosDisType("Volume");
 	particleGun->GetCurrentSource()->GetPosDist()->SetPosDisShape("Para");
 	// particleGun->GetCurrentSource()->GetPosDist()->SetCentreCoords(G4ThreeVector(0, -529.75 * mm, 35.2 * cm / 2 + 2*mm + 1*cm + 0.5*cm/2 + 2 * mm));
-	particleGun->GetCurrentSource()->GetPosDist()->SetCentreCoords(G4ThreeVector(0, -531.3 * mm, 188.7 * mm));
-	particleGun->GetCurrentSource()->GetPosDist()->SetHalfX(1.5 * cm);
-	particleGun->GetCurrentSource()->GetPosDist()->SetHalfY(1.5 * cm);
-	particleGun->GetCurrentSource()->GetPosDist()->SetHalfZ(2.5 * mm);
+	// particleGun->GetCurrentSource()->GetPosDist()->SetCentreCoords(G4ThreeVector(0, -531.3 * mm, 188.7 * mm));
+	particleGun->GetCurrentSource()->GetPosDist()->SetCentreCoords(G4ThreeVector(0, -531.3 * mm, 193.6 * mm));
+	particleGun->GetCurrentSource()->GetPosDist()->SetHalfX(4.25/2 * cm);
+	particleGun->GetCurrentSource()->GetPosDist()->SetHalfY(4.25/2 * cm);
+	particleGun->GetCurrentSource()->GetPosDist()->SetHalfZ(3.5/2 * cm);
 	particleGun->GetCurrentSource()->GetPosDist()->SetPosRot1(G4ThreeVector(1, 0, 0));
 	particleGun->GetCurrentSource()->GetPosDist()->SetPosRot2(G4ThreeVector(0, 0, 1));
 	particleGun->GetCurrentSource()->GetPosDist()->ConfineSourceToVolume("logicThorium_PV");
