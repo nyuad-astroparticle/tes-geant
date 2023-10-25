@@ -12,7 +12,7 @@ void EventAction::BeginOfEventAction(const G4Event* event)
 
 void EventAction::EndOfEventAction(const G4Event* event)
 {
-    if (not hitTES) return;
+    // if (not hitTES) return;
 
     auto eventHitsCollections = event->GetHCofThisEvent();
     auto analysisManager = G4AnalysisManager::Instance();

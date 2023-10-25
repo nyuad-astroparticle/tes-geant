@@ -2,7 +2,7 @@ import os
 import re
 
 # Specify the directory where your .gdml files are located
-root_directory = 'buildNa/geometry'
+root_directory = 'build1/geometry'
 
 # Define the search and replacement strings
 search_string = 'scratch'
