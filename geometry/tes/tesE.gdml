@@ -3,8 +3,8 @@
 
   <define>
 
-    <quantity type="length" name="stackELengthX"         value="11.7" unit="mm"/>
-    <quantity type="length" name="stackELengthZ"         value="7.7" unit="mm"/>
+    <quantity type="length" name="stackELengthX"         value="6.7" unit="mm"/>
+    <quantity type="length" name="stackELengthZ"         value="2.7" unit="mm"/>
     <quantity type="length" name="stackEPosX"            value="0" unit="cm"/>
     <quantity type="length" name="stackEPosY"            value="0" unit="cm"/>
     <quantity type="length" name="stackEPosZ"            value="0" unit="cm"/>
