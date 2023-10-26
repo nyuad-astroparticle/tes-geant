@@ -57,7 +57,7 @@
                 <positionref    ref="position2"/>
             </physvol>
 
-            <physvol name="phys4">
+            <physvol name="phys3">
                 <volumeref      ref="logicShort"/>
                 <positionref    ref="position3"/>
             </physvol>
