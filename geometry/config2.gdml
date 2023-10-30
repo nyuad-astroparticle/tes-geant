@@ -6,8 +6,8 @@
         <variable name="logicTES"               value="0" />
         <variable name="Cryostat_Aluminum"      value="0" />
         <variable name="logicCopperBox"         value="0" />
-        <variable name="logicDetectorSaber"     value="0" />
-        <!-- <variable name="logicThorium"           value="0" /> -->
+        <!-- <variable name="logicDetectorSaber"     value="0" /> -->
+        <variable name="logicThorium"           value="0" />
         <variable name="logicCopperPlate"       value="0" />
 
         <!-- Separation distance -->
@@ -86,17 +86,17 @@
                 <rotationref ref="copperBoxRotation"/>
             </physvol>
 
-            <!-- <physvol>
+            <physvol>
                 <file name="./geometry/thorium/thorium.gdml"/>
                 <positionref ref="thoriumPosition"/>
                 <rotationref ref="thoriumRotation"/>
-            </physvol> -->
+            </physvol>
 
-            <physvol name="saber1">
+            <!-- <physvol name="saber1">
                 <file name="./geometry/saber/saber.gdml"/>
                 <positionref ref="saberPosition1"/>
                 <rotationref ref="saberRotation"/>
-            </physvol>
+            </physvol> -->
 
             <!-- <physvol name="saber2">
                 <file name="./geometry/saber/saber.gdml"/>

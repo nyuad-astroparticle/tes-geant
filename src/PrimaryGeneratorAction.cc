@@ -110,7 +110,7 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event *anEvent)
 #ifdef ADD_THORIUM
 
 	// Set up first General Particle Source (GPS) for Thorium-232
-	G4ParticleDefinition* thorium232 = G4IonTable::GetIonTable()->GetIon(11, 22, 0);
+	G4ParticleDefinition* thorium232 = G4IonTable::GetIonTable()->GetIon(90, 232, 0);
 	particleGun->SetParticleDefinition(thorium232);
 	particleGun->GetCurrentSource()->GetEneDist()->SetMonoEnergy(0.0 * keV);
 
@@ -120,12 +120,17 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event *anEvent)
 	// particleGun->GetCurrentSource()->GetPosDist()->SetCentreCoords(G4ThreeVector(0, -529.75 * mm, 35.2 * cm / 2 + 2*mm + 1*cm + 0.5*cm/2 + 2 * mm));
 	particleGun->GetCurrentSource()->GetPosDist()->SetCentreCoords(G4ThreeVector(0, -531.3 * mm, 188.7 * mm));
 	// particleGun->GetCurrentSource()->GetPosDist()->SetCentreCoords(G4ThreeVector(0, -531.3 * mm, 193.6 * mm));
-	particleGun->GetCurrentSource()->GetPosDist()->SetHalfX(1 * mm);
-	particleGun->GetCurrentSource()->GetPosDist()->SetHalfY(1 * mm);
-	particleGun->GetCurrentSource()->GetPosDist()->SetHalfZ(1 * mm);
+	// particleGun->GetCurrentSource()->GetPosDist()->SetHalfX(1 * mm);
+	// particleGun->GetCurrentSource()->GetPosDist()->SetHalfY(1 * mm);
+	// particleGun->GetCurrentSource()->GetPosDist()->SetHalfZ(1 * mm);
+		
+	particleGun->GetCurrentSource()->GetPosDist()->SetHalfX(35/2 * mm);
+	particleGun->GetCurrentSource()->GetPosDist()->SetHalfY(42.5/2 * mm);
+	particleGun->GetCurrentSource()->GetPosDist()->SetHalfZ(42.5/2 * mm);
+	
 	particleGun->GetCurrentSource()->GetPosDist()->SetPosRot1(G4ThreeVector(1, 0, 0));
 	particleGun->GetCurrentSource()->GetPosDist()->SetPosRot2(G4ThreeVector(0, 0, 1));
-	// particleGun->GetCurrentSource()->GetPosDist()->ConfineSourceToVolume("logicThorium_PV");
+	particleGun->GetCurrentSource()->GetPosDist()->ConfineSourceToVolume("logicThorium_PV");
 
 	// Generate the first particle
 	particleGun->GeneratePrimaryVertex(anEvent);
