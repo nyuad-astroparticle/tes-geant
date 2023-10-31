@@ -1,0 +1,14 @@
+/control/verbose 0
+/tracking/verbose 1
+
+/gps/particle ion
+/gps/ion 11 22 0
+/gps/energy 0.0 keV
+/gps/position 0 -531.3 188.7 mm
+/gps/pos/type Volume
+/gps/pos/shape Para
+/gps/pos/halfx 1 mm
+/gps/pos/halfy 1 mm
+/gps/pos/halfz 1 mm
+
+/run/beamOn 1000000000
