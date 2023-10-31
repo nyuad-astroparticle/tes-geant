@@ -1,4 +1,4 @@
-#ifdef ADD_THORIUM
+#ifdef ADD_RADIOACTIVE
 
 #include "PrimaryGeneratorAction.hh"
 
