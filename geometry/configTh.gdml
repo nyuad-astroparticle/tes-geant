@@ -92,18 +92,6 @@
                 <rotationref ref="thoriumRotation"/>
             </physvol>
 
-            <!-- <physvol name="saber1">
-                <file name="./geometry/saber/saber.gdml"/>
-                <positionref ref="saberPosition1"/>
-                <rotationref ref="saberRotation"/>
-            </physvol> -->
-
-            <!-- <physvol name="saber2">
-                <file name="./geometry/saber/saber.gdml"/>
-                <positionref ref="saberPosition2"/>
-                <rotationref ref="saberRotation"/>
-            </physvol> -->
-
             <physvol>
                 <file name="./geometry/copperPlate/copperPlate.gdml"/>
                 <positionref ref="copperPlatePosition"/>
