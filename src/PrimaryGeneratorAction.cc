@@ -1,3 +1,25 @@
+#ifdef ADD_RADIOACTIVE
+
+#include "PrimaryGeneratorAction.hh"
+
+PrimaryGeneratorAction::PrimaryGeneratorAction(const char* filename)
+{
+    particleGun = new G4GeneralParticleSource();
+}
+
+PrimaryGeneratorAction::~PrimaryGeneratorAction()
+{
+    delete particleGun;
+}
+
+void PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
+{
+    particleGun->GeneratePrimaryVertex(anEvent);
+}
+
+
+#else
+
 #include "PrimaryGeneratorAction.hh"
 #include "Randomize.hh"
 #include <iomanip>
@@ -6,9 +28,6 @@
 PrimaryGeneratorAction::PrimaryGeneratorAction(const char* filename)
 {
 	// Define the particle gun
-#ifdef ADD_THORIUM
-	particleGun = new G4GeneralParticleSource();
-#else
 	particleGun = new G4ParticleGun();
 
 	// Start CRYing
@@ -44,18 +63,14 @@ PrimaryGeneratorAction::PrimaryGeneratorAction(const char* filename)
 
 	// Create the messenger
 	particleMessenger = new ParticleMessenger(this);
-#endif 
 }
 
 PrimaryGeneratorAction::~PrimaryGeneratorAction()
 {
 	delete particleGun;
-#ifndef ADD_THORIUM
 	delete particleMessenger;
-#endif
 }
 
-#ifndef ADD_THORIUM
 void PrimaryGeneratorAction::InputCRY()
 {
 	inputState = 1;
@@ -103,39 +118,9 @@ void PrimaryGeneratorAction::CRYFromFile(G4String newFilename)
 	}
 }
 
-#endif
 
 void PrimaryGeneratorAction::GeneratePrimaries(G4Event *anEvent)
 {
-#ifdef ADD_THORIUM
-
-	// Set up first General Particle Source (GPS) for Thorium-232
-	G4ParticleDefinition* thorium232 = G4IonTable::GetIonTable()->GetIon(90, 232, 0);
-	particleGun->SetParticleDefinition(thorium232);
-	particleGun->GetCurrentSource()->GetEneDist()->SetMonoEnergy(0.0 * keV);
-
-	// Position and confine within the copper box
-	particleGun->GetCurrentSource()->GetPosDist()->SetPosDisType("Volume");
-	particleGun->GetCurrentSource()->GetPosDist()->SetPosDisShape("Para");
-	// particleGun->GetCurrentSource()->GetPosDist()->SetCentreCoords(G4ThreeVector(0, -529.75 * mm, 35.2 * cm / 2 + 2*mm + 1*cm + 0.5*cm/2 + 2 * mm));
-	particleGun->GetCurrentSource()->GetPosDist()->SetCentreCoords(G4ThreeVector(0, -531.3 * mm, 188.7 * mm));
-	// particleGun->GetCurrentSource()->GetPosDist()->SetCentreCoords(G4ThreeVector(0, -531.3 * mm, 193.6 * mm));
-	// particleGun->GetCurrentSource()->GetPosDist()->SetHalfX(1 * mm);
-	// particleGun->GetCurrentSource()->GetPosDist()->SetHalfY(1 * mm);
-	// particleGun->GetCurrentSource()->GetPosDist()->SetHalfZ(1 * mm);
-		
-	particleGun->GetCurrentSource()->GetPosDist()->SetHalfX(35/2 * mm);
-	particleGun->GetCurrentSource()->GetPosDist()->SetHalfY(42.5/2 * mm);
-	particleGun->GetCurrentSource()->GetPosDist()->SetHalfZ(42.5/2 * mm);
-	
-	particleGun->GetCurrentSource()->GetPosDist()->SetPosRot1(G4ThreeVector(1, 0, 0));
-	particleGun->GetCurrentSource()->GetPosDist()->SetPosRot2(G4ThreeVector(0, 0, 1));
-	particleGun->GetCurrentSource()->GetPosDist()->ConfineSourceToVolume("logicThorium_PV");
-
-	// Generate the first particle
-	particleGun->GeneratePrimaryVertex(anEvent);
-
-#else
 	if (inputState != 0) {
 		G4String* str = new G4String("CRY was not successfully initialized");
 		G4Exception("PrimaryGeneratorAction","1",RunMustBeAborted,*str);
@@ -171,5 +156,6 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event *anEvent)
     particleGun->GeneratePrimaryVertex(anEvent);
     delete (*vect)[j];
   }
-#endif
 }
+
+#endif

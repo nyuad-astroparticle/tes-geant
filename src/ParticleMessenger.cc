@@ -1,6 +1,6 @@
 #include  "ParticleMessenger.hh"
 
-#ifndef ADD_THORIUM
+#ifndef ADD_RADIOACTIVE
 
 #include "G4UIdirectory.hh"
 #include "G4UIcmdWithAString.hh"

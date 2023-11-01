@@ -1,4 +1,4 @@
-#ifndef ADD_THORIUM
+#ifndef ADD_RADIOACTIVE
 
 #ifndef ParticleMessenger_HH
 #define ParticleMessenger_HH

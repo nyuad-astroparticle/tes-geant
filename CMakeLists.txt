@@ -20,9 +20,9 @@ set_target_properties(libCRY PROPERTIES IMPORTED_LOCATION "${PROJECT_SOURCE_DIR}
 set_target_properties(libCRY PROPERTIES INTERFACE_INCLUDE_DIRECTORIES "${PROJECT_SOURCE_DIR}/cry_v1.7/src")
 
 
-option(ADD_THORIUM "Add the Thorium box in the simulation option" OFF)
-if (ADD_THORIUM)
-	add_compile_definitions(ADD_THORIUM)
+option(ADD_RADIOACTIVE "Add the Thorium box in the simulation option" OFF)
+if (ADD_RADIOACTIVE)
+	add_compile_definitions(ADD_RADIOACTIVE)
 endif()
 
 option(ENABLE_MPI "Compile for Multiprocessing using MPI" OFF)

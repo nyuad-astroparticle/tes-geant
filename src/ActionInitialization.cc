@@ -5,7 +5,7 @@
 #include "DetectorConstruction.hh"
 
 
-#ifdef ADD_THORIUM
+#ifdef ADD_RADIOACTIVE
 #include "TrackingAction.hh"
 #endif
 
@@ -44,7 +44,7 @@ void MyActionInitialization::Build() const
 	fDetector->passEventAction(eventAction);
 	SetUserAction(eventAction);
 	SetUserAction(generator);
-	#ifdef ADD_THORIUM
+	#ifdef ADD_RADIOACTIVE
 	SetUserAction(new TrackingAction);
 	#endif
 }
