@@ -1,25 +1,15 @@
 /control/verbose 0
 /tracking/verbose 0
 
-/gps/particle gamma
-
-
+/gps/particle ion
+/gps/ion 90 232 0
+/gps/energy 0.0 keV
+/gps/position 0 -531.3 193.6 mm
 /gps/pos/type Volume
 /gps/pos/shape Para
-/gps/pos/centre 0. -531.3 193.6 mm
-/gps/pos/halfx 21.25 mm
+/gps/pos/halfx 17.5 mm
 /gps/pos/halfy 21.25 mm
-/gps/pos/halfz 17.50 mm
+/gps/pos/halfz 21.25 mm
 /gps/pos/confine logicThorium_PV
-/gps/ang/type iso
 
-/gps/ene/type Arb
-/gps/ene/diffspec true
-/gps/hist/type arb 
-/gps/hist/file ./macros/GEANT4_ThMantleSpectrum_1024.txt
-
-/gps/hist/inter Lin
-
-/run/beamOn 2000000000
-/run/beamOn 2000000000
-/run/beamOn 300000000
+/run/beamOn 1000000000
