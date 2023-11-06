@@ -63,7 +63,8 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 	}
 	if (GDMLParser.IsValid("logicThorium"))
 	{
-		GDMLParser.GetVolume("logicThorium")				-> SetVisAttributes(G4Colour(0,0,1));
+		logicThorium = GDMLParser.GetVolume("logicThorium");				
+		logicThorium -> SetVisAttributes(G4Colour(0,0,1));
 		GDMLParser.GetVolume("logicAluminumFoil")			-> SetVisAttributes(G4Color(1,1,1,0.2));
 		GDMLParser.GetVolume("logicThoriumMotherVolume")	-> SetVisAttributes(invisible);
 	}
@@ -105,4 +106,6 @@ void MyDetectorConstruction::ConstructSDandField()
 	{
 		SetSensitiveDetector(logicSaber, detector);
 	}
+
+	// SetSensitiveDetector(logicThorium, detector);
 }
