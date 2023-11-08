@@ -9,7 +9,7 @@
     </materials>
 
     <solids>
-        <box name="aluminumFoilOuter" lunit="cm" x="3.0" y="3.0" z="0.5"/>
+        <box name="aluminumFoilOuter" lunit="mm" x="42.5" y="42.5" z="35"/>
         <box name="aluminumFoilInner"            x="3.0*cm-2*foilThickness" y="3.0*cm-2*foilThickness" z="0.5*cm-2*foilThickness"/>
         <subtraction name="solidAluminumFoil">
             <first ref="aluminumFoilOuter"/>
@@ -26,10 +26,10 @@
             <solidref ref="solidThorium"/>
         </volume>
 
-        <volume name="logicAluminumFoil">
+        <!-- <volume name="logicAluminumFoil">
             <materialref ref="G4_Al"/>
             <solidref ref="solidAluminumFoil"/>
-        </volume>
+        </volume> -->
 
         <volume name="logicThoriumMotherVolume">
             <materialref ref="G4_Galactic"/>

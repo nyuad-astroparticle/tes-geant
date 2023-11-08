@@ -65,7 +65,7 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 	{
 		logicThorium = GDMLParser.GetVolume("logicThorium");				
 		logicThorium -> SetVisAttributes(G4Colour(0,0,1));
-		GDMLParser.GetVolume("logicAluminumFoil")			-> SetVisAttributes(G4Color(1,1,1,0.2));
+		// GDMLParser.GetVolume("logicAluminumFoil")			-> SetVisAttributes(G4Color(1,1,1,0.2));
 		GDMLParser.GetVolume("logicThoriumMotherVolume")	-> SetVisAttributes(invisible);
 	}
 
