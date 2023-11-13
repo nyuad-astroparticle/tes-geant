@@ -22,7 +22,7 @@
         <!-- Position adjusted according to the center of the cold finger found in fusion -->
         <quantity name="copperPlateThickness"   value="3"           unit="mm"/>
         <quantity name="copperPlatePosX"        value="-42.8739"    unit="mm"/>
-        <variable name="copperPlatePosY"        value="-519.6 * mm - separation"/>
+        <variable name="copperPlatePosY"        value="-567.813"    unit="mm"/>
         <quantity name="copperPlatePosZ"        value="-11.8268"    unit="mm"/>
         <position name="copperPlatePosition"    x="copperPlatePosX" y="copperPlatePosY" z="copperPlatePosZ"/>
 
