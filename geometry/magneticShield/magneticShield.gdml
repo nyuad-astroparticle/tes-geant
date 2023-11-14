@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../schema/gdml.xsd">
+
+    <define>
+        <quantity name="shieldThickness"    value="3"   unit="mm"/>
+        <quantity name="innerRadius"        value="25/2"  unit="cm"/>
+        <quantity name="shieldHeight"       value="25"  unit="cm"/>
+    </define>
+
+    <materials>
+    </materials>
+
+    <solids>
+        <tube name="magneticShield" rmin="innerRadius" rmax="innerRadius + shieldThickness" z="shieldHeight" deltaphi="360" starphi="0" aunit="deg"/>
+    </solids>
+
+    <structure>
+        <!-- Logical Volume of the Silicon Sensor -->
+        <volume name="logicMagneticShield">
+            <materialref ref="G4_Ni" />
+            <solidref ref="magneticShield"/>
+        </volume>
+    </structure>
+
+    <setup name="Default" version="1.0">
+        <world ref="logicMagneticShield"/>
+    </setup>
+
+</gdml>

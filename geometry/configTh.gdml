@@ -62,6 +62,10 @@
         <position name="thoriumPosition"        x="thoriumPosX"   y="thoriumPosY"       z="thoriumPosZ"/>
         <rotation name="thoriumRotation"        x="0"               y="0"              z="0"   unit="deg"/>
 
+        <!-- magneticShield -->
+        <position name="magneticShieldPosition" x="0"               y="cryostatBottom + 158"    z="0"/>
+        <rotation name="magneticShieldRotation" x="90"              y="0"                       z="0"   unit="deg"/>
+
     </define>
 
     <materials>
@@ -95,6 +99,12 @@
             <physvol>
                 <file name="./geometry/copperPlate/copperPlate.gdml"/>
                 <positionref ref="copperPlatePosition"/>
+            </physvol>
+
+            <physvol>
+                <file name="./geometry/magneticShield/magneticShield.gdml"/>
+                <positionref ref="magneticShieldPosition"/>
+                <rotationref ref="magneticShieldRotation"/>
             </physvol>
 
         </volume>
