@@ -49,7 +49,7 @@
         <quantity name="shortX"         value="28.5"        unit="cm"/>
         <quantity name="shortY"         value="2.0"         unit="cm"/>
         <quantity name="shortZ"         value="4.0"         unit="cm"/>
-        <position name="bottomScintillatorsPosition" x="0"  y="cryostatBottom - longY/2 - separation" z="0"/>
+        <position name="bottomScintillatorsPosition" x="0"  y="cryostatBottom - longY/2 - separation - 4*cm" z="0"/>
         <rotation name="bottomScintillatorsRotation" x="0"  y="0" z="0" unit="deg"/>
 
         <!-- magneticShield -->
