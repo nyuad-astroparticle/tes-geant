@@ -16,7 +16,7 @@
             <second ref="aluminumFoilInner"/>
         </subtraction>
         
-        <tube name="solidThorium" rmin="0" rmax="42.5/2" z="35" deltaphi="360" starphi="0" aunit="deg" lunit="mm"/>
+        <tube name="solidThorium" rmin="0" rmax="42.5/2" z="35" deltaphi="360" startphi="0" aunit="deg" lunit="mm"/>
     </solids>
 
     <structure>

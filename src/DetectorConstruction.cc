@@ -55,6 +55,7 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 	if (GDMLParser.IsValid("Cryostat_Aluminum"))
 	{
 		GDMLParser.GetVolume("Cryostat_Aluminum") 			-> SetVisAttributes(G4Colour(0,1,0, 0.1));
+		GDMLParser.GetVolume("logicMagneticShield")			-> SetVisAttributes(G4Color(1,1,0.5,0.1));
 	}
 	if (GDMLParser.IsValid("logicCopperBox"))
 	{

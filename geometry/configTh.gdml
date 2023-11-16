@@ -23,7 +23,7 @@
         <!-- Position adjusted according to the center of the cold finger found in fusion -->
         <quantity name="copperPlateThickness"   value="3"           unit="mm"/>
         <quantity name="copperPlatePosX"        value="-42.8739"    unit="mm"/>
-        <variable name="copperPlatePosY"        value="-519.6 * mm - separation"/>
+        <variable name="copperPlatePosY"        value="-567.813 * mm - separation"/>
         <quantity name="copperPlatePosZ"        value="-11.8268"    unit="mm"/>
         <position name="copperPlatePosition"    x="copperPlatePosX" y="copperPlatePosY" z="copperPlatePosZ"/>
 
@@ -63,7 +63,7 @@
         <rotation name="thoriumRotation"        x="0"               y="0"              z="0"   unit="deg"/>
 
         <!-- magneticShield -->
-        <position name="magneticShieldPosition" x="0"               y="cryostatBottom + 158"    z="0"/>
+        <position name="magneticShieldPosition" x="0"               y="cryostatBottom + 130"    z="0"/>
         <rotation name="magneticShieldRotation" x="90"              y="0"                       z="0"   unit="deg"/>
 
     </define>
