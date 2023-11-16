@@ -29,8 +29,8 @@
         <!-- Copper Box -->
         <quantity name="copperThickness"        value="1.0"         unit="mm"/>
         <quantity name="copperBoxX"             value="1.5"         unit="cm"/>
-        <quantity name="copperBoxY"             value="2.0"         unit="cm"/>
-        <quantity name="copperBoxZ"             value="2.5"         unit="cm"/>
+        <quantity name="copperBoxZ"             value="2.0"         unit="cm"/>
+        <quantity name="copperBoxY"             value="2.5"         unit="cm"/>
         <variable name="copperBoxPosX"          value="copperPlatePosX - 3 * cm"/>
         <!-- <variable name="copperBoxPosX"          value="-139.70+10-45"/> -->
         <variable name="copperBoxPosY"          value="copperPlatePosY - copperPlateThickness/2 - separation - copperBoxY/2"/>

@@ -8,8 +8,8 @@
 
     <quantity name="copperThickness" type="G4double" value="1.0 * mm" />
     <quantity name="copperBoxX" type="G4double" value="1.5 * cm" />
-    <quantity name="copperBoxY" type="G4double" value="2.0 * cm" />
-    <quantity name="copperBoxZ" type="G4double" value="2.5 * cm" />
+    <quantity name="copperBoxZ" type="G4double" value="2.0 * cm" />
+    <quantity name="copperBoxY" type="G4double" value="2.5 * cm" />
 
     <variable name="hostPlatePosX"  value="copperBoxX/2 - 0.2 * cm - 0.3/2*cm"/>
     <quantity name="hostPlateX" value="0.3"     unit="cm"/>
