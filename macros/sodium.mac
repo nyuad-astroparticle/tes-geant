@@ -4,7 +4,7 @@
 /gps/particle ion
 /gps/ion 11 22 0
 /gps/energy 0.0 keV
-/gps/position 0 -531.3 188.7 mm
+/gps/position 0 -577.813 178.7 mm
 /gps/pos/type Volume
 /gps/pos/shape Para
 /gps/pos/halfx 1 mm
