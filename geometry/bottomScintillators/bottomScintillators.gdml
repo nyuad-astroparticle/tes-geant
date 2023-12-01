@@ -10,6 +10,8 @@
         <quantity name="shortX"         value="28.5"        unit="cm"/>
         <quantity name="shortY"         value="2.0"         unit="cm"/>
         <quantity name="shortZ"         value="4.0"         unit="cm"/>
+
+        <quantity name="tapeThickness"  value="0.79"        unit="mm"/>
         
         <!-- <position name="position1" x="0" y="0" z="-shortZ/2 - longZ/2 - separation"/>
         <position name="position2" x="0" y="0" z="shortZ/2  + longZ/2 + separation"/>
@@ -25,8 +27,20 @@
     </materials>
 
     <solids>
-        <box name="long"    lunit="cm" x="38.5" y="2" z="4"/>
-        <box name="short"   lunit="cm" x="28.5" y="2" z="4"/>
+        <box name="long"        lunit="cm" x="38.5"     y="2"       z="4"/>
+        <box name="outerTapeLong"   lunit="cm" x="38.658"   y="2.158"   z="4.158"/>
+        <subtraction name="tapeLong">
+            <first "outerTapeLong"/>
+            <second "long"/>
+        </subtraction>
+
+        <box name="short"       lunit="cm" x="28.5"     y="2"       z="4"/>
+        <box name="outerTapeshort"   lunit="cm" x="28.658"   y="2.158"   z="4.158"/>
+        <subtraction name="tapeShort">
+            <first "outerTapeShort"/>
+            <second "short"/>
+        </subtraction>
+
         <box name="solidBottomScintillators" lunit="cm" x="40" y="10" z="10" />
     </solids>
 
@@ -37,11 +51,20 @@
             <solidref       ref="long"/>
         </volume>
 
+        <volume name="logicTapeLong">
+            <materialref    ref="G4_RUBBER_NEOPRENE"/>
+            <solidref       ref="tapeLong"/>
+        </volume>
+
         <volume name="logicShort">
             <materialref    ref="G4_PLASTIC_SC_VINYLTOLUENE"/>
             <solidref       ref="short"/>
         </volume>
 
+        <volume name="logicTapeShort">
+            <materialref    ref="G4_RUBBER_NEOPRENE"/>
+            <solidref       ref="tapeShort"/>
+        </volume>
 
         <volume name="logicBottomScintillators">
             <materialref    ref="G4_Galactic"/>
