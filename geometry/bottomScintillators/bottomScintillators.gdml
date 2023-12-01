@@ -30,15 +30,15 @@
         <box name="long"        lunit="cm" x="38.5"     y="2"       z="4"/>
         <box name="outerTapeLong"   lunit="cm" x="38.658"   y="2.158"   z="4.158"/>
         <subtraction name="tapeLong">
-            <first "outerTapeLong"/>
-            <second "long"/>
+            <first ref="outerTapeLong"/>
+            <second ref="long"/>
         </subtraction>
 
         <box name="short"       lunit="cm" x="28.5"     y="2"       z="4"/>
-        <box name="outerTapeshort"   lunit="cm" x="28.658"   y="2.158"   z="4.158"/>
+        <box name="outerTapeShort"   lunit="cm" x="28.658"   y="2.158"   z="4.158"/>
         <subtraction name="tapeShort">
-            <first "outerTapeShort"/>
-            <second "short"/>
+            <first ref="outerTapeShort"/>
+            <second ref="short"/>
         </subtraction>
 
         <box name="solidBottomScintillators" lunit="cm" x="40" y="10" z="10" />
@@ -75,13 +75,28 @@
                 <positionref    ref="position1"/>
             </physvol>
 
+            <physvol>
+                <volumeref      ref="logicTapeLong"/>
+                <positionref    ref="position1"/>
+            </physvol>
+
             <physvol name="phys2">
                 <volumeref      ref="logicLong"/>
                 <positionref    ref="position2"/>
             </physvol>
 
+            <physvol>
+                <volumeref      ref="logicTapeLong"/>
+                <positionref    ref="position2"/>
+            </physvol>
+
             <physvol name="phys3">
                 <volumeref      ref="logicShort"/>
+                <positionref    ref="position3"/>
+            </physvol>
+
+            <physvol>
+                <volumeref      ref="logicTapeShort"/>
                 <positionref    ref="position3"/>
             </physvol>
 

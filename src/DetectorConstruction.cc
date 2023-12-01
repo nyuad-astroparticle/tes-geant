@@ -73,6 +73,8 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 	if (GDMLParser.IsValid("logicBottomScintillators"))
 	{
 		GDMLParser.GetVolume("logicBottomScintillators")	-> SetVisAttributes(invisible);
+		GDMLParser.GetVolume("logicTapeLong")				-> SetVisAttributes(G4Color(0,0,0,0.4));
+		GDMLParser.GetVolume("logicTapeShort")				-> SetVisAttributes(G4Color(0,0,0,0.4));
 		logicLong				= GDMLParser.GetVolume("logicLong");					
 		logicShort 				= GDMLParser.GetVolume("logicShort");					
 		
