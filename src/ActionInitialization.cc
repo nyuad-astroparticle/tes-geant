@@ -24,7 +24,7 @@ MyActionInitialization::~MyActionInitialization()
 void MyActionInitialization::BuildForMaster() const
 {
 	#ifndef MPI_ENABLE
-	// SetUserAction(new RunAction());	
+	SetUserAction(new RunAction(new PrimaryGeneratorAction("")));	
 	#else
 	SetUserAction(new RunActionMaster(true));
 	#endif
