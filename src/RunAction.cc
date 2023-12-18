@@ -2,7 +2,7 @@
 #include "G4AnalysisManager.hh"
 #include "G4Run.hh"
 
-RunAction::RunAction()
+RunAction::RunAction(PrimaryGeneratorAction * aGenerator) : generator(aGenerator)
 {   
     // Create a Default filename that can be changed by the user using UI commands
     G4String defaultFilename = "TES";
@@ -28,6 +28,9 @@ void RunAction::EndOfRunAction(const G4Run* run)
     auto analysisManager = G4AnalysisManager::Instance();
     analysisManager->Write();
     analysisManager->CloseFile(false);
+#ifndef ADD_RADIOACTIVE
+    G4cout << "Total time simulated: " << generator->generator->timeSimulated() << " seconds\n";
+#endif
 }
 
 void RunAction::BookAnalysis(G4String filename, G4bool ntupleMerging){
