@@ -2,6 +2,9 @@
 #include "G4AnalysisManager.hh"
 #include "G4Run.hh"
 
+#include <iostream>
+#include <fstream>
+
 RunAction::RunAction(PrimaryGeneratorAction * aGenerator) : generator(aGenerator)
 {   
     // Create a Default filename that can be changed by the user using UI commands
@@ -30,6 +33,12 @@ void RunAction::EndOfRunAction(const G4Run* run)
     analysisManager->CloseFile(false);
 #ifndef ADD_RADIOACTIVE
     G4cout << "Total time simulated: " << generator->generator->timeSimulated() << " seconds\n";
+    G4double line = generator->generator->timeSimulated();
+    std::ofstream outfile("time.csv",std::ios::app);
+    if (outfile.is_open()) {
+    outfile << line << std::endl;
+    outfile.close();
+    }
 #endif
 }
 
