@@ -11,8 +11,8 @@
     </materials>
 
     <solids>
-        <tube name="magneticShieldOuter" rmin="0" rmax="innerRadius + shieldThickness" z="shieldHeight + 2 * shieldThickness" deltaphi="360" starphi="0" aunit="deg"/>
-        <tube name="magneticShieldInner" rmin="0" rmax="innerRadius" z="shieldHeight" deltaphi="360" starphi="0" aunit="deg"/>
+        <tube name="magneticShieldOuter" rmin="0" rmax="innerRadius + shieldThickness" z="shieldHeight + 2 * shieldThickness" deltaphi="360" startphi="0" aunit="deg"/>
+        <tube name="magneticShieldInner" rmin="0" rmax="innerRadius" z="shieldHeight" deltaphi="360" startphi="0" aunit="deg"/>
         <subtraction name="magneticShield">
             <first ref="magneticShieldOuter"/>
             <second ref="magneticShieldInner"/>
