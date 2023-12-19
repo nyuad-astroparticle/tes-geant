@@ -3,14 +3,17 @@
 
 #include "G4UserRunAction.hh"
 #include "G4String.hh"
+#include "PrimaryGeneratorAction.hh"
 
 class RunAction : public G4UserRunAction
 {
     friend class RunActionMaster;
     
     public:
-        RunAction();
+        RunAction(PrimaryGeneratorAction * aGenerator);
         ~RunAction() override;
+        PrimaryGeneratorAction * generator = nullptr;
+        
 
         void BeginOfRunAction(const G4Run*) override;
         void   EndOfRunAction(const G4Run*) override;

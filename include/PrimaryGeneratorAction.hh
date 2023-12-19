@@ -44,6 +44,7 @@ class PrimaryGeneratorAction : public G4VUserPrimaryGeneratorAction
 		void InputCRY();
 		void UpdateCRY(std::string* input);
 		void CRYFromFile(G4String newFilename);
+		CRYGenerator* generator;
 #endif
 	private:
 
@@ -53,7 +54,6 @@ class PrimaryGeneratorAction : public G4VUserPrimaryGeneratorAction
 		G4ParticleGun* particleGun;
 		std::vector<CRYParticle*> *vect;
 		G4ParticleTable* particleTable;
-		CRYGenerator* generator;
 		G4int inputState;
 		ParticleMessenger* particleMessenger;
 #endif

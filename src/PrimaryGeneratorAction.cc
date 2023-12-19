@@ -128,6 +128,8 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event *anEvent)
 	G4String particleName;
 	vect->clear();
 	generator->genEvent(vect);
+	// G4cout << "Total time simulated: " << generator->timeSimulated() << " seconds\n";
+
 
 	//....debug output
 	//....debug output
