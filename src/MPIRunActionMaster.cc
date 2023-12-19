@@ -8,8 +8,8 @@
 
 #include "MPIRunActionMaster.hh"
 
-RunActionMaster::RunActionMaster(G4bool mergeNtuple) : G4UserRunAction(), 
-    ntupleMerger(nullptr)
+RunActionMaster::RunActionMaster(G4bool mergeNtuple, PrimaryGeneratorAction * aGenerator) : G4UserRunAction(), 
+    ntupleMerger(nullptr), generator(aGenerator)
 {   
     // Sets the merging of Ntuples for MPI
     if (mergeNtuple && G4MPImanager::GetManager()->GetTotalSize() >= 2) {
@@ -70,7 +70,15 @@ void RunActionMaster::EndOfRunAction(const G4Run* run)
         analysisManager->CloseFile();
     }
 
-
+#ifndef ADD_RADIOACTIVE
+    // G4cout << "Total time simulated: " << generator->generator->timeSimulated() << " seconds\n";
+    G4double line = generator->generator->timeSimulated();
+    std::ofstream outfile("time.csv",std::ios::app);
+    if (outfile.is_open()) {
+    outfile << line << std::endl;
+    outfile.close();
+    }
+#endif
 }
 
 #endif

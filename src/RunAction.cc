@@ -32,7 +32,7 @@ void RunAction::EndOfRunAction(const G4Run* run)
     analysisManager->Write();
     analysisManager->CloseFile(false);
 #ifndef ADD_RADIOACTIVE
-    G4cout << "Total time simulated: " << generator->generator->timeSimulated() << " seconds\n";
+    // G4cout << "Total time simulated: " << generator->generator->timeSimulated() << " seconds\n";
     G4double line = generator->generator->timeSimulated();
     std::ofstream outfile("time.csv",std::ios::app);
     if (outfile.is_open()) {
