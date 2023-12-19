@@ -26,7 +26,7 @@ void MyActionInitialization::BuildForMaster() const
 	#ifndef MPI_ENABLE
 	SetUserAction(new RunAction(new PrimaryGeneratorAction("")));	
 	#else
-	SetUserAction(new RunActionMaster(true));
+	SetUserAction(new RunActionMaster(true,new PrimaryGeneratorAction("")));
 	#endif
 }
 
@@ -37,7 +37,7 @@ void MyActionInitialization::Build() const
 	#ifndef MPI_ENABLE
 	SetUserAction(new RunAction(generator));	
 	#else
-	SetUserAction(new RunActionMaster(true));
+	SetUserAction(new RunActionMaster(true, generator));
 	#endif
 	
 	EventAction * eventAction = new EventAction();
