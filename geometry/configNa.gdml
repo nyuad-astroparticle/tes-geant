@@ -45,7 +45,7 @@
         <!-- Saber -->
 
         <quantity name="saberX"                 value="1.0"         unit="cm"/>
-        <variable name="saberPosZ"              value="cylinderDiameter/2 + separation + saberX/2 + 20*mm"/>
+        <variable name="saberPosZ"              value="cylinderDiameter/2 + separation + saberX/2 + 30*mm"/>
         <variable name="saberPosY"              value="copperBoxPosY"/>
         <variable name="saberPosX"              value="0"/>
         <position name="saberPosition1"          x="saberPosX"       y="saberPosY" z="saberPosZ"/>
