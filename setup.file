@@ -4,9 +4,9 @@ returnGammas 1
 returnElectrons 1
 returnPions 1
 returnMuons 1
-date 7-1-2012
-latitude 0.0
+date 7-10-2023
+latitude 45
 altitude 0
-subboxLength 1
+subboxLength 10
 nParticlesMin 1
 nParticlesMax 100
