@@ -7,6 +7,6 @@ returnMuons 1
 date 7-10-2023
 latitude 45
 altitude 0
-subboxLength 10
+subboxLength 3
 nParticlesMin 1
 nParticlesMax 100
