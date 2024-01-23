@@ -25,6 +25,11 @@ if (ADD_RADIOACTIVE)
 	add_compile_definitions(ADD_RADIOACTIVE)
 endif()
 
+option(FILTER_FOR_TES "Do not record events that do not contain a TES hit" OFF)
+if (FILTER_FOR_TES)
+	add_compile_definitions(FILTER_FOR_TES)
+endif()
+
 option(ENABLE_MPI "Compile for Multiprocessing using MPI" OFF)
 if (ENABLE_MPI)
 

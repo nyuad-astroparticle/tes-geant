@@ -12,7 +12,10 @@ void EventAction::BeginOfEventAction(const G4Event* event)
 
 void EventAction::EndOfEventAction(const G4Event* event)
 {
-    // if (not hitTES) return;
+
+#ifdef FILTER_FOR_TES
+    if (not hitTES) return; // when turned on it allows to keep only events that had a tes hit
+#endif
 
     auto eventHitsCollections = event->GetHCofThisEvent();
     auto analysisManager = G4AnalysisManager::Instance();

@@ -70,15 +70,18 @@ void RunActionMaster::EndOfRunAction(const G4Run* run)
         analysisManager->CloseFile();
     }
 
-#ifndef ADD_RADIOACTIVE
-    // G4cout << "Total time simulated: " << generator->generator->timeSimulated() << " seconds\n";
+#ifndef ADD_RADIOACTIVE 
+    // keep the simulated time given by cry package
     G4double line = generator->generator->timeSimulated();
+    
+    // write it into a csv file
     std::ofstream outfile("time.csv",std::ios::app);
     if (outfile.is_open()) {
     outfile << line << std::endl;
     outfile.close();
     }
 #endif
+
 }
 
 #endif

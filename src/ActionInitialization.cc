@@ -1,5 +1,4 @@
 #include "ActionInitialization.hh"
-// #include "EventAction.hh"
 #include "RunAction.hh"
 #include "PrimaryGeneratorAction.hh" 
 #include "DetectorConstruction.hh"
