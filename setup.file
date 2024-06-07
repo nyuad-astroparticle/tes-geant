@@ -1,12 +1,12 @@
 returnNeutrons 1
 returnProtons 1
-returnGammas 0
+returnGammas 1
 returnElectrons 1
 returnPions 1
 returnMuons 1
 date 7-10-2023
 latitude 45
 altitude 0
-subboxLength 3
+subboxLength 1
 nParticlesMin 1
 nParticlesMax 100
