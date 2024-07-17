@@ -95,17 +95,17 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 		logicSiliconNitrideB	-> 	SetVisAttributes(G4Colour(0,0,1, 0.1));
 	}
 	
-	if (GDMLParser.IsValid("logicDetectorSaber"))
-	{
+	// if (GDMLParser.IsValid("logicDetectorSaber"))
+	// {
 		logicSaber				= 	GDMLParser.GetVolume("logicDetectorSaber");
-		logicSaber				->	SetVisAttributes(G4Colour(1,1,1, 0.4));
-	}
+	// 	logicSaber				->	SetVisAttributes(G4Colour(1,1,1, 0.4));
+	// }
 
-	if (GDMLParser.IsValid("logicCopperPlate"))
-	{
-		logicCopperPlate				= 	GDMLParser.GetVolume("logicCopperPlate");
-		logicCopperPlate				->	SetVisAttributes(G4Colour(265,165,0));
-	}
+	// if (GDMLParser.IsValid("logicCopperPlate"))
+	// {
+		// logicCopperPlate				= 	GDMLParser.GetVolume("logicCopperPlate");
+	// 	logicCopperPlate				->	SetVisAttributes(G4Colour(265,165,0));
+	// }
 
 	// if (GDMLParser.IsValid("Cryostat_Aluminum"))
 	// {
@@ -117,13 +117,13 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 	// 	GDMLParser.GetVolume("logicCopperBox") 				-> SetVisAttributes(invisible);
 	// 	GDMLParser.GetVolume("logicBox") 					-> SetVisAttributes(G4Colour(1,0,0,0.1));
 	// }
-	if (GDMLParser.IsValid("logicThorium"))
-	{
-		logicThorium = GDMLParser.GetVolume("logicThorium");				
-		logicThorium -> SetVisAttributes(G4Colour(0,0,1));
-		// GDMLParser.GetVolume("logicAluminumFoil")			-> SetVisAttributes(G4Color(1,1,1,0.2));
-		GDMLParser.GetVolume("logicThoriumMotherVolume")	-> SetVisAttributes(invisible);
-	}
+	// if (GDMLParser.IsValid("logicThorium"))
+	// {
+		// logicThorium = GDMLParser.GetVolume("logicThorium");				
+	// 	logicThorium -> SetVisAttributes(G4Colour(0,0,1));
+	// 	// GDMLParser.GetVolume("logicAluminumFoil")			-> SetVisAttributes(G4Color(1,1,1,0.2));
+	// 	GDMLParser.GetVolume("logicThoriumMotherVolume")	-> SetVisAttributes(invisible);
+	// }
 
 	if (GDMLParser.IsValid("logicBottomScintillators"))
 	{

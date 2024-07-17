@@ -45,8 +45,8 @@ class MyDetectorConstruction : public G4VUserDetectorConstruction
 		G4LogicalVolume* logicSaber				= nullptr;
 		G4LogicalVolume* logicLong				= nullptr;
 		G4LogicalVolume* logicShort				= nullptr;
-		G4LogicalVolume* logicCopperPlate		= nullptr;
-		G4LogicalVolume* logicThorium			= nullptr;
+		// G4LogicalVolume* logicCopperPlate		= nullptr;
+		// G4LogicalVolume* logicThorium			= nullptr;
 		
 		const G4GDMLParser & GDMLParser;
 
