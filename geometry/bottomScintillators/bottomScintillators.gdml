@@ -54,6 +54,8 @@
         <volume name="logicTapeLong">
             <materialref    ref="G4_RUBBER_NEOPRENE"/>
             <solidref       ref="tapeLong"/>
+            <auxiliary auxtype="Color"          auxvalue="0 0 0"/>
+            <auxiliary auxtype="Transparency"   auxvalue="0.4"/>
         </volume>
 
         <volume name="logicShort">
@@ -64,6 +66,8 @@
         <volume name="logicTapeShort">
             <materialref    ref="G4_RUBBER_NEOPRENE"/>
             <solidref       ref="tapeShort"/>
+            <auxiliary auxtype="Color"          auxvalue="0 0 0"/>
+            <auxiliary auxtype="Transparency"   auxvalue="0.4"/>
         </volume>
 
         <volume name="logicBottomScintillators">
@@ -99,7 +103,7 @@
                 <volumeref      ref="logicTapeShort"/>
                 <positionref    ref="position3"/>
             </physvol>
-
+            <auxiliary auxtype="Transparency"   auxvalue="0"/>
         </volume>
 
     </structure>

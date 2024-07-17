@@ -69,18 +69,22 @@
     <volume name="logicSiliconSubstrateE">
       <materialref ref="SiliconMaterial"/>
       <solidref ref="solidSiliconSubstrateE"/>
+      <auxiliary auxtype="Color"          auxvalue="0 1 0"/>
     </volume>
 
     <!-- Define Silicon Oxide Layers -->
     <volume name="logicSiliconOxideE">
       <materialref ref="siliconOxide"/>
       <solidref ref="solidSiliconOxideE"/>
+      <auxiliary auxtype="Color"          auxvalue="1 0 0"/>
     </volume>
 
     <!-- Define Silicon Nitride Layers -->
     <volume name="logicSiliconNitrideE">
       <materialref ref="siliconNitride"/>
       <solidref ref="solidSiliconNitrideE"/>
+      <auxiliary auxtype="Color"          auxvalue="0 0 1"/>
+      <auxiliary auxtype="Transparency"   auxvalue="0.1"/>
     </volume>
 
     <!-- Define a Mother Volume -->
@@ -112,6 +116,7 @@
           <volumeref ref="logicSiliconNitrideE"/>
           <positionref ref="siliconNitrideCenter2"/>
         </physvol>
+        <auxiliary auxtype="Transparency"   auxvalue="0"/>
     </volume>
   </structure>
 
