@@ -31,27 +31,9 @@ class MyDetectorConstruction : public G4VUserDetectorConstruction
 		G4VPhysicalVolume *Construct() override;
 		void ConstructSDandField() override;
 
-
 	private:
-		G4LogicalVolume* substrateLogical 		= nullptr;
-		G4LogicalVolume* paddleLogical			= nullptr;
-		G4LogicalVolume* crossLogical			= nullptr;
-		G4LogicalVolume* logicSiliconSubstrateE = nullptr;
-		G4LogicalVolume* logicSiliconOxideE 	= nullptr;
-		G4LogicalVolume* logicSiliconNitrideE 	= nullptr;
-		G4LogicalVolume* logicSiliconSubstrateB = nullptr;
-		G4LogicalVolume* logicSiliconOxideB 	= nullptr;
-		G4LogicalVolume* logicSiliconNitrideB 	= nullptr;
-		G4LogicalVolume* logicSaber				= nullptr;
-		G4LogicalVolume* logicLong				= nullptr;
-		G4LogicalVolume* logicShort				= nullptr;
-		G4LogicalVolume* logicCopperPlate		= nullptr;
-		G4LogicalVolume* logicThorium			= nullptr;
-		
 		const G4GDMLParser & GDMLParser;
-
 		EventAction * eventAction = nullptr;
-
 };
 #endif
 

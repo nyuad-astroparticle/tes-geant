@@ -69,18 +69,21 @@
     <volume name="logicSiliconSubstrate">
       <materialref ref="SiliconMaterial"/>
       <solidref ref="solidSiliconSubstrate"/>
+      <auxiliary auxtype="SensDet"/>
     </volume>
 
     <!-- Define Silicon Oxide Layers -->
     <volume name="logicSiliconOxide">
       <materialref ref="siliconOxide"/>
       <solidref ref="solidSiliconOxide"/>
+      <auxiliary auxtype="SensDet"/>
     </volume>
 
     <!-- Define Silicon Nitride Layers -->
     <volume name="logicSiliconNitride">
       <materialref ref="siliconNitride"/>
       <solidref ref="solidSiliconNitride"/>
+      <auxiliary auxtype="SensDet"/>
     </volume>
 
     <!-- Define a Mother Volume -->

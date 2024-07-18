@@ -24,6 +24,7 @@
         <volume name="logicThorium">
             <materialref ref="G4_Galactic"/>
             <solidref ref="solidThorium"/>
+            <auxiliary auxtype="Color"          auxvalue="0 0 1"/>
         </volume>
 
         <!-- <volume name="logicAluminumFoil">
@@ -42,7 +43,7 @@
             <!-- <physvol>
                 <volumeref ref="logicAluminumFoil"/>
             </physvol> -->
-
+            <auxiliary auxtype="Transparency"   auxvalue="0"/>
         </volume>
 
     </structure>

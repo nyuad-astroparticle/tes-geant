@@ -15,6 +15,7 @@
         <volume name="logicCopperPlate">
             <materialref ref="G4_Cu"/>
             <solidref ref="solidCopperPlate"/>
+            <auxiliary auxtype="Color"          auxvalue="264 165 0"/>
         </volume>
     </structure>
 

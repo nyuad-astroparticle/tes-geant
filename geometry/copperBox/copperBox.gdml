@@ -69,6 +69,8 @@
     <volume name="logicBox">
       <materialref ref="Cu"/>
       <solidref ref="solidcopperBox"/>
+      <auxiliary auxtype="Color"          auxvalue="1 0 0"/>
+      <auxiliary auxtype="Transparency"   auxvalue="0.1"/>
     </volume>
 
     <volume name="logicCopperBox">
@@ -96,6 +98,9 @@
           <positionref ref="tesEposition"/>
           <rotationref ref="tesErotation"/>
       </physvol>
+
+      <auxiliary auxtype="Color"          auxvalue="1 1 1"/>
+      <auxiliary auxtype="Transparency"   auxvalue="0"/>
 
     </volume>
   </structure>
