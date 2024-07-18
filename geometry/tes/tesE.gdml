@@ -70,6 +70,7 @@
       <materialref ref="SiliconMaterial"/>
       <solidref ref="solidSiliconSubstrateE"/>
       <auxiliary auxtype="Color"          auxvalue="0 1 0"/>
+      <auxiliary auxtype="SensDet"/>
     </volume>
 
     <!-- Define Silicon Oxide Layers -->
@@ -77,6 +78,7 @@
       <materialref ref="siliconOxide"/>
       <solidref ref="solidSiliconOxideE"/>
       <auxiliary auxtype="Color"          auxvalue="1 0 0"/>
+      <auxiliary auxtype="SensDet"/>
     </volume>
 
     <!-- Define Silicon Nitride Layers -->
@@ -85,6 +87,7 @@
       <solidref ref="solidSiliconNitrideE"/>
       <auxiliary auxtype="Color"          auxvalue="0 0 1"/>
       <auxiliary auxtype="Transparency"   auxvalue="0.1"/>
+      <auxiliary auxtype="SensDet"/>
     </volume>
 
     <!-- Define a Mother Volume -->

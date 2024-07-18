@@ -18,6 +18,7 @@
             <materialref ref="G4_PLASTIC_SC_VINYLTOLUENE" />
             <solidref ref="solidSaber" />
             <auxiliary auxtype="Transparency"   auxvalue="0.4"/>
+            <auxiliary auxtype="SensDet"/>
         </volume>
     </structure>
 

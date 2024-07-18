@@ -49,6 +49,7 @@
         <volume name="logicLong">
             <materialref    ref="G4_PLASTIC_SC_VINYLTOLUENE"/>
             <solidref       ref="long"/>
+            <auxiliary auxtype="SensDet"/>
         </volume>
 
         <volume name="logicTapeLong">
@@ -61,6 +62,7 @@
         <volume name="logicShort">
             <materialref    ref="G4_PLASTIC_SC_VINYLTOLUENE"/>
             <solidref       ref="short"/>
+            <auxiliary auxtype="SensDet"/>
         </volume>
 
         <volume name="logicTapeShort">

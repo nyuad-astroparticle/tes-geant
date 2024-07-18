@@ -70,28 +70,6 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 
 	G4cout << G4endl;
 
-	if (GDMLParser.IsValid("logicTES"))
-	{	
-		logicSiliconSubstrateE 	= 	GDMLParser.GetVolume("logicSiliconSubstrateE"); 	
-		logicSiliconOxideE 		= 	GDMLParser.GetVolume("logicSiliconOxideE"); 		
-		logicSiliconNitrideE 	=	GDMLParser.GetVolume("logicSiliconNitrideE");
-
-		logicSiliconSubstrateB 	= 	GDMLParser.GetVolume("logicSiliconSubstrateB"); 	
-		logicSiliconOxideB 		= 	GDMLParser.GetVolume("logicSiliconOxideB"); 		
-		logicSiliconNitrideB 	=	GDMLParser.GetVolume("logicSiliconNitrideB");
-	}
-	
-	if (GDMLParser.IsValid("logicDetectorSaber"))
-	{
-		logicSaber				= 	GDMLParser.GetVolume("logicDetectorSaber");
-	}
-
-	if (GDMLParser.IsValid("logicBottomScintillators"))
-	{
-		logicLong				= GDMLParser.GetVolume("logicLong");					
-		logicShort 				= GDMLParser.GetVolume("logicShort");
-	}
-
 
 //------------------Returning the mother volume---------------------------------
 	return GDMLParser.GetWorldVolume();
@@ -99,26 +77,27 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 
 void MyDetectorConstruction::ConstructSDandField()
 {
+	// the same thing but for senstivie detector. just the type "SendDet" is enough
 	auto detector = new SensitiveDetector("/SiliconSubstrate","SilliconHitsCollection", eventAction);
-	G4SDManager::GetSDMpointer()->AddNewDetector(detector);
-	if (logicSiliconSubstrateE)
-	{
-		SetSensitiveDetector(logicSiliconOxideE, detector);
-		SetSensitiveDetector(logicSiliconSubstrateE, detector);
-		SetSensitiveDetector(logicSiliconNitrideE, detector);
-		SetSensitiveDetector(logicSiliconOxideB, detector);
-		SetSensitiveDetector(logicSiliconSubstrateB, detector);
-		SetSensitiveDetector(logicSiliconNitrideB, detector);
-	}
-	if (logicLong)
-	{
-		SetSensitiveDetector(logicLong, detector);
-		SetSensitiveDetector(logicShort, detector);
-	}
-	else if (logicSaber)
-	{
-		SetSensitiveDetector(logicSaber, detector);
-	}
+	G4SDManager* SDman = G4SDManager::GetSDMpointer();
+	SDman -> AddNewDetector(detector);
 
-	// SetSensitiveDetector(logicThorium, detector);
+	
+	const G4GDMLAuxMapType* auxmap = GDMLParser.GetAuxMap();
+	for(G4GDMLAuxMapType::const_iterator iter=auxmap->begin();
+      iter!=auxmap->end(); iter++) 
+	{
+		for (G4GDMLAuxListType::const_iterator vit=(*iter).second.begin();
+			vit!=(*iter).second.end();vit++)
+		{
+			if ((*vit).type=="SensDet")
+			{
+				G4cout << "Attaching sensitive detector " << (*vit).value
+					<< " to volume " << ((*iter).first)->GetName()
+					<<  G4endl << G4endl;
+
+				SetSensitiveDetector((*iter).first, detector);
+			}
+		}
+	}
 }
