@@ -64,13 +64,16 @@
     <volume name="logicHostPlate">
       <materialref ref="Cu"/>
       <solidref ref="solidHostPlate"/>
+      <solidref ref="solidcopperBox"/>
+      <auxiliary auxtype="Color"          auxvalue="1 0 0"/>
+      <auxiliary auxtype="Transparency"   auxvalue="0.0"/>
     </volume>
 
     <volume name="logicBox">
       <materialref ref="Cu"/>
       <solidref ref="solidcopperBox"/>
       <auxiliary auxtype="Color"          auxvalue="1 0 0"/>
-      <auxiliary auxtype="Transparency"   auxvalue="0.1"/>
+      <auxiliary auxtype="Transparency"   auxvalue="0.3"/>
     </volume>
 
     <volume name="logicCopperBox">

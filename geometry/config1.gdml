@@ -10,8 +10,8 @@
         <variable name="logicCopperPlate"                           value="0" />
 
         <!-- Shifting the sky off by skyShift meters -->
-        <quantity name="skyShiftX"               value="3"           unit="m"  />
-        <quantity name="skyShiftZ"               value="3"           unit="m"  />
+        <quantity name="skyShiftX"               value="0"           unit="m"  />
+        <quantity name="skyShiftZ"               value="0"           unit="m"  />
 
         <!-- Separation distance -->
         <quantity name="separation"     value="0.1"           unit="mm"/>

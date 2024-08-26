@@ -24,7 +24,7 @@
             <materialref ref="G4_Ni" />
             <solidref ref="magneticShield"/>
             <auxiliary auxtype="Color"          auxvalue="1 1 0.5"/>
-            <auxiliary auxtype="Transparency"   auxvalue="0.1"/>
+            <auxiliary auxtype="Transparency"   auxvalue="0.3"/>
         </volume>
     </structure>
 
