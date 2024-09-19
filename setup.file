@@ -5,7 +5,7 @@ returnElectrons 1
 returnPions 1
 returnMuons 1
 date 7-10-2023
-latitude 45
+latitude 25
 altitude 0
 subboxLength 1
 nParticlesMin 1

@@ -1,7 +1,0 @@
-[core]
-    analytics = false
-    remote = drive
-    autostage = true
-['remote "drive"']
-    url = gdrive://1VIwk6FIGBma1If5MLWLzZut2NSj8Owr-
-    gdrive_acknowledge_abuse = true

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="./schema/gdml.xsd">
+
+    <define>
+        <position name="crystals_v0" unit="mm" x="27.5" y="47.5" z="-4.5"/>
+        <position name="crystals_v1" unit="mm" x="4.5" y="47.5" z="-4.5"/>
+        <position name="crystals_v2" unit="mm" x="27.5" y="2.5" z="-4.5"/>
+        <position name="crystals_v3" unit="mm" x="4.5" y="2.5" z="-4.5"/>
+        <position name="crystals_v4" unit="mm" x="27.5" y="47.5" z="-27.5"/>
+        <position name="crystals_v5" unit="mm" x="27.5" y="2.5" z="-27.5"/>
+        <position name="crystals_v6" unit="mm" x="4.5" y="47.5" z="-27.5"/>
+        <position name="crystals_v7" unit="mm" x="4.5" y="2.5" z="-27.5"/>
+        <position name="crystals_v8" unit="mm" x="-4.5" y="47.5" z="27.5"/>
+        <position name="crystals_v9" unit="mm" x="-27.5" y="47.5" z="27.5"/>
+        <position name="crystals_v10" unit="mm" x="-4.5" y="2.5" z="27.5"/>
+        <position name="crystals_v11" unit="mm" x="-27.5" y="2.5" z="27.5"/>
+        <position name="crystals_v12" unit="mm" x="-4.5" y="47.5" z="4.5"/>
+        <position name="crystals_v13" unit="mm" x="-4.5" y="2.5" z="4.5"/>
+        <position name="crystals_v14" unit="mm" x="-27.5" y="47.5" z="4.5"/>
+        <position name="crystals_v15" unit="mm" x="-27.5" y="2.5" z="4.5"/>
+        <position name="crystals_v16" unit="mm" x="27.5" y="47.5" z="27.5"/>
+        <position name="crystals_v17" unit="mm" x="4.5" y="47.5" z="27.5"/>
+        <position name="crystals_v18" unit="mm" x="27.5" y="2.5" z="27.5"/>
+        <position name="crystals_v19" unit="mm" x="4.5" y="2.5" z="27.5"/>
+        <position name="crystals_v20" unit="mm" x="27.5" y="47.5" z="4.5"/>
+        <position name="crystals_v21" unit="mm" x="27.5" y="2.5" z="4.5"/>
+        <position name="crystals_v22" unit="mm" x="4.5" y="47.5" z="4.5"/>
+        <position name="crystals_v23" unit="mm" x="4.5" y="2.5" z="4.5"/>
+        <position name="crystals_v24" unit="mm" x="-27.5" y="47.5" z="-4.5"/>
+        <position name="crystals_v25" unit="mm" x="-27.5" y="47.5" z="-27.5"/>
+        <position name="crystals_v26" unit="mm" x="-27.5" y="2.5" z="-4.5"/>
+        <position name="crystals_v27" unit="mm" x="-27.5" y="2.5" z="-27.5"/>
+        <position name="crystals_v28" unit="mm" x="-4.5" y="47.5" z="-4.5"/>
+        <position name="crystals_v29" unit="mm" x="-4.5" y="2.5" z="-4.5"/>
+        <position name="crystals_v30" unit="mm" x="-4.5" y="47.5" z="-27.5"/>
+        <position name="crystals_v31" unit="mm" x="-4.5" y="2.5" z="-27.5"/>
+    </define>
+
+    <materials>
+        <element Z="58" name="Ce" formula="Ce">
+            <atom unit="g/mole" value="140.116"/>
+        </element>
+
+        <element Z="35" name="Br" formula="Br">
+            <atom unit="g/mole" value="79.904"/>
+        </element>
+
+        <material name="CeBr3" state="solid">
+            <D value="5.1" unit="g/cm3"/>
+            
+            <composite n="1" ref="Ce"/>
+            <composite n="3" ref="Br"/>
+        </material>
+
+    </materials>
+
+    <solids>
+        <tessellated aunit="deg" lunit="mm" name="crystals-SOL">
+             <triangular vertex1="crystals_v0" vertex2="crystals_v1" vertex3="crystals_v2"/>
+             <triangular vertex1="crystals_v2" vertex2="crystals_v1" vertex3="crystals_v3"/>
+             <triangular vertex1="crystals_v4" vertex2="crystals_v0" vertex3="crystals_v5"/>
+             <triangular vertex1="crystals_v5" vertex2="crystals_v0" vertex3="crystals_v2"/>
+             <triangular vertex1="crystals_v6" vertex2="crystals_v4" vertex3="crystals_v7"/>
+             <triangular vertex1="crystals_v7" vertex2="crystals_v4" vertex3="crystals_v5"/>
+             <triangular vertex1="crystals_v1" vertex2="crystals_v6" vertex3="crystals_v3"/>
+             <triangular vertex1="crystals_v3" vertex2="crystals_v6" vertex3="crystals_v7"/>
+             <triangular vertex1="crystals_v1" vertex2="crystals_v0" vertex3="crystals_v6"/>
+             <triangular vertex1="crystals_v6" vertex2="crystals_v0" vertex3="crystals_v4"/>
+             <triangular vertex1="crystals_v3" vertex2="crystals_v7" vertex3="crystals_v2"/>
+             <triangular vertex1="crystals_v2" vertex2="crystals_v7" vertex3="crystals_v5"/>
+             <triangular vertex1="crystals_v8" vertex2="crystals_v9" vertex3="crystals_v10"/>
+             <triangular vertex1="crystals_v10" vertex2="crystals_v9" vertex3="crystals_v11"/>
+             <triangular vertex1="crystals_v12" vertex2="crystals_v8" vertex3="crystals_v13"/>
+             <triangular vertex1="crystals_v13" vertex2="crystals_v8" vertex3="crystals_v10"/>
+             <triangular vertex1="crystals_v14" vertex2="crystals_v12" vertex3="crystals_v15"/>
+             <triangular vertex1="crystals_v15" vertex2="crystals_v12" vertex3="crystals_v13"/>
+             <triangular vertex1="crystals_v9" vertex2="crystals_v14" vertex3="crystals_v11"/>
+             <triangular vertex1="crystals_v11" vertex2="crystals_v14" vertex3="crystals_v15"/>
+             <triangular vertex1="crystals_v9" vertex2="crystals_v8" vertex3="crystals_v14"/>
+             <triangular vertex1="crystals_v14" vertex2="crystals_v8" vertex3="crystals_v12"/>
+             <triangular vertex1="crystals_v11" vertex2="crystals_v15" vertex3="crystals_v10"/>
+             <triangular vertex1="crystals_v10" vertex2="crystals_v15" vertex3="crystals_v13"/>
+             <triangular vertex1="crystals_v16" vertex2="crystals_v17" vertex3="crystals_v18"/>
+             <triangular vertex1="crystals_v18" vertex2="crystals_v17" vertex3="crystals_v19"/>
+             <triangular vertex1="crystals_v20" vertex2="crystals_v16" vertex3="crystals_v21"/>
+             <triangular vertex1="crystals_v21" vertex2="crystals_v16" vertex3="crystals_v18"/>
+             <triangular vertex1="crystals_v22" vertex2="crystals_v20" vertex3="crystals_v23"/>
+             <triangular vertex1="crystals_v23" vertex2="crystals_v20" vertex3="crystals_v21"/>
+             <triangular vertex1="crystals_v17" vertex2="crystals_v22" vertex3="crystals_v19"/>
+             <triangular vertex1="crystals_v19" vertex2="crystals_v22" vertex3="crystals_v23"/>
+             <triangular vertex1="crystals_v17" vertex2="crystals_v16" vertex3="crystals_v22"/>
+             <triangular vertex1="crystals_v22" vertex2="crystals_v16" vertex3="crystals_v20"/>
+             <triangular vertex1="crystals_v19" vertex2="crystals_v23" vertex3="crystals_v18"/>
+             <triangular vertex1="crystals_v18" vertex2="crystals_v23" vertex3="crystals_v21"/>
+             <triangular vertex1="crystals_v24" vertex2="crystals_v25" vertex3="crystals_v26"/>
+             <triangular vertex1="crystals_v26" vertex2="crystals_v25" vertex3="crystals_v27"/>
+             <triangular vertex1="crystals_v28" vertex2="crystals_v24" vertex3="crystals_v29"/>
+             <triangular vertex1="crystals_v29" vertex2="crystals_v24" vertex3="crystals_v26"/>
+             <triangular vertex1="crystals_v30" vertex2="crystals_v28" vertex3="crystals_v31"/>
+             <triangular vertex1="crystals_v31" vertex2="crystals_v28" vertex3="crystals_v29"/>
+             <triangular vertex1="crystals_v25" vertex2="crystals_v30" vertex3="crystals_v27"/>
+             <triangular vertex1="crystals_v27" vertex2="crystals_v30" vertex3="crystals_v31"/>
+             <triangular vertex1="crystals_v30" vertex2="crystals_v25" vertex3="crystals_v28"/>
+             <triangular vertex1="crystals_v28" vertex2="crystals_v25" vertex3="crystals_v24"/>
+             <triangular vertex1="crystals_v31" vertex2="crystals_v29" vertex3="crystals_v27"/>
+             <triangular vertex1="crystals_v27" vertex2="crystals_v29" vertex3="crystals_v26"/>
+        </tessellated>
+    </solids>
+
+    <structure>
+        <volume name="crystals">
+            <materialref ref="CeBr3"/>
+            <solidref ref="crystals-SOL"/>
+            <auxiliary auxtype="Color" auxvalue="0 0 1"/>
+        </volume>
+    </structure>
+
+    <setup name="Default" version="1.0">
+        <world ref="crystals"/>
+    </setup>
+</gdml>

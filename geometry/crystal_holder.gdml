@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="./schema/gdml.xsd">
+
+    <define>
+        <position name="crystal_holder_v0" unit="mm" x="-31.0" y="47.5" z="1.0"/>
+        <position name="crystal_holder_v1" unit="mm" x="-4.0" y="47.5" z="4.0"/>
+        <position name="crystal_holder_v2" unit="mm" x="-1.0" y="47.5" z="1.0"/>
+        <position name="crystal_holder_v3" unit="mm" x="-4.0" y="47.5" z="28.0"/>
+        <position name="crystal_holder_v4" unit="mm" x="-1.0" y="47.5" z="31.0"/>
+        <position name="crystal_holder_v5" unit="mm" x="-31.0" y="47.5" z="31.0"/>
+        <position name="crystal_holder_v6" unit="mm" x="-28.0" y="47.5" z="28.0"/>
+        <position name="crystal_holder_v7" unit="mm" x="-28.0" y="47.5" z="4.0"/>
+        <position name="crystal_holder_v8" unit="mm" x="-4.0" y="2.5" z="4.0"/>
+        <position name="crystal_holder_v9" unit="mm" x="-28.0" y="2.5" z="4.0"/>
+        <position name="crystal_holder_v10" unit="mm" x="-4.0" y="2.5" z="28.0"/>
+        <position name="crystal_holder_v11" unit="mm" x="-28.0" y="2.5" z="28.0"/>
+        <position name="crystal_holder_v12" unit="mm" x="-1.0" y="1.0" z="1.0"/>
+        <position name="crystal_holder_v13" unit="mm" x="-1.0" y="1.0" z="31.0"/>
+        <position name="crystal_holder_v14" unit="mm" x="-31.0" y="1.0" z="1.0"/>
+        <position name="crystal_holder_v15" unit="mm" x="-31.0" y="1.0" z="31.0"/>
+        <position name="crystal_holder_v16" unit="mm" x="31.0" y="47.5" z="31.0"/>
+        <position name="crystal_holder_v17" unit="mm" x="28.0" y="47.5" z="28.0"/>
+        <position name="crystal_holder_v18" unit="mm" x="1.0" y="47.5" z="31.0"/>
+        <position name="crystal_holder_v19" unit="mm" x="4.0" y="47.5" z="28.0"/>
+        <position name="crystal_holder_v20" unit="mm" x="4.0" y="47.5" z="4.0"/>
+        <position name="crystal_holder_v21" unit="mm" x="31.0" y="47.5" z="1.0"/>
+        <position name="crystal_holder_v22" unit="mm" x="28.0" y="47.5" z="4.0"/>
+        <position name="crystal_holder_v23" unit="mm" x="1.0" y="47.5" z="1.0"/>
+        <position name="crystal_holder_v24" unit="mm" x="4.0" y="2.5" z="4.0"/>
+        <position name="crystal_holder_v25" unit="mm" x="28.0" y="2.5" z="4.0"/>
+        <position name="crystal_holder_v26" unit="mm" x="4.0" y="2.5" z="28.0"/>
+        <position name="crystal_holder_v27" unit="mm" x="28.0" y="2.5" z="28.0"/>
+        <position name="crystal_holder_v28" unit="mm" x="31.0" y="1.0" z="31.0"/>
+        <position name="crystal_holder_v29" unit="mm" x="31.0" y="1.0" z="1.0"/>
+        <position name="crystal_holder_v30" unit="mm" x="1.0" y="1.0" z="1.0"/>
+        <position name="crystal_holder_v31" unit="mm" x="1.0" y="1.0" z="31.0"/>
+        <position name="crystal_holder_v32" unit="mm" x="-31.0" y="47.5" z="-31.0"/>
+        <position name="crystal_holder_v33" unit="mm" x="-4.0" y="47.5" z="-28.0"/>
+        <position name="crystal_holder_v34" unit="mm" x="-1.0" y="47.5" z="-31.0"/>
+        <position name="crystal_holder_v35" unit="mm" x="-4.0" y="47.5" z="-4.0"/>
+        <position name="crystal_holder_v36" unit="mm" x="-1.0" y="47.5" z="-1.0"/>
+        <position name="crystal_holder_v37" unit="mm" x="-31.0" y="47.5" z="-1.0"/>
+        <position name="crystal_holder_v38" unit="mm" x="-28.0" y="47.5" z="-4.0"/>
+        <position name="crystal_holder_v39" unit="mm" x="-28.0" y="47.5" z="-28.0"/>
+        <position name="crystal_holder_v40" unit="mm" x="-28.0" y="2.5" z="-28.0"/>
+        <position name="crystal_holder_v41" unit="mm" x="-4.0" y="2.5" z="-28.0"/>
+        <position name="crystal_holder_v42" unit="mm" x="-28.0" y="2.5" z="-4.0"/>
+        <position name="crystal_holder_v43" unit="mm" x="-4.0" y="2.5" z="-4.0"/>
+        <position name="crystal_holder_v44" unit="mm" x="-31.0" y="1.0" z="-31.0"/>
+        <position name="crystal_holder_v45" unit="mm" x="-31.0" y="1.0" z="-1.0"/>
+        <position name="crystal_holder_v46" unit="mm" x="-1.0" y="1.0" z="-1.0"/>
+        <position name="crystal_holder_v47" unit="mm" x="-1.0" y="1.0" z="-31.0"/>
+        <position name="crystal_holder_v48" unit="mm" x="1.0" y="47.5" z="-1.0"/>
+        <position name="crystal_holder_v49" unit="mm" x="4.0" y="47.5" z="-28.0"/>
+        <position name="crystal_holder_v50" unit="mm" x="1.0" y="47.5" z="-31.0"/>
+        <position name="crystal_holder_v51" unit="mm" x="28.0" y="47.5" z="-28.0"/>
+        <position name="crystal_holder_v52" unit="mm" x="31.0" y="47.5" z="-31.0"/>
+        <position name="crystal_holder_v53" unit="mm" x="28.0" y="47.5" z="-4.0"/>
+        <position name="crystal_holder_v54" unit="mm" x="31.0" y="47.5" z="-1.0"/>
+        <position name="crystal_holder_v55" unit="mm" x="4.0" y="47.5" z="-4.0"/>
+        <position name="crystal_holder_v56" unit="mm" x="28.0" y="2.5" z="-4.0"/>
+        <position name="crystal_holder_v57" unit="mm" x="4.0" y="2.5" z="-4.0"/>
+        <position name="crystal_holder_v58" unit="mm" x="28.0" y="2.5" z="-28.0"/>
+        <position name="crystal_holder_v59" unit="mm" x="4.0" y="2.5" z="-28.0"/>
+        <position name="crystal_holder_v60" unit="mm" x="1.0" y="1.0" z="-1.0"/>
+        <position name="crystal_holder_v61" unit="mm" x="31.0" y="1.0" z="-1.0"/>
+        <position name="crystal_holder_v62" unit="mm" x="31.0" y="1.0" z="-31.0"/>
+        <position name="crystal_holder_v63" unit="mm" x="1.0" y="1.0" z="-31.0"/>
+    </define>
+
+    <solids>
+        <tessellated aunit="deg" lunit="mm" name="crystal_holder-SOL">
+             <triangular vertex1="crystal_holder_v0" vertex2="crystal_holder_v1" vertex3="crystal_holder_v2"/>
+             <triangular vertex1="crystal_holder_v2" vertex2="crystal_holder_v1" vertex3="crystal_holder_v3"/>
+             <triangular vertex1="crystal_holder_v2" vertex2="crystal_holder_v3" vertex3="crystal_holder_v4"/>
+             <triangular vertex1="crystal_holder_v4" vertex2="crystal_holder_v3" vertex3="crystal_holder_v5"/>
+             <triangular vertex1="crystal_holder_v5" vertex2="crystal_holder_v3" vertex3="crystal_holder_v6"/>
+             <triangular vertex1="crystal_holder_v5" vertex2="crystal_holder_v6" vertex3="crystal_holder_v7"/>
+             <triangular vertex1="crystal_holder_v1" vertex2="crystal_holder_v0" vertex3="crystal_holder_v7"/>
+             <triangular vertex1="crystal_holder_v7" vertex2="crystal_holder_v0" vertex3="crystal_holder_v5"/>
+             <triangular vertex1="crystal_holder_v8" vertex2="crystal_holder_v9" vertex3="crystal_holder_v10"/>
+             <triangular vertex1="crystal_holder_v10" vertex2="crystal_holder_v9" vertex3="crystal_holder_v11"/>
+             <triangular vertex1="crystal_holder_v12" vertex2="crystal_holder_v13" vertex3="crystal_holder_v14"/>
+             <triangular vertex1="crystal_holder_v14" vertex2="crystal_holder_v13" vertex3="crystal_holder_v15"/>
+             <triangular vertex1="crystal_holder_v9" vertex2="crystal_holder_v8" vertex3="crystal_holder_v7"/>
+             <triangular vertex1="crystal_holder_v7" vertex2="crystal_holder_v8" vertex3="crystal_holder_v1"/>
+             <triangular vertex1="crystal_holder_v11" vertex2="crystal_holder_v9" vertex3="crystal_holder_v6"/>
+             <triangular vertex1="crystal_holder_v6" vertex2="crystal_holder_v9" vertex3="crystal_holder_v7"/>
+             <triangular vertex1="crystal_holder_v10" vertex2="crystal_holder_v11" vertex3="crystal_holder_v3"/>
+             <triangular vertex1="crystal_holder_v3" vertex2="crystal_holder_v11" vertex3="crystal_holder_v6"/>
+             <triangular vertex1="crystal_holder_v8" vertex2="crystal_holder_v10" vertex3="crystal_holder_v1"/>
+             <triangular vertex1="crystal_holder_v1" vertex2="crystal_holder_v10" vertex3="crystal_holder_v3"/>
+             <triangular vertex1="crystal_holder_v2" vertex2="crystal_holder_v4" vertex3="crystal_holder_v12"/>
+             <triangular vertex1="crystal_holder_v12" vertex2="crystal_holder_v4" vertex3="crystal_holder_v13"/>
+             <triangular vertex1="crystal_holder_v4" vertex2="crystal_holder_v5" vertex3="crystal_holder_v13"/>
+             <triangular vertex1="crystal_holder_v13" vertex2="crystal_holder_v5" vertex3="crystal_holder_v15"/>
+             <triangular vertex1="crystal_holder_v5" vertex2="crystal_holder_v0" vertex3="crystal_holder_v15"/>
+             <triangular vertex1="crystal_holder_v15" vertex2="crystal_holder_v0" vertex3="crystal_holder_v14"/>
+             <triangular vertex1="crystal_holder_v0" vertex2="crystal_holder_v2" vertex3="crystal_holder_v14"/>
+             <triangular vertex1="crystal_holder_v14" vertex2="crystal_holder_v2" vertex3="crystal_holder_v12"/>
+             <triangular vertex1="crystal_holder_v16" vertex2="crystal_holder_v17" vertex3="crystal_holder_v18"/>
+             <triangular vertex1="crystal_holder_v18" vertex2="crystal_holder_v17" vertex3="crystal_holder_v19"/>
+             <triangular vertex1="crystal_holder_v18" vertex2="crystal_holder_v19" vertex3="crystal_holder_v20"/>
+             <triangular vertex1="crystal_holder_v16" vertex2="crystal_holder_v21" vertex3="crystal_holder_v17"/>
+             <triangular vertex1="crystal_holder_v17" vertex2="crystal_holder_v21" vertex3="crystal_holder_v22"/>
+             <triangular vertex1="crystal_holder_v22" vertex2="crystal_holder_v21" vertex3="crystal_holder_v23"/>
+             <triangular vertex1="crystal_holder_v22" vertex2="crystal_holder_v23" vertex3="crystal_holder_v20"/>
+             <triangular vertex1="crystal_holder_v20" vertex2="crystal_holder_v23" vertex3="crystal_holder_v18"/>
+             <triangular vertex1="crystal_holder_v24" vertex2="crystal_holder_v25" vertex3="crystal_holder_v20"/>
+             <triangular vertex1="crystal_holder_v20" vertex2="crystal_holder_v25" vertex3="crystal_holder_v22"/>
+             <triangular vertex1="crystal_holder_v26" vertex2="crystal_holder_v24" vertex3="crystal_holder_v19"/>
+             <triangular vertex1="crystal_holder_v19" vertex2="crystal_holder_v24" vertex3="crystal_holder_v20"/>
+             <triangular vertex1="crystal_holder_v27" vertex2="crystal_holder_v26" vertex3="crystal_holder_v17"/>
+             <triangular vertex1="crystal_holder_v17" vertex2="crystal_holder_v26" vertex3="crystal_holder_v19"/>
+             <triangular vertex1="crystal_holder_v25" vertex2="crystal_holder_v27" vertex3="crystal_holder_v22"/>
+             <triangular vertex1="crystal_holder_v22" vertex2="crystal_holder_v27" vertex3="crystal_holder_v17"/>
+             <triangular vertex1="crystal_holder_v28" vertex2="crystal_holder_v29" vertex3="crystal_holder_v16"/>
+             <triangular vertex1="crystal_holder_v16" vertex2="crystal_holder_v29" vertex3="crystal_holder_v21"/>
+             <triangular vertex1="crystal_holder_v29" vertex2="crystal_holder_v30" vertex3="crystal_holder_v21"/>
+             <triangular vertex1="crystal_holder_v21" vertex2="crystal_holder_v30" vertex3="crystal_holder_v23"/>
+             <triangular vertex1="crystal_holder_v30" vertex2="crystal_holder_v31" vertex3="crystal_holder_v23"/>
+             <triangular vertex1="crystal_holder_v23" vertex2="crystal_holder_v31" vertex3="crystal_holder_v18"/>
+             <triangular vertex1="crystal_holder_v31" vertex2="crystal_holder_v28" vertex3="crystal_holder_v18"/>
+             <triangular vertex1="crystal_holder_v18" vertex2="crystal_holder_v28" vertex3="crystal_holder_v16"/>
+             <triangular vertex1="crystal_holder_v25" vertex2="crystal_holder_v24" vertex3="crystal_holder_v27"/>
+             <triangular vertex1="crystal_holder_v27" vertex2="crystal_holder_v24" vertex3="crystal_holder_v26"/>
+             <triangular vertex1="crystal_holder_v31" vertex2="crystal_holder_v30" vertex3="crystal_holder_v28"/>
+             <triangular vertex1="crystal_holder_v28" vertex2="crystal_holder_v30" vertex3="crystal_holder_v29"/>
+             <triangular vertex1="crystal_holder_v32" vertex2="crystal_holder_v33" vertex3="crystal_holder_v34"/>
+             <triangular vertex1="crystal_holder_v34" vertex2="crystal_holder_v33" vertex3="crystal_holder_v35"/>
+             <triangular vertex1="crystal_holder_v34" vertex2="crystal_holder_v35" vertex3="crystal_holder_v36"/>
+             <triangular vertex1="crystal_holder_v36" vertex2="crystal_holder_v35" vertex3="crystal_holder_v37"/>
+             <triangular vertex1="crystal_holder_v37" vertex2="crystal_holder_v35" vertex3="crystal_holder_v38"/>
+             <triangular vertex1="crystal_holder_v37" vertex2="crystal_holder_v38" vertex3="crystal_holder_v39"/>
+             <triangular vertex1="crystal_holder_v33" vertex2="crystal_holder_v32" vertex3="crystal_holder_v39"/>
+             <triangular vertex1="crystal_holder_v39" vertex2="crystal_holder_v32" vertex3="crystal_holder_v37"/>
+             <triangular vertex1="crystal_holder_v40" vertex2="crystal_holder_v41" vertex3="crystal_holder_v39"/>
+             <triangular vertex1="crystal_holder_v39" vertex2="crystal_holder_v41" vertex3="crystal_holder_v33"/>
+             <triangular vertex1="crystal_holder_v42" vertex2="crystal_holder_v40" vertex3="crystal_holder_v38"/>
+             <triangular vertex1="crystal_holder_v38" vertex2="crystal_holder_v40" vertex3="crystal_holder_v39"/>
+             <triangular vertex1="crystal_holder_v43" vertex2="crystal_holder_v42" vertex3="crystal_holder_v35"/>
+             <triangular vertex1="crystal_holder_v35" vertex2="crystal_holder_v42" vertex3="crystal_holder_v38"/>
+             <triangular vertex1="crystal_holder_v41" vertex2="crystal_holder_v43" vertex3="crystal_holder_v33"/>
+             <triangular vertex1="crystal_holder_v33" vertex2="crystal_holder_v43" vertex3="crystal_holder_v35"/>
+             <triangular vertex1="crystal_holder_v44" vertex2="crystal_holder_v45" vertex3="crystal_holder_v32"/>
+             <triangular vertex1="crystal_holder_v32" vertex2="crystal_holder_v45" vertex3="crystal_holder_v37"/>
+             <triangular vertex1="crystal_holder_v45" vertex2="crystal_holder_v46" vertex3="crystal_holder_v37"/>
+             <triangular vertex1="crystal_holder_v37" vertex2="crystal_holder_v46" vertex3="crystal_holder_v36"/>
+             <triangular vertex1="crystal_holder_v46" vertex2="crystal_holder_v47" vertex3="crystal_holder_v36"/>
+             <triangular vertex1="crystal_holder_v36" vertex2="crystal_holder_v47" vertex3="crystal_holder_v34"/>
+             <triangular vertex1="crystal_holder_v47" vertex2="crystal_holder_v44" vertex3="crystal_holder_v34"/>
+             <triangular vertex1="crystal_holder_v34" vertex2="crystal_holder_v44" vertex3="crystal_holder_v32"/>
+             <triangular vertex1="crystal_holder_v41" vertex2="crystal_holder_v40" vertex3="crystal_holder_v43"/>
+             <triangular vertex1="crystal_holder_v43" vertex2="crystal_holder_v40" vertex3="crystal_holder_v42"/>
+             <triangular vertex1="crystal_holder_v47" vertex2="crystal_holder_v46" vertex3="crystal_holder_v44"/>
+             <triangular vertex1="crystal_holder_v44" vertex2="crystal_holder_v46" vertex3="crystal_holder_v45"/>
+             <triangular vertex1="crystal_holder_v48" vertex2="crystal_holder_v49" vertex3="crystal_holder_v50"/>
+             <triangular vertex1="crystal_holder_v50" vertex2="crystal_holder_v49" vertex3="crystal_holder_v51"/>
+             <triangular vertex1="crystal_holder_v50" vertex2="crystal_holder_v51" vertex3="crystal_holder_v52"/>
+             <triangular vertex1="crystal_holder_v52" vertex2="crystal_holder_v51" vertex3="crystal_holder_v53"/>
+             <triangular vertex1="crystal_holder_v52" vertex2="crystal_holder_v53" vertex3="crystal_holder_v54"/>
+             <triangular vertex1="crystal_holder_v54" vertex2="crystal_holder_v53" vertex3="crystal_holder_v48"/>
+             <triangular vertex1="crystal_holder_v48" vertex2="crystal_holder_v53" vertex3="crystal_holder_v55"/>
+             <triangular vertex1="crystal_holder_v48" vertex2="crystal_holder_v55" vertex3="crystal_holder_v49"/>
+             <triangular vertex1="crystal_holder_v56" vertex2="crystal_holder_v57" vertex3="crystal_holder_v53"/>
+             <triangular vertex1="crystal_holder_v53" vertex2="crystal_holder_v57" vertex3="crystal_holder_v55"/>
+             <triangular vertex1="crystal_holder_v58" vertex2="crystal_holder_v56" vertex3="crystal_holder_v51"/>
+             <triangular vertex1="crystal_holder_v51" vertex2="crystal_holder_v56" vertex3="crystal_holder_v53"/>
+             <triangular vertex1="crystal_holder_v59" vertex2="crystal_holder_v58" vertex3="crystal_holder_v49"/>
+             <triangular vertex1="crystal_holder_v49" vertex2="crystal_holder_v58" vertex3="crystal_holder_v51"/>
+             <triangular vertex1="crystal_holder_v57" vertex2="crystal_holder_v59" vertex3="crystal_holder_v55"/>
+             <triangular vertex1="crystal_holder_v55" vertex2="crystal_holder_v59" vertex3="crystal_holder_v49"/>
+             <triangular vertex1="crystal_holder_v60" vertex2="crystal_holder_v61" vertex3="crystal_holder_v48"/>
+             <triangular vertex1="crystal_holder_v48" vertex2="crystal_holder_v61" vertex3="crystal_holder_v54"/>
+             <triangular vertex1="crystal_holder_v61" vertex2="crystal_holder_v62" vertex3="crystal_holder_v54"/>
+             <triangular vertex1="crystal_holder_v54" vertex2="crystal_holder_v62" vertex3="crystal_holder_v52"/>
+             <triangular vertex1="crystal_holder_v62" vertex2="crystal_holder_v63" vertex3="crystal_holder_v52"/>
+             <triangular vertex1="crystal_holder_v52" vertex2="crystal_holder_v63" vertex3="crystal_holder_v50"/>
+             <triangular vertex1="crystal_holder_v63" vertex2="crystal_holder_v60" vertex3="crystal_holder_v50"/>
+             <triangular vertex1="crystal_holder_v50" vertex2="crystal_holder_v60" vertex3="crystal_holder_v48"/>
+             <triangular vertex1="crystal_holder_v57" vertex2="crystal_holder_v56" vertex3="crystal_holder_v59"/>
+             <triangular vertex1="crystal_holder_v59" vertex2="crystal_holder_v56" vertex3="crystal_holder_v58"/>
+             <triangular vertex1="crystal_holder_v60" vertex2="crystal_holder_v63" vertex3="crystal_holder_v61"/>
+             <triangular vertex1="crystal_holder_v61" vertex2="crystal_holder_v63" vertex3="crystal_holder_v62"/>
+        </tessellated>
+    </solids>
+
+    <structure>
+        <volume name="crystal_holder">
+            <materialref ref="G4_Al"/>
+            <solidref ref="crystal_holder-SOL"/>
+            <auxiliary auxtype="Color" auxvalue="0.5 0.5 0.5"/>
+            <auxiliary auxtype="Transparency"   auxvalue="0.5"/>
+        </volume>
+    </structure>
+
+    <setup name="Default" version="1.0">
+        <world ref="crystal_holder"/>
+    </setup>
+</gdml>
