@@ -2,4 +2,5 @@
 /run/initialize
 /tracking/verbose 0
 /vis/scene/endOfEventAction accumulate
-/run/beamOn 1000000000
+/run/printProgress 1000000
+/run/beamOn 100000000
