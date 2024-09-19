@@ -2,6 +2,21 @@
 <gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="./schema/gdml.xsd">
 
     <materials>
+        <element Z="58" name="Ce" formula="Ce">
+            <atom unit="g/mole" value="140.116"/>
+        </element>
+
+        <element Z="35" name="Br" formula="Br">
+            <atom unit="g/mole" value="79.904"/>
+        </element>
+
+        <material name="CeBr3" state="solid">
+            <D value="5.1" unit="g/cm3"/>
+            
+            <composite n="1" ref="Ce"/>
+            <composite n="3" ref="Br"/>
+        </material>
+
     </materials>
 
     <solids>
@@ -20,7 +35,16 @@
                 <file name="./geometry/veto.gdml"/>
              </physvol>
             <physvol>
-                <file name="./geometry/crystals.gdml"/>
+                <file name="./geometry/crystals/crystal1.gdml"/>
+             </physvol>
+            <physvol>
+                <file name="./geometry/crystals/crystal2.gdml"/>
+             </physvol>
+            <physvol>
+                <file name="./geometry/crystals/crystal3.gdml"/>
+             </physvol>
+            <physvol>
+                <file name="./geometry/crystals/crystal4.gdml"/>
              </physvol>
             <physvol>
                 <file name="./geometry/crystal_holder.gdml"/>

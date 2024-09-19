@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../schema/gdml.xsd">
+
+    <define>
+        <position name="crystal4_v0" unit="mm" x="-27.5" y="47.5" z="-4.5"/>
+        <position name="crystal4_v1" unit="mm" x="-27.5" y="47.5" z="-27.5"/>
+        <position name="crystal4_v2" unit="mm" x="-27.5" y="2.5" z="-4.5"/>
+        <position name="crystal4_v3" unit="mm" x="-27.5" y="2.5" z="-27.5"/>
+        <position name="crystal4_v4" unit="mm" x="-4.5" y="47.5" z="-4.5"/>
+        <position name="crystal4_v5" unit="mm" x="-4.5" y="2.5" z="-4.5"/>
+        <position name="crystal4_v6" unit="mm" x="-4.5" y="47.5" z="-27.5"/>
+        <position name="crystal4_v7" unit="mm" x="-4.5" y="2.5" z="-27.5"/>
+    </define>
+
+    <solids>
+        <tessellated aunit="deg" lunit="mm" name="crystal4-SOL">
+             <triangular vertex1="crystal4_v0" vertex2="crystal4_v1" vertex3="crystal4_v2"/>
+             <triangular vertex1="crystal4_v2" vertex2="crystal4_v1" vertex3="crystal4_v3"/>
+             <triangular vertex1="crystal4_v4" vertex2="crystal4_v0" vertex3="crystal4_v5"/>
+             <triangular vertex1="crystal4_v5" vertex2="crystal4_v0" vertex3="crystal4_v2"/>
+             <triangular vertex1="crystal4_v6" vertex2="crystal4_v4" vertex3="crystal4_v7"/>
+             <triangular vertex1="crystal4_v7" vertex2="crystal4_v4" vertex3="crystal4_v5"/>
+             <triangular vertex1="crystal4_v1" vertex2="crystal4_v6" vertex3="crystal4_v3"/>
+             <triangular vertex1="crystal4_v3" vertex2="crystal4_v6" vertex3="crystal4_v7"/>
+             <triangular vertex1="crystal4_v6" vertex2="crystal4_v1" vertex3="crystal4_v4"/>
+             <triangular vertex1="crystal4_v4" vertex2="crystal4_v1" vertex3="crystal4_v0"/>
+             <triangular vertex1="crystal4_v7" vertex2="crystal4_v5" vertex3="crystal4_v3"/>
+             <triangular vertex1="crystal4_v3" vertex2="crystal4_v5" vertex3="crystal4_v2"/>
+        </tessellated>
+    </solids>
+
+    <structure>
+        <volume name="crystal4">
+            <materialref ref="CeBr3"/>
+            <solidref ref="crystal4-SOL"/>
+            <auxiliary auxtype="Color" auxvalue="0 0 1"/>
+            <auxiliary auxtype="SensDet"/>
+        </volume>
+    </structure>
+
+    <setup name="Default" version="1.0">
+        <world ref="crystal4"/>
+    </setup>
+</gdml>
