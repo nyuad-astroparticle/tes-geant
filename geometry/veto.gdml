@@ -2049,6 +2049,7 @@
             <solidref ref="veto-SOL"/>
             <auxiliary auxtype="Color" auxvalue="0 1 0"/>
             <auxiliary auxtype="Transparency"   auxvalue="0.2"/>
+            <auxiliary auxtype="SensDet"/>
         </volume>
     </structure>
 
