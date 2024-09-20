@@ -2045,7 +2045,7 @@
 
     <structure>
         <volume name="veto">
-            <materialref ref="G4_Galactic"/>
+            <materialref ref="G4_PLASTIC_SC_VINYLTOLUENE"/>
             <solidref ref="veto-SOL"/>
             <auxiliary auxtype="Color" auxvalue="0 1 0"/>
             <auxiliary auxtype="Transparency"   auxvalue="0.2"/>
