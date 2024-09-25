@@ -31,7 +31,7 @@
 
     <structure>
         <volume name="crystal3">
-            <materialref ref="CeBr3"/>
+            <materialref ref="LBC"/>
             <solidref ref="crystal3-SOL"/>
             <auxiliary auxtype="Color" auxvalue="0 0 1"/>
             <auxiliary auxtype="SensDet"/>

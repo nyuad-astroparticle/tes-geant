@@ -13,11 +13,31 @@
             <atom unit="g/mole" value="79.904"/>
         </element>
 
+        <element name="Lanthanum" formula="La" Z="57">
+        <atom value="138.90547" />
+        </element>
+
+        <element name="Bromine" formula="Br" Z="35">
+        <atom value="79.904" />
+        </element>
+
+        <element name="Chlorine" formula="Cl" Z="17">
+        <atom value="35.453" />
+        </element>
+
         <material name="CeBr3" state="solid">
             <D value="5.1" unit="g/cm3"/>
             
             <composite n="1" ref="Ce"/>
             <composite n="3" ref="Br"/>
+        </material>
+
+        <material name="LBC" state="solid">
+            <D value="4.9" unit="g/cm3"/>
+            
+            <fraction n="0.3735" ref="La"/>
+            <fraction n="0.6125" ref="Br"/>
+            <fraction n="0.0143" ref="Cl"/>
         </material>
 
     </materials>
