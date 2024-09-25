@@ -1,0 +1,21 @@
+# Generating flat gamma spectrum in LBC
+
+/control/verbose 0
+/tracking/verbose 0
+
+/gps/particle gamma
+
+/gps/position 0 0 0 mm
+/gps/pos/type Surface
+/gps/pos/shape Para
+/gps/pos/halfx 10 cm
+/gps/pos/halfy 10 cm
+/gps/pos/halfz 10 cm
+/gps/pos/confine crystal3_PV
+
+/gps/ang/type iso
+/gps/ene/type Lin
+/gps/ene/intercept 1
+/gps/ene/max 3 MeV
+
+/run/beamOn 1
