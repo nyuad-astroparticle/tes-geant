@@ -6,7 +6,7 @@
 /gps/particle gamma
 
 /gps/position 0 0 0 mm
-/gps/pos/type Surface
+/gps/pos/type Volume
 /gps/pos/shape Para
 /gps/pos/halfx 10 cm
 /gps/pos/halfy 10 cm
@@ -18,4 +18,5 @@
 /gps/ene/intercept 1
 /gps/ene/max 3 MeV
 
-/run/beamOn 1
+/run/printProgress 10000
+/run/beamOn 1000000
