@@ -1,0 +1,20 @@
+/control/verbose 0
+/tracking/verbose 0
+
+# setting the threshold for halflife decay time much higher than La138 for it to decay within sim time
+/process/had/rdm/thresholdForVeryLongDecayTime 10e+20 year
+
+/gps/particle ion
+/gps/ion 57 138 0
+/gps/energy 0.0 keV
+
+/gps/position 0 0 0 mm
+/gps/pos/type Volume
+/gps/pos/shape Para
+/gps/pos/halfx 10 cm
+/gps/pos/halfy 10 cm
+/gps/pos/halfz 10 cm
+/gps/pos/confine crystal3_PV
+
+/run/printProgress 10000
+/run/beamOn 100000
