@@ -66,6 +66,7 @@ void RunAction::BookAnalysis(G4String filename, G4bool ntupleMerging){
     analysisManager->CreateNtupleDColumn("Initial Energy");
     analysisManager->CreateNtupleSColumn("Origin Volume");
     analysisManager->CreateNtupleIColumn("MigrantID");
+    analysisManager->CreateNtupleIColumn("ParentID");
 
     analysisManager->FinishNtuple();
 }

@@ -31,6 +31,7 @@ public:
     void setInitialEnergy(G4double initialEnergy)       {this->initialEnergy = initialEnergy;};
     void setOrigin(G4String originVolume)               {this->originVolume = originVolume;};
     void setMigrantID       (G4int migrantID)           {this->migrantID = migrantID; };
+    void setParentID(G4int parentID)                    {this->parentID = parentID; };
 
 
     G4int           getTrackID()            {return trackID;};
@@ -42,6 +43,7 @@ public:
     G4double        getInitialEnergy()      {return initialEnergy;};
     G4String        getOrigin()             {return originVolume;};
     G4int           getMigrantID()          {return migrantID;};
+    G4int           getParentID()           {return parentID;};
 
 
 private:
@@ -55,6 +57,7 @@ private:
     G4double        initialEnergy       = 0;
     G4String        originVolume        = "";
     G4int           migrantID           = -1;
+    G4int           parentID            = -1;
 };
 
 

@@ -50,6 +50,7 @@ G4bool SensitiveDetector::ProcessHits(G4Step* step, G4TouchableHistory* history)
     hit->setInitialEnergy   (step->GetTrack()->GetVertexKineticEnergy());
     hit->setOrigin(parentVolume);
     hit->setMigrantID       (migrantID);
+    hit->setParentID(step->GetTrack()->GetParentID());
 
     hitsCollection->insert(hit);
 

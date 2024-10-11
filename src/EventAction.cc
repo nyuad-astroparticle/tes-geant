@@ -38,6 +38,7 @@ void EventAction::EndOfEventAction(const G4Event* event)
             analysisManager->FillNtupleDColumn(9,hit->getInitialEnergy()/keV);
             analysisManager->FillNtupleSColumn(10,hit->getOrigin());
             analysisManager->FillNtupleIColumn(11,hit->getMigrantID());
+            analysisManager->FillNtupleIColumn(12,hit->getParentID());
             analysisManager->AddNtupleRow();
         }
     }
