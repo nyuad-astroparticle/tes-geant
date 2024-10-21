@@ -6,6 +6,8 @@
 
 /gps/particle ion
 /gps/ion 89 227 0
+/gps/energy 0.0 keV
+
 
 /gps/position 0 0 0 mm
 /gps/pos/type Volume
