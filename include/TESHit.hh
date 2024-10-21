@@ -32,6 +32,7 @@ public:
     void setOrigin(G4String originVolume)               {this->originVolume = originVolume;};
     void setMigrantID       (G4int migrantID)           {this->migrantID = migrantID; };
     void setParentID(G4int parentID)                    {this->parentID = parentID; };
+    void setProcessName(G4String processName)           {this->processName = processName;}
 
 
     G4int           getTrackID()            {return trackID;};
@@ -44,6 +45,7 @@ public:
     G4String        getOrigin()             {return originVolume;};
     G4int           getMigrantID()          {return migrantID;};
     G4int           getParentID()           {return parentID;};
+    G4String        getProcessName()        {return processName;};
 
 
 private:
@@ -58,6 +60,7 @@ private:
     G4String        originVolume        = "";
     G4int           migrantID           = -1;
     G4int           parentID            = -1;
+    G4String        processName         = "";
 };
 
 

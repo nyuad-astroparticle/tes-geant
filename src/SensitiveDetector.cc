@@ -34,9 +34,17 @@ G4bool SensitiveDetector::ProcessHits(G4Step* step, G4TouchableHistory* history)
 
     // Get the migrantID if any
     G4int migrantID = -1;
+    G4String processName = "";
     if (step->GetTrack()->GetUserInformation()){
         TrackInformation* info  = static_cast<TrackInformation*> (step->GetTrack()->GetUserInformation());
-        migrantID               = info->GetMigrantID();
+        // migrantID               = info->GetMigrantID();
+        // processName             = info->GetProcessName();
+        // G4cout << processName;
+    }
+
+    if (step->GetTrack()->GetCreatorProcess())
+    {
+        processName = step->GetTrack()->GetCreatorProcess()->GetProcessName();
     }
 
 
@@ -51,6 +59,7 @@ G4bool SensitiveDetector::ProcessHits(G4Step* step, G4TouchableHistory* history)
     hit->setOrigin(parentVolume);
     hit->setMigrantID       (migrantID);
     hit->setParentID(step->GetTrack()->GetParentID());
+    hit->setProcessName(processName);
 
     hitsCollection->insert(hit);
 

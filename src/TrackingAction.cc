@@ -79,6 +79,12 @@ void TrackingAction::PostUserTrackingAction(const G4Track* track)
     // Get their number
     size_t numberOfChilder = (*children).size();
 
+    G4String processName = "";
+    if (track->GetCreatorProcess())
+    {
+        processName = track->GetCreatorProcess()->GetProcessName();
+    }
+
     // For all children
     for (size_t i=0; i < numberOfChilder; i++)
     {
@@ -87,27 +93,31 @@ void TrackingAction::PostUserTrackingAction(const G4Track* track)
 
         // If the child does not have an origin volume skip
         if (!child->GetVolume()) continue;
+    
+        child->SetUserInformation(new TrackInformation(processName));
 
-        // If the child's volume is not a sensitive detector, we don't care
-        G4String childVolume = child->GetVolume()->GetName();
-        if (childVolume.find("Detector") == G4String::npos) continue;
+        // // If the child's volume is not a sensitive detector, we don't care
+        // G4String childVolume = child->GetVolume()->GetName();
+        // if (childVolume.find("Detector") == G4String::npos) continue;
 
-        // If the parent does not originate from sensitive detector volume
-        if (volume.find("Detector") == G4String::npos)
-        {
-            // This was the first migrant, add its information
-            child->SetUserInformation(new TrackInformation(track->GetTrackID()));
-        } 
-        else 
-        {
-            // If parent is not a first generation migrant, get
+        // // If the parent does not originate from sensitive detector volume
+        // if (volume.find("Detector") == G4String::npos)
+        // {
+        //     // This was the first migrant, add its information
+        //     child->SetUserInformation(new TrackInformation(track->GetTrackID()));
+        // } 
+        // else 
+        // {
+        //     // If parent is not a first generation migrant, get
 
-            //Extract the track information
-            TrackInformation* info = static_cast<TrackInformation*>(track->GetUserInformation());
+        //     //Extract the track information
+        //     TrackInformation* info = static_cast<TrackInformation*>(track->GetUserInformation());
 
-            // Set the new ones
-            child->SetUserInformation(new TrackInformation(info->GetMigrantID()));
-        }
+        //     // Set the new ones
+        //     child->SetUserInformation(new TrackInformation(info->GetMigrantID()));
+        // }
+
+
     }
 
     

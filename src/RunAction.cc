@@ -67,6 +67,7 @@ void RunAction::BookAnalysis(G4String filename, G4bool ntupleMerging){
     analysisManager->CreateNtupleSColumn("Origin Volume");
     analysisManager->CreateNtupleIColumn("MigrantID");
     analysisManager->CreateNtupleIColumn("ParentID");
+    analysisManager->CreateNtupleSColumn("ProcessName");
 
     analysisManager->FinishNtuple();
 }

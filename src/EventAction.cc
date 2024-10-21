@@ -39,6 +39,7 @@ void EventAction::EndOfEventAction(const G4Event* event)
             analysisManager->FillNtupleSColumn(10,hit->getOrigin());
             analysisManager->FillNtupleIColumn(11,hit->getMigrantID());
             analysisManager->FillNtupleIColumn(12,hit->getParentID());
+            analysisManager->FillNtupleSColumn(13,hit->getProcessName());
             analysisManager->AddNtupleRow();
         }
     }
