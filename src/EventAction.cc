@@ -30,14 +30,10 @@ void EventAction::EndOfEventAction(const G4Event* event)
             analysisManager->FillNtupleIColumn(1,hit->getTrackID());
             analysisManager->FillNtupleSColumn(2,hit->getParticle());
             analysisManager->FillNtupleDColumn(3,hit->getEnergyDeposited()/keV);
-            // analysisManager->FillNtupleDColumn(4,hit->getPosition()[0]);
-            // analysisManager->FillNtupleDColumn(5,hit->getPosition()[1]);
-            // analysisManager->FillNtupleDColumn(6,hit->getPosition()[2]);
             analysisManager->FillNtupleDColumn(4,hit->getTime()/ns);
             analysisManager->FillNtupleSColumn(5,hit->getVolume());
             analysisManager->FillNtupleDColumn(6,hit->getInitialEnergy()/keV);
             analysisManager->FillNtupleSColumn(7,hit->getOrigin());
-            // analysisManager->FillNtupleIColumn(11,hit->getMigrantID());
             analysisManager->FillNtupleIColumn(8,hit->getParentID());
             analysisManager->FillNtupleSColumn(9,hit->getProcessName());
             analysisManager->AddNtupleRow();
