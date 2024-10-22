@@ -31,7 +31,7 @@ TrackInformation::~TrackInformation()
 //----------------------- 8< -------------[ cut here ]------------------------
 
 // Mutators
-void            TrackInformation::SetMigrantID(G4int migrantID)         { this->migrantID = migrantID; }
-const G4int     TrackInformation::GetMigrantID()                        { return migrantID; }
-void            TrackInformation::SetProcessName(G4String processName)  { this->processName = processName;}
-const G4String  TrackInformation::GetProcessName()                      { return processName;}
+// void            TrackInformation::SetMigrantID(G4int migrantID)         { this->migrantID = migrantID; }
+// const G4int     TrackInformation::GetMigrantID()                        { return migrantID; }
+// void            TrackInformation::SetProcessName(G4String processName)  { this->processName = processName;}
+// const G4String  TrackInformation::GetProcessName()                      { return processName;}
